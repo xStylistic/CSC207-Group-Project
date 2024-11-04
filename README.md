@@ -1,9 +1,9 @@
 Team Members:
-Saswata Mohanta | SazzGuy
-Ji Qi | jerrq0101
-Ongphat Piyabenjarad | bem-boi
-Bonny C | xStylistic
-Zeke Weng | 
+Saswata Mohanta | SazzGuy \
+Ji Qi | jerrq0101 \
+Ongphat Piyabenjarad | bem-boi \
+Bonny C | xStylistic \
+Zeke Weng | ZekeWeng
 
 Story 1:
 Ben has a chemistry exam tomorrow but hasn’t started studying for it. Ben is not motivated to study and wants to spend time playing Fortnite. 
@@ -19,3 +19,7 @@ casually revise his flashcards. He just wants to practice and casually test his 
 Tool on EASY mode which is without a timer so he can answer without too much pressure and enjoy looking at his animals 
 and see them die less. After using this tool, John feels less stressed from studying and also feels his time was 
 productive.
+
+Story 4:
+Jeremy has an exam in 3 days. His instructor has warned the class that the exam will likely be quite lengthy. Jeremy is confident that he knows the content well but generally is very pressured under time duress. As a result, he wants to simulate the pressure of the testing environment with a ticking timer. Hence, Jeremy opens this Study Tool in HARD mode and has a timer for every question. After studying with this tool, Jeremy is confident in his abilities and sets out to ace his test.
+
