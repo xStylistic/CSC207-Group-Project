@@ -1,8 +1,8 @@
-Team Members:
-Saswata Mohanta | SazzGuy \
-Ji Qi | jerrq0101 \
-Ongphat Piyabenjarad | bem-boi \
+Team Members: \
 Bonny C | xStylistic \
+Saswata Mohanta | SazzGuy \
+Ongphat Piyabenjarad | bem-boi \
+Ji Qi | jerrq0101 \
 Zeke Weng | ZekeWeng
 
 Story 1:
