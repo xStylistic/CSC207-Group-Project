@@ -5,13 +5,33 @@ Ongphat Piyabenjarad | bem-boi \
 Ji Qi | jerryq0101 \
 Zeke Weng | ZekeWeng
 
+# TODOs for each story
+- Cut down the stories into the more independent format on the slides (IN YOUR DOMAIN)
+"As a user, I want to be able to discover, RSVP to, and manage events in
+my organization so that I can easily participate in relevant social and
+professional gatherings. (Thanks ChatGPT!)" into "As a user, I want to browse a list of upcoming events in my organization so
+that I can find ones that interest me."
+- Convert each user story into a list of use cases that allow this to happen (Sequence of actions)
+- Each use case has a set of interactions with the system 
+
 Story 1:
 Ben has a chemistry exam tomorrow but hasn’t started studying for it. Ben is not motivated to study and wants to spend time playing Fortnite. 
 Thankfully for Ben, this flashcard game will keep Ben motivated and entertained to study for his chemistry exam. Good thing this is almost as 
 addicting as Fortnite so Ben will not be failing his chemistry exam. After getting a 100 on his exam, he played Fortnite for days!
 
 Story 2:
-Jerry likes to multitask and dislikes the menial repetitiveness of memorizing. Conveniently, Jerry likes learning about different types and species of animals. Jerry needs a way to study that combines his interest and boring information. He loads up the app and pastes in topic questions. As he answers questions correctly, the app focuses on the new animal species arriving at Jerry’s farm. At the end, the app gives Jerry exciting facts about these animals that he helped to save (e.g. Specific species of the initial variations in the farm as well as their rarity and current population in the world). Using this study tool that integrates a gamification of concepts with knowledge that seems more attractive to Jerry, he gains enjoyment while answering tedious qu
+As a student user, I want to be able to be given a random review question that I inputted at the beginning of the app session, submit the question and check if I was right or wrong.
+
+Use Case 1: Give user a question
+Interactions 1: 
+* User clicks a button (Start / Next Question)
+* (A question appears, and a text field under line appears)
+User Case 2: Allow User to enter a text field answer and submit the question
+Interactions 2:
+* User types out their answer to the generated review question in the text field
+* User clicks "Next" 
+User Case 3: Check if the user's answer is right or wrong and give an output on the application
+* After user clicks "Next", a dialogue appears below the button, indicating whether the user is right, or wrong and the correct answer
 
 Story 3:
 John is not in the mood for serious studying as he is tired and his biology exam is 2 weeks away so he wants to 
