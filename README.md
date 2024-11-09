@@ -2,7 +2,7 @@ Team Members: \
 Bonny C | xStylistic \
 Saswata Mohanta | SazzGuy \
 Ongphat Piyabenjarad | bem-boi \
-Ji Qi | jerrq0101 \
+Ji Qi | jerryq0101 \
 Zeke Weng | ZekeWeng
 
 Story 1:
