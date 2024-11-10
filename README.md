@@ -106,13 +106,13 @@ Interactions 1:
 ### Use Case 2: Timed Response to Questions
 Interactions 2:
 * User initiates the question session by clicking a "Start Timer" button.
-* System starts a countdown timer visible on the screen.
+* A countdown timer will be visible on the screen.
 * User enters their answer within the time limit and clicks "Submit".
-* System provides immediate feedback and resets the timer for the next question.
+* Program provides immediate feedback and resets the timer for the next question.
 ### Use Case 3: End-of-Game Feedback
 Interactions 3:
 * User completes the final question and clicks "Finish".
-* System displays an overall performance summary, including the percentage of correct answers and total time taken.
-* System provides options for the user to repeat and try again.
+* An overall performance summary will be displayed, including the percentage of correct answers and total time taken.
+* The program will provide options for the user to repeat the study set or to upload a new one.
 
 
