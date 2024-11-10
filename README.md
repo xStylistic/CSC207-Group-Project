@@ -14,12 +14,8 @@ that I can find ones that interest me."
 - Convert each user story into a list of use cases that allow this to happen (Sequence of actions)
 - Each use case has a set of interactions with the system 
 
-## Story 1:
-Ben has a chemistry exam tomorrow but hasn’t started studying for it. Ben is not motivated to study and wants to spend time playing Fortnite. 
-Thankfully for Ben, this flashcard game will keep Ben motivated and entertained to study for his chemistry exam. Good thing this is almost as 
-addicting as Fortnite so Ben will not be failing his chemistry exam. After getting a 100 on his exam, he played Fortnite for days!
 
-## Story 2:
+## Story 1:
 As a student user, I want to be able to be given a random review question that I inputted at the beginning of the app session, submit the question and check if I was right or wrong.
 
 ### Use Case 1: Give user a question
@@ -33,6 +29,30 @@ Interactions 2:
 ### User Case 3: Check if the user's answer is right or wrong and give an output on the application
 Interactions 3:
 * After user clicks "Next", a dialogue appears below the button, indicating whether the user is right, or wrong and the correct answer
+
+## Story 2:
+Ben has a chemistry exam tomorrow but hasn’t started studying for it. Ben is not motivated to study and wants to spend time playing games. 
+Thankfully for Ben, this flashcard game will keep Ben motivated and entertained to study for his chemistry exam. The fun facts about these 
+animals will keep Ben entertained while studying for his chemistry exam.
+
+So as a student user, I want to be able to keep track of the animals and learn about the animals that I've gathered over the period I've been 
+studying for my exam so that it would keep me entertained and encourage me to keep studying. 
+
+### Use Case 1: Gain an animal when correctly answers the question
+Interactions 1:
+* User answers the question based on the question type (Textfield or Button)
+* Use the interactor to check if the question is correct.
+* The program randomly creates an instance of the abstract Animal class and adds the animal to the farm.
+### Use Case 2: Allow users to view the fun fact about the animal they just obtained
+Interaction 2:
+* User clicks the 'View Fact' Button on the right side of the GUI
+* JLabel appears which shows the fact-specific to the animal through the use of API
+### Use Case 3: Removes an animal when incorrectly answers the question
+Interactions 3:
+* User answers the question based on the question type (Textfield or Button)
+* Use the interactor to check if the question is incorrect.
+* The program randomly chooses an instance of the abstract Animal class in the farm and removes it.
+  
 
 ## Story 3:
 John is not in the mood for serious studying as he is tired and his biology exam is 2 weeks away so he wants to 
