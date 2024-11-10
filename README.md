@@ -1,5 +1,5 @@
 Team Members: \
-Bonny C | xStylistic \
+Bonny Chen | xStylistic \
 Saswata Mohanta | SazzGuy \
 Ongphat Piyabenjarad | bem-boi \
 Ji Qi | jerryq0101 \
