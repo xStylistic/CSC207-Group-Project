@@ -55,11 +55,30 @@ Interactions 3:
   
 
 ## Story 3:
-John is not in the mood for serious studying as he is tired and his biology exam is 2 weeks away so he wants to 
-casually revise his flashcards. He just wants to practice and casually test his knowledge. So he will open the Study 
-Tool on EASY mode which is without a timer so he can answer without too much pressure and enjoy looking at his animals 
-and see them die less. After using this tool, John feels less stressed from studying and also feels his time was 
-productive.
+As a student studying throughout the term, I want different levels of intensities of revising content depending on how 
+urgent and important the learning is. This will allow me to stay engaged in my revision and have a more relaxed time, 
+or a more vigorous session, as required.
+
+### Use Case 1: Selecting Revision Intensity Level
+Interactions:
+* User opens the app and is presented with mode options (Easy, Medium, Hard) 
+* User selects the mode they want by clicking on the corresponding button, depending on the intensity of revision 
+  required. 
+
+### Use Case 2: Adjusting Parameters Based on Selected Mode
+Interactions:
+* If 'Easy' or 'Medium' was chosen, user is prompted to enter the amount of questions they want to solve.
+* User clicks 'Start Session' to begin a session which opens the questions interface with the parameters adjusted based 
+  on the mode (i.e. How much time is given to answer each question, the severity of the punishment/rewards for answers 
+  and the quantity of questions)
+
+  * If 'Easy' is chosen, in the session while answering each question (Story 1), no timer is set, punishment amount is low
+  * If 'Medium' is chosen, in the session, for each question, timer is set (Story 4) to a longer time, punishment and
+    reward amount is medium
+  * If 'Hard' is chosen, in the session, for each question, timer is set (Story 4) to a short time, punishment amount is 
+    high (and reward is high) and all questions from the set are asked
+
+* The user then interacts with the use cases from story 1 or story 4 based on the selections
 
 ## Story 4:
 Jeremy struggles under time pressure, leading to suboptimal results in his exams. Hence, as a student user, the ability to have a simulated 
