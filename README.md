@@ -62,5 +62,18 @@ and see them die less. After using this tool, John feels less stressed from stud
 productive.
 
 ## Story 4:
-Jeremy has an exam in 3 days. His instructor has warned the class that the exam will likely be quite lengthy. Jeremy is confident that he knows the content well but generally is very pressured under time duress. As a result, he wants to simulate the pressure of the testing environment with a ticking timer. Hence, Jeremy opens this Study Tool in HARD mode and has a timer for every question. After studying with this tool, Jeremy is confident in his abilities and sets out to ace his test.
+Jeremy struggles under time pressure, leading to suboptimal results in his exams. Hence, as a student user, the ability to have a simulated 
+clock or some tool to keep him accountable on his time is critical. 
+
+### Use Case 1: Timed Questions Answering
+Interactions 1:
+* While the user is answering questions (Story #1), he has a timer that paces him
+* There is a ticking clock on every single question
+* There is also an overall clock tracking his total time spent
+### Use Case 2: Questions-Time post study analysis
+Interactions 2:
+* After the user is done with a study session, provide analytical statistics on his studying
+* The program stores the amount of time, correctness of the study program
+* After the study session a JFrame views allows for analysis on questions
+
 
