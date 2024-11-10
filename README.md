@@ -76,4 +76,24 @@ Interactions 2:
 * The program stores the amount of time, correctness of the study program
 * After the study session a JFrame views allows for analysis on questions
 
+## Story 5:
+Polly is trying to get 100 on her psychology exam. She needs to know every term and concept very well. In order for her to achieve 100 on the exam, she needs to be able to answer all the flashcards word for word under a certain time limit to simulate a testing environment. So as a student user, she needs to be able to check if she truly understands the material fully. 
+
+### Use Case 1: Answer Evaluation and Feedback
+Interactions 1:
+* System evaluates the user's submitted answer.
+* System displays feedback below the submission button, indicating whether the answer was correct or incorrect.
+* If incorrect, the system provides the correct answer for the user to review
+### Use Case 2: Timed Response to Questions
+Interactions 2:
+* User initiates the question session by clicking a "Start Timer" button.
+* System starts a countdown timer visible on the screen.
+* User enters their answer within the time limit and clicks "Submit".
+* System provides immediate feedback and resets the timer for the next question.
+### Use Case 3: End-of-Game Feedback
+Interactions 3:
+* User completes the final question and clicks "Finish".
+* System displays an overall performance summary, including the percentage of correct answers and total time taken.
+* System provides options for the user to repeat and try again.
+
 
