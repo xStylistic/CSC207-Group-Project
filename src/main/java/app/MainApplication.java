@@ -44,8 +44,6 @@ public class MainApplication {
      * @param args commandline arguments are ignored
      */
     public static void main(String[] args) {
-
-        // Retrieve the Q/A Data
         final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
 
         final GameAppBuilder gameBuilder = new GameAppBuilder();
