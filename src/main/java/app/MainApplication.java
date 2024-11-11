@@ -1,9 +1,9 @@
 package app;
 
-import data_access.DBNoteDataAccessObject;
 import data_access.FileDataAccessObject;
 import use_case.file.FileDataAccessInterface;
-import use_case.note.NoteDataAccessInterface;
+
+import java.io.File;
 
 /**
  * An application where we can view and add to a note stored by a user.
@@ -21,7 +21,7 @@ import use_case.note.NoteDataAccessInterface;
  * view. Your team may wish to bring back the ViewManager or make your own implementation of supporting
  * switching between views depending on your project.
  */
-public class MainNoteApplication {
+public class MainApplication {
 
     /**
      * The main entry point of the application.
@@ -53,11 +53,36 @@ public class MainNoteApplication {
         final FileLoaderAppBuilder fileBuilder = new FileLoaderAppBuilder();
         fileBuilder.addFileDAO(fileDataAccess)
                 .addFileView()
-                .addFileUseCase().build().setVisible(true);
+                .addFileUseCase()
+                .build().setVisible(true);
+
+        File file = fileBuilder.getFile();
+
+//        Map<String, String> questionsAnswers = new HashMap<>();
+//
+//        try {
+//            List<String> lines = Files.readAllLines(file.toPath());
+//
+//            Iterator<String> iterator = lines.iterator();
+//            if (iterator.hasNext()) {
+//                iterator.next();
+//            }
+//
+//            while (iterator.hasNext()) {
+//                String[] line = iterator.next().split("\t");
+//
+//                if (line.length == 2) {
+//                    questionsAnswers.put(line[0], line[1]);
+//                }
+//            }
+//        } catch (IOException ex) {
+//            throw new RuntimeException("Error reading the file: " + file.getName(), ex);
+//        }
+//        System.out.println(questionsAnswers);
 
 //        // create the data access and inject it into our builder!
 //        final NoteDataAccessInterface noteDataAccess = new DBNoteDataAccessObject();
-
+//
 //        final NoteAppBuilder builder = new NoteAppBuilder();
 //        builder.addNoteDAO(fileDataAccess)
 //               .addNoteView()
