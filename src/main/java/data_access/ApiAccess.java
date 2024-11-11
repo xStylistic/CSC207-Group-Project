@@ -1,19 +1,20 @@
 package data_access;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.Random;
 
-
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -49,12 +50,12 @@ public final class ApiAccess {
      */
     public static List getAnimal(String animal) {
         final String apiUrl = API_URL + animal;
+        final List<String> animals = new ArrayList<>();
         try {
             final URL url = new URL(apiUrl);
             final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("X-Api-Key", API_KEY);
-            final List<String> animals = new ArrayList<>();
 
             final int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -74,16 +75,13 @@ public final class ApiAccess {
                     final JSONObject characteristics = jsonObject.getJSONObject("characteristics");
                     // check if it's in the same family because there might be other animals with same name but
                     // different species
-
-                    Iterator<String> keys = characteristics.keys();
-                    String[] keyArray = new String[characteristics.length()];
+                    final Iterator<String> keys = characteristics.keys();
+                    final String[] keyArray = new String[characteristics.length()];
                     int index = 0;
                     while (keys.hasNext()) {
                         keyArray[index++] = keys.next();
                     }
-                    final Random rando = new Random();
-                    final String randomKey = keyArray[rando.nextInt(keyArray.length)];
-
+                    final String randomKey = keyArray[new Random().nextInt(keyArray.length)];
                     System.out.println(jsonObject.getJSONArray("locations"));
                     if (taxonomy.getString("family").equals(AVAILABLE_ANIMALS.get(animal))) {
                         animals.add(jsonObject.getString("name"));
@@ -94,16 +92,15 @@ public final class ApiAccess {
                         )));
                     }
                 }
-                return animals;
-            }
-            else {
-                return null;
             }
         }
-        catch (Exception exA) {
+        catch (IOException exA) {
             exA.printStackTrace();
         }
-        return null;
+        catch (JSONException exA) {
+            exA.printStackTrace();
+        }
+        return animals;
     }
 
     /**
