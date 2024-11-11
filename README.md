@@ -15,7 +15,7 @@ that I can find ones that interest me."
 - Each use case has a set of interactions with the system 
 
 
-## Main Story,
+## Main Story:
 As a student user, I want ot be able to load a batch of questions and then start reviewing those questions in a more intuitive and motivated way.
 Interactions 1: 
 * User clicks a choose file button 
