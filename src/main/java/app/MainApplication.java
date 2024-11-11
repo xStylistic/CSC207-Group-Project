@@ -1,6 +1,8 @@
 package app;
 
 import data_access.DBNoteDataAccessObject;
+import data_access.FileDataAccessObject;
+import use_case.file.FileDataAccessInterface;
 import use_case.note.NoteDataAccessInterface;
 
 /**
@@ -45,12 +47,20 @@ public class MainNoteApplication {
      */
     public static void main(String[] args) {
 
-        // create the data access and inject it into our builder!
-        final NoteDataAccessInterface noteDataAccess = new DBNoteDataAccessObject();
+        // Retrieve the Q/A Data
+        final FileDataAccessInterface fileDataAccess = new FileDataAccessObject();
 
-        final NoteAppBuilder builder = new NoteAppBuilder();
-        builder.addNoteDAO(noteDataAccess)
-               .addNoteView()
-               .addNoteUseCase().build().setVisible(true);
+        final FileLoaderAppBuilder fileBuilder = new FileLoaderAppBuilder();
+        fileBuilder.addFileDAO(fileDataAccess)
+                .addFileView()
+                .addFileUseCase().build().setVisible(true);
+
+//        // create the data access and inject it into our builder!
+//        final NoteDataAccessInterface noteDataAccess = new DBNoteDataAccessObject();
+
+//        final NoteAppBuilder builder = new NoteAppBuilder();
+//        builder.addNoteDAO(fileDataAccess)
+//               .addNoteView()
+//               .addNoteUseCase().build().setVisible(true);
     }
 }
