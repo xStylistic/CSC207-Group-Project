@@ -1,5 +1,7 @@
 package app;
 
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -11,15 +13,13 @@ import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
 import view.GameView;
 
-import java.io.File;
-
 /**
- * Builder for the File Loader
+ * Builder for the Game.
  */
 public class GameAppBuilder {
     public static final int HEIGHT = 300;
     public static final int WIDTH = 400;
-    private GameDataAccessInterface fileDAO;
+    private GameDataAccessInterface gameDao;
     private GameViewModel gameViewModel = new GameViewModel();
     private GameView gameView;
     private GameInteractor gameInteractor;
@@ -27,11 +27,11 @@ public class GameAppBuilder {
 
     /**
      * Sets the FileDAO to be used in this application.
-     * @param fileDataAccess the DAO to use
+     * @param gameDataAccess the DAO to use
      * @return this builder
      */
-    public GameAppBuilder addGameDAO(GameDataAccessInterface fileDataAccess) {
-        fileDAO = fileDataAccess;
+    public GameAppBuilder addGameDao(GameDataAccessInterface gameDataAccess) {
+        gameDao = gameDataAccess;
         return this;
     }
 
@@ -45,7 +45,7 @@ public class GameAppBuilder {
     public GameAppBuilder addGameUseCase() {
         final GameOutputBoundary gameOutputBoundary = new GamePresenter(gameViewModel);
         gameInteractor = new GameInteractor(
-                fileDAO, gameOutputBoundary);
+                gameDao, gameOutputBoundary);
 
         final GameController controller = new GameController(gameInteractor);
         if (gameView == null) {

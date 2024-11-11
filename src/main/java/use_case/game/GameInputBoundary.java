@@ -11,7 +11,7 @@ public interface GameInputBoundary {
     /**
      * Executes the refresh note use case.
      *
-     * @return
+     * @return File that the user gave
      */
     File executeRetrieval();
 }
