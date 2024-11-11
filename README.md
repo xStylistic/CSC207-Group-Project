@@ -15,6 +15,12 @@ that I can find ones that interest me."
 - Each use case has a set of interactions with the system 
 
 
+## Main Story,
+As a student user, I want ot be able to load a batch of questions and then start reviewing those questions in a more intuitive and motivated way.
+Interactions 1: 
+* User clicks a choose file button 
+* (The user can look for his associated question set)
+
 ## Story 1:
 As a student user, I want to be able to be given a random review question that I inputted at the beginning of the app session, submit the question and check if I was right or wrong.
 
