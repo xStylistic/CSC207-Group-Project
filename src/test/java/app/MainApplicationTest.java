@@ -3,15 +3,15 @@ package app;
 import entity.User;
 import org.junit.Before;
 import org.junit.Test;
-import use_case.note.NoteDataAccessInterface;
+import use_case.file.FileDataAccessInterface;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static java.lang.Thread.sleep;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class NoteApplicationTest {
+public class MainApplicationTest {
 
     private JFrame app;
 
@@ -19,26 +19,26 @@ public class NoteApplicationTest {
     public void setUp() {
 
         // create the data access and inject it into our builder!
-        final NoteDataAccessInterface noteDataAccess = new NoteDataAccessInterface() {
+        final FileDataAccessInterface FileDataAccess = new FileDataAccessInterface() {
 
-            private String note = "test";
+//            private String File = "test";
 
-            @Override
-            public String saveNote(User user, String note) {
-                this.note = note;
-                return note;
-            }
-
-            @Override
-            public String loadNote(User user) {
-                return note;
-            }
+//            @Override
+//            public String saveFile(User user, String File) {
+//                this.File = File;
+//                return File;
+//            }
+//
+//            @Override
+//            public String loadFile(User user) {
+//                return File;
+//            }
         };
 
-        final NoteAppBuilder builder = new NoteAppBuilder();
-        app = builder.addNoteDAO(noteDataAccess)
-                .addNoteView()
-                .addNoteUseCase().build();
+        final FileLoaderAppBuilder builder = new FileLoaderAppBuilder();
+        app = builder.addFileDAO(FileDataAccess)
+                .addFileView()
+                .addFileUseCase().build();
 
         app.setVisible(true);
 

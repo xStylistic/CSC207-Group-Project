@@ -1,68 +1,42 @@
 package view;
 
-import java.awt.Component;
+import interface_adapter.file.FileController;
+import interface_adapter.file.FileState;
+import interface_adapter.file.FileViewModel;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import interface_adapter.note.NoteController;
-import interface_adapter.note.NoteState;
-import interface_adapter.note.NoteViewModel;
 
 /**
- * The View for when the user is viewing a note in the program.
+ * The View for when the user is adding a file into the program
  */
-public class NoteView extends JPanel implements ActionListener, PropertyChangeListener {
+public class FileView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    private final NoteViewModel noteViewModel;
+    private final FileViewModel fileViewModel;
+    private final JButton chooseFileButton = new JButton("Choose File");
+    private FileController fileController;
 
-    private final JLabel noteName = new JLabel("note for jonathan_calver2");
-    private final JTextArea noteInputField = new JTextArea();
 
-    private final JButton saveButton = new JButton("Save");
-    private final JButton refreshButton = new JButton("Refresh");
-    private NoteController noteController;
-
-    public NoteView(NoteViewModel noteViewModel) {
-
-        noteName.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.noteViewModel = noteViewModel;
-        this.noteViewModel.addPropertyChangeListener(this);
+    public FileView(FileViewModel fileViewModel) {
+        this.fileViewModel = fileViewModel;
+        this.fileViewModel.addPropertyChangeListener(this);
 
         final JPanel buttons = new JPanel();
-        buttons.add(saveButton);
-        buttons.add(refreshButton);
+        buttons.add(chooseFileButton);
 
-        saveButton.addActionListener(
+        chooseFileButton.addActionListener(
                 evt -> {
-                    if (evt.getSource().equals(saveButton)) {
-                        noteController.execute(noteInputField.getText());
-
-                    }
-                }
-        );
-
-        refreshButton.addActionListener(
-                evt -> {
-                    if (evt.getSource().equals(refreshButton)) {
-                        noteController.execute(null);
-
+                    if (evt.getSource().equals(chooseFileButton)) {
+                        fileController.execute();
                     }
                 }
         );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        this.add(noteName);
-        this.add(noteInputField);
         this.add(buttons);
     }
 
@@ -76,20 +50,20 @@ public class NoteView extends JPanel implements ActionListener, PropertyChangeLi
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        final NoteState state = (NoteState) evt.getNewValue();
-        setFields(state);
+        final FileState state = (FileState) evt.getNewValue();
         if (state.getError() != null) {
             JOptionPane.showMessageDialog(this, state.getError(),
                     "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (state.getFile() != null) {
+            JOptionPane.showMessageDialog(this, "File loaded successfully.",
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
+            SwingUtilities.getWindowAncestor(this).dispose();
         }
     }
 
-    private void setFields(NoteState state) {
-        noteInputField.setText(state.getNote());
+    public void setFileController(FileController controller) {
+        this.fileController = controller;
     }
 
-    public void setNoteController(NoteController controller) {
-        this.noteController = controller;
-    }
 }
 
