@@ -1,28 +1,24 @@
-package interface_adapter.note;
+package interface_adapter.file;
 
-import use_case.note.NoteInputBoundary;
+import use_case.file.FileInputBoundary;
+
+import java.io.File;
 
 /**
- * Controller for our Note related Use Cases.
+ * Controller for our File related Use Cases.
  */
-public class NoteController {
+public class FileController {
 
-    private final NoteInputBoundary noteInteractor;
+    private final FileInputBoundary fileInteractor;
 
-    public NoteController(NoteInputBoundary noteInteractor) {
-        this.noteInteractor = noteInteractor;
+    public FileController(FileInputBoundary fileInteractor) {
+        this.fileInteractor = fileInteractor;
     }
 
     /**
-     * Executes the Note related Use Cases.
-     * @param note the note to be recorded
+     * Executes the File related Use Cases.
      */
-    public void execute(String note) {
-        if (note != null) {
-            noteInteractor.executeSave(note);
-        }
-        else {
-            noteInteractor.executeRefresh();
-        }
+    public File execute() {
+        return fileInteractor.executeRetrieval();
     }
 }

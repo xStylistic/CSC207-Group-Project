@@ -1,38 +1,40 @@
-package interface_adapter.note;
+package interface_adapter.file;
 
-import use_case.note.NoteOutputBoundary;
+import use_case.file.FileOutputBoundary;
+
+import java.io.File;
 
 /**
- * The presenter for our Note viewing and editing program.
+ * The presenter for our File viewing and editing program.
  */
-public class NotePresenter implements NoteOutputBoundary {
+public class FilePresenter implements FileOutputBoundary {
 
-    private final NoteViewModel noteViewModel;
+    private final FileViewModel fileViewModel;
 
-    public NotePresenter(NoteViewModel noteViewModel) {
-        this.noteViewModel = noteViewModel;
+    public FilePresenter(FileViewModel fileViewModel) {
+        this.fileViewModel = fileViewModel;
     }
 
     /**
-     * Prepares the success view for the Note related Use Cases.
+     * Prepares the success view for the File related Use Cases.
      *
-     * @param note the output data
+     * @param file the output data
      */
     @Override
-    public void prepareSuccessView(String note) {
-        noteViewModel.getState().setNote(note);
-        noteViewModel.getState().setError(null);
-        noteViewModel.firePropertyChanged();
+    public void prepareSuccessView(File file) {
+        fileViewModel.getState().setFile(file);
+        fileViewModel.getState().setError(null);
+        fileViewModel.firePropertyChanged();
     }
 
     /**
-     * Prepares the failure view for the Note related Use Cases.
+     * Prepares the failure view for the File related Use Cases.
      *
      * @param errorMessage the explanation of the failure
      */
     @Override
     public void prepareFailView(String errorMessage) {
-        noteViewModel.getState().setError(errorMessage);
-        noteViewModel.firePropertyChanged();
+        fileViewModel.getState().setError(errorMessage);
+        fileViewModel.firePropertyChanged();
     }
 }

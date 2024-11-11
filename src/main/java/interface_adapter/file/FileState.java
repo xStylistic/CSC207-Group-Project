@@ -1,19 +1,21 @@
-package interface_adapter.note;
+package interface_adapter.file;
+
+import java.io.File;
 
 /**
- * The State for a note.
- * <p>For this example, a note is simplay a string.</p>
+ * The State for a File.
+ * <p>For this example, ...</p>
  */
-public class NoteState {
-    private String note = "";
+public class FileState {
+    private File file;
     private String error;
 
-    public String getNote() {
-        return note;
+    public File getFile() {
+        return file;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setFile(File file) {
+        this.file = file;
     }
 
     public void setError(String errorMessage) {
