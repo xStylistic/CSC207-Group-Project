@@ -11,7 +11,7 @@ import java.awt.*;
 import static java.lang.Thread.sleep;
 import static org.junit.Assert.*;
 
-public class MainApplicationTest {
+public class NoteApplicationTest {
 
     private JFrame app;
 

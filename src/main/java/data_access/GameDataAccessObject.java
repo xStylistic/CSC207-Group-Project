@@ -1,8 +1,8 @@
 package data_access;
 
 import entity.User;
-import use_case.file.DataAccessException;
-import use_case.file.FileDataAccessInterface;
+import use_case.game.DataAccessException;
+import use_case.game.GameDataAccessInterface;
 
 import javax.swing.*;
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * The DAO for requesting and saving input file.
  */
-public class FileDataAccessObject implements FileDataAccessInterface {
+public class GameDataAccessObject implements GameDataAccessInterface {
     @Override
     public File requestFile(User user) throws DataAccessException {
         JFileChooser fileChooser = new JFileChooser();

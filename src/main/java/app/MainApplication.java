@@ -1,9 +1,7 @@
 package app;
 
-import data_access.FileDataAccessObject;
-import use_case.file.FileDataAccessInterface;
-
-import java.io.File;
+import data_access.GameDataAccessObject;
+import use_case.game.GameDataAccessInterface;
 
 /**
  * An application where we can view and add to a note stored by a user.
@@ -46,46 +44,12 @@ public class MainApplication {
      * @param args commandline arguments are ignored
      */
     public static void main(String[] args) {
+        final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
 
-        // Retrieve the Q/A Data
-        final FileDataAccessInterface fileDataAccess = new FileDataAccessObject();
-
-        final FileLoaderAppBuilder fileBuilder = new FileLoaderAppBuilder();
-        fileBuilder.addFileDAO(fileDataAccess)
-                .addFileView()
-                .addFileUseCase()
+        final GameAppBuilder gameBuilder = new GameAppBuilder();
+        gameBuilder.addGameDAO(gameDataAccess)
+                .addGameView()
+                .addGameUseCase()
                 .build().setVisible(true);
-
-        File file = fileBuilder.getFile();
-
-//        Map<String, String> questionsAnswers = new HashMap<>();
-//
-//        try {
-//            List<String> lines = Files.readAllLines(file.toPath());
-//
-//            Iterator<String> iterator = lines.iterator();
-//            if (iterator.hasNext()) {
-//                iterator.next();
-//            }
-//
-//            while (iterator.hasNext()) {
-//                String[] line = iterator.next().split("\t");
-//
-//                if (line.length == 2) {
-//                    questionsAnswers.put(line[0], line[1]);
-//                }
-//            }
-//        } catch (IOException ex) {
-//            throw new RuntimeException("Error reading the file: " + file.getName(), ex);
-//        }
-//        System.out.println(questionsAnswers);
-
-//        // create the data access and inject it into our builder!
-//        final NoteDataAccessInterface noteDataAccess = new DBNoteDataAccessObject();
-//
-//        final NoteAppBuilder builder = new NoteAppBuilder();
-//        builder.addNoteDAO(fileDataAccess)
-//               .addNoteView()
-//               .addNoteUseCase().build().setVisible(true);
     }
 }

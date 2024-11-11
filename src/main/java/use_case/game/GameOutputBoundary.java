@@ -1,11 +1,11 @@
-package use_case.file;
+package use_case.game;
 
 import java.io.File;
 
 /**
  * The output boundary for the Login Use Case.
  */
-public interface FileOutputBoundary {
+public interface GameOutputBoundary {
     /**
      * Prepares the success view for the File related Use Cases.
      * @param message the output data
