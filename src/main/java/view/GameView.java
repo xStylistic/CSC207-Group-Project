@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.file.FileController;
-import interface_adapter.file.FileState;
-import interface_adapter.file.FileViewModel;
+import interface_adapter.game.GameController;
+import interface_adapter.game.GameState;
+import interface_adapter.game.GameViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,16 +12,16 @@ import java.beans.PropertyChangeListener;
 
 
 /**
- * The View for when the user is adding a file into the program
+ * The View for when the user is adding a game into the program
  */
-public class FileView extends JPanel implements ActionListener, PropertyChangeListener {
+public class GameView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    private final FileViewModel fileViewModel;
+    private final GameViewModel fileViewModel;
     private final JButton chooseFileButton = new JButton("Choose File");
-    private FileController fileController;
+    private GameController fileController;
 
 
-    public FileView(FileViewModel fileViewModel) {
+    public GameView(GameViewModel fileViewModel) {
         this.fileViewModel = fileViewModel;
         this.fileViewModel.addPropertyChangeListener(this);
 
@@ -50,7 +50,7 @@ public class FileView extends JPanel implements ActionListener, PropertyChangeLi
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        final FileState state = (FileState) evt.getNewValue();
+        final GameState state = (GameState) evt.getNewValue();
         if (state.getError() != null) {
             JOptionPane.showMessageDialog(this, state.getError(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -61,7 +61,7 @@ public class FileView extends JPanel implements ActionListener, PropertyChangeLi
         }
     }
 
-    public void setFileController(FileController controller) {
+    public void setGameController(GameController controller) {
         this.fileController = controller;
     }
 

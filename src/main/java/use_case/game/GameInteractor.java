@@ -1,4 +1,4 @@
-package use_case.file;
+package use_case.game;
 
 import entity.User;
 import java.io.File;
@@ -14,17 +14,17 @@ import java.util.Map;
  * the contents of the File and saving the contents of the File. Since they
  * are closely related, we have combined them here for simplicity.
  */
-public class FileInteractor implements FileInputBoundary {
+public class GameInteractor implements GameInputBoundary {
 
-    private final FileDataAccessInterface fileDataAccessInterface;
-    private final FileOutputBoundary fileOutputBoundary;
+    private final GameDataAccessInterface gameDataAccessInterface;
+    private final GameOutputBoundary gameOutputBoundary;
     private final User user = new User("jonathan_calver2", "abc123");
     private File file;
 
-    public FileInteractor(FileDataAccessInterface fileDataAccessInterface,
-                          FileOutputBoundary fileOutputBoundary) {
-        this.fileDataAccessInterface = fileDataAccessInterface;
-        this.fileOutputBoundary = fileOutputBoundary;
+    public GameInteractor(GameDataAccessInterface gameDataAccessInterface,
+                          GameOutputBoundary gameOutputBoundary) {
+        this.gameDataAccessInterface = gameDataAccessInterface;
+        this.gameOutputBoundary = gameOutputBoundary;
         this.file = null;
     }
 
@@ -36,8 +36,8 @@ public class FileInteractor implements FileInputBoundary {
     @Override
     public File executeRetrieval() {
         try {
-            this.file = fileDataAccessInterface.requestFile(user);
-            fileOutputBoundary.prepareSuccessView(this.file);
+            this.file = gameDataAccessInterface.requestFile(user);
+            gameOutputBoundary.prepareSuccessView(this.file);
 
             Map<String, String> questionsAnswers = new HashMap<>();
 
@@ -64,7 +64,7 @@ public class FileInteractor implements FileInputBoundary {
 
 
         } catch (DataAccessException ex) {
-            fileOutputBoundary.prepareFailView(ex.getMessage());
+            gameOutputBoundary.prepareFailView(ex.getMessage());
         }
         return null;
     }

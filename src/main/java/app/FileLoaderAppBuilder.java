@@ -3,13 +3,13 @@ package app;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import interface_adapter.file.FileController;
-import interface_adapter.file.FilePresenter;
-import interface_adapter.file.FileViewModel;
-import use_case.file.FileDataAccessInterface;
-import use_case.file.FileInteractor;
-import use_case.file.FileOutputBoundary;
-import view.FileView;
+import interface_adapter.game.GameController;
+import interface_adapter.game.GamePresenter;
+import interface_adapter.game.GameViewModel;
+import use_case.game.GameDataAccessInterface;
+import use_case.game.GameInteractor;
+import use_case.game.GameOutputBoundary;
+import view.GameView;
 
 import java.io.File;
 
@@ -19,10 +19,10 @@ import java.io.File;
 public class FileLoaderAppBuilder {
     public static final int HEIGHT = 300;
     public static final int WIDTH = 400;
-    private FileDataAccessInterface fileDAO;
-    private FileViewModel fileViewModel = new FileViewModel();
-    private FileView fileView;
-    private FileInteractor fileInteractor;
+    private GameDataAccessInterface fileDAO;
+    private GameViewModel gameViewModel = new GameViewModel();
+    private GameView gameView;
+    private GameInteractor gameInteractor;
     private File file;
 
     /**
@@ -30,7 +30,7 @@ public class FileLoaderAppBuilder {
      * @param fileDataAccess the DAO to use
      * @return this builder
      */
-    public FileLoaderAppBuilder addFileDAO(FileDataAccessInterface fileDataAccess) {
+    public FileLoaderAppBuilder addFileDAO(GameDataAccessInterface fileDataAccess) {
         fileDAO = fileDataAccess;
         return this;
     }
@@ -43,15 +43,15 @@ public class FileLoaderAppBuilder {
      * @throws RuntimeException if this method is called before addFileView
      */
     public FileLoaderAppBuilder addFileUseCase() {
-        final FileOutputBoundary fileOutputBoundary = new FilePresenter(fileViewModel);
-        fileInteractor = new FileInteractor(
-                fileDAO, fileOutputBoundary);
+        final GameOutputBoundary gameOutputBoundary = new GamePresenter(gameViewModel);
+        gameInteractor = new GameInteractor(
+                fileDAO, gameOutputBoundary);
 
-        final FileController controller = new FileController(fileInteractor);
-        if (fileView == null) {
+        final GameController controller = new GameController(gameInteractor);
+        if (gameView == null) {
             throw new RuntimeException("addFileView must be called before addFileUseCase");
         }
-        fileView.setFileController(controller);
+        gameView.setGameController(controller);
         return this;
     }
 
@@ -60,8 +60,8 @@ public class FileLoaderAppBuilder {
      * @return this builder
      */
     public FileLoaderAppBuilder addFileView() {
-        fileViewModel = new FileViewModel();
-        fileView = new FileView(fileViewModel);
+        gameViewModel = new GameViewModel();
+        gameView = new GameView(gameViewModel);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class FileLoaderAppBuilder {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setTitle("File Application");
         frame.setSize(WIDTH, HEIGHT);
-        frame.add(fileView);
+        frame.add(gameView);
         return frame;
     }
 

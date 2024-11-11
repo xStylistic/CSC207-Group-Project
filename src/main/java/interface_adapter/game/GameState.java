@@ -1,4 +1,4 @@
-package interface_adapter.file;
+package interface_adapter.game;
 
 import java.io.File;
 
@@ -6,7 +6,7 @@ import java.io.File;
  * The State for a File.
  * <p>For this example, ...</p>
  */
-public class FileState {
+public class GameState {
     private File file;
     private String error;
 
