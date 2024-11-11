@@ -16,7 +16,7 @@ public final class ApiAccess {
 
     private static final String API_KEY = "baw+70SpL57JbD/nNLXgOQ==RTGa7BsSwkAMlsBQ";
     private static final String API_URL = "https://api.api-ninjas.com/v1/animals?name=";
-    private static final Map AVAILABLE_ANIMALS = new HashMap<>(
+    private static final Map<String, String> AVAILABLE_ANIMALS = new HashMap<>(
             Map.ofEntries(
                     Map.entry("pig", "Suidae"),
                     Map.entry("alpaca", "Camelidae"),
@@ -29,6 +29,7 @@ public final class ApiAccess {
                     Map.entry("flamingo", "Phoenicopteridae"),
                     Map.entry("rabbit", "Leporidae"))
     );
+    private static final Map<String, List> CURRENT_ANIMALS = new HashMap<>();
 
     private ApiAccess() {
         throw new AssertionError("Instantiating utility class.");
@@ -98,10 +99,17 @@ public final class ApiAccess {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     final JSONObject jsonObject = jsonArray.getJSONObject(i);
                     final JSONObject taxonomy = jsonObject.getJSONObject("taxonomy");
+//                    final JSONObject characteristics = jsonObject.getJSONObject("characteristics");
                     // check if it's in the same family because there might be other animals with same name but
                     // different species
+                    System.out.println(jsonObject.getJSONArray("locations"));
                     if (taxonomy.getString("family").equals(AVAILABLE_ANIMALS.get(animal))) {
                         animals.add(jsonObject.getString("name"));
+                        CURRENT_ANIMALS.put(jsonObject.getString("name"), new ArrayList<>(Arrays.asList(
+                                jsonObject.getJSONArray("locations"),
+//                                characteristics.getString("most_distinctive_feature"),
+                                taxonomy.getString("family")
+                        )));
                     }
                 }
                 return animals;
