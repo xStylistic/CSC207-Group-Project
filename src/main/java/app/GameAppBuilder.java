@@ -36,11 +36,11 @@ public class GameAppBuilder {
     }
 
     /**
-     * Creates the objects for the File Use Case and connects the FileView to its
+     * Creates the objects for the File Use Case and connects the GameView to its
      * controller.
-     * <p>This method must be called after addFileView!</p>
+     * <p>This method must be called after addGameView!</p>
      * @return this builder
-     * @throws RuntimeException if this method is called before addFileView
+     * @throws RuntimeException if this method is called before addGameView
      */
     public GameAppBuilder addGameUseCase() {
         final GameOutputBoundary gameOutputBoundary = new GamePresenter(gameViewModel);

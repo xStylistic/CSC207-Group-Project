@@ -14,4 +14,5 @@ public interface GameInputBoundary {
      * @return
      */
     File executeRetrieval();
+    String getFileName();
 }
