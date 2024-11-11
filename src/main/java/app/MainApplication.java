@@ -46,12 +46,12 @@ public class MainApplication {
     public static void main(String[] args) {
 
         // Retrieve the Q/A Data
-        final GameDataAccessInterface fileDataAccess = new GameDataAccessObject();
+        final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
 
-        final FileLoaderAppBuilder fileBuilder = new FileLoaderAppBuilder();
-        fileBuilder.addFileDAO(fileDataAccess)
-                .addFileView()
-                .addFileUseCase()
+        final GameAppBuilder gameBuilder = new GameAppBuilder();
+        gameBuilder.addGameDAO(gameDataAccess)
+                .addGameView()
+                .addGameUseCase()
                 .build().setVisible(true);
     }
 }

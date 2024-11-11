@@ -16,7 +16,7 @@ import java.io.File;
 /**
  * Builder for the File Loader
  */
-public class FileLoaderAppBuilder {
+public class GameAppBuilder {
     public static final int HEIGHT = 300;
     public static final int WIDTH = 400;
     private GameDataAccessInterface fileDAO;
@@ -30,7 +30,7 @@ public class FileLoaderAppBuilder {
      * @param fileDataAccess the DAO to use
      * @return this builder
      */
-    public FileLoaderAppBuilder addFileDAO(GameDataAccessInterface fileDataAccess) {
+    public GameAppBuilder addGameDAO(GameDataAccessInterface fileDataAccess) {
         fileDAO = fileDataAccess;
         return this;
     }
@@ -42,7 +42,7 @@ public class FileLoaderAppBuilder {
      * @return this builder
      * @throws RuntimeException if this method is called before addFileView
      */
-    public FileLoaderAppBuilder addFileUseCase() {
+    public GameAppBuilder addGameUseCase() {
         final GameOutputBoundary gameOutputBoundary = new GamePresenter(gameViewModel);
         gameInteractor = new GameInteractor(
                 fileDAO, gameOutputBoundary);
@@ -59,7 +59,7 @@ public class FileLoaderAppBuilder {
      * Creates the FileView and underlying FileViewModel.
      * @return this builder
      */
-    public FileLoaderAppBuilder addFileView() {
+    public GameAppBuilder addGameView() {
         gameViewModel = new GameViewModel();
         gameView = new GameView(gameViewModel);
         return this;

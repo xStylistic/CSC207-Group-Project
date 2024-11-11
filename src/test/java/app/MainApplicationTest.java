@@ -34,7 +34,7 @@ public class MainApplicationTest {
 //            }
         };
 
-        final FileLoaderAppBuilder builder = new FileLoaderAppBuilder();
+        final GameAppBuilder builder = new GameAppBuilder();
         app = builder.addFileDAO(FileDataAccess)
                 .addFileView()
                 .addFileUseCase().build();
