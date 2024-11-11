@@ -1,13 +1,20 @@
 package data_access;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Random;
+
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * API access file.
@@ -33,41 +40,6 @@ public final class ApiAccess {
 
     private ApiAccess() {
         throw new AssertionError("Instantiating utility class.");
-    }
-
-    /**
-     * Gets all the data given the animal.
-     * @param animal is animal name
-     * @return string of animals and their data
-     */
-    public static String getData(String animal) {
-        final String apiUrl = API_URL + animal;
-        try {
-            final URL url = new URL(apiUrl);
-            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("X-Api-Key", API_KEY);
-
-            final int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                final BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String inputLine;
-                final StringBuilder response = new StringBuilder();
-
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                return response.toString();
-            }
-            else {
-                return "Error: " + responseCode + " " + connection.getResponseMessage();
-            }
-        }
-        catch (Exception exA) {
-            exA.printStackTrace();
-        }
-        return null;
     }
 
     /**
@@ -99,15 +71,25 @@ public final class ApiAccess {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     final JSONObject jsonObject = jsonArray.getJSONObject(i);
                     final JSONObject taxonomy = jsonObject.getJSONObject("taxonomy");
-//                    final JSONObject characteristics = jsonObject.getJSONObject("characteristics");
+                    final JSONObject characteristics = jsonObject.getJSONObject("characteristics");
                     // check if it's in the same family because there might be other animals with same name but
                     // different species
+
+                    Iterator<String> keys = characteristics.keys();
+                    String[] keyArray = new String[characteristics.length()];
+                    int index = 0;
+                    while (keys.hasNext()) {
+                        keyArray[index++] = keys.next();
+                    }
+                    final Random rando = new Random();
+                    final String randomKey = keyArray[rando.nextInt(keyArray.length)];
+
                     System.out.println(jsonObject.getJSONArray("locations"));
                     if (taxonomy.getString("family").equals(AVAILABLE_ANIMALS.get(animal))) {
                         animals.add(jsonObject.getString("name"));
                         CURRENT_ANIMALS.put(jsonObject.getString("name"), new ArrayList<>(Arrays.asList(
                                 jsonObject.getJSONArray("locations"),
-//                                characteristics.getString("most_distinctive_feature"),
+                                randomKey + ": " + characteristics.getString(randomKey),
                                 taxonomy.getString("family")
                         )));
                     }
@@ -125,11 +107,14 @@ public final class ApiAccess {
     }
 
     /**
-     * Main test.
+     * The main entry point of the application.
+     * <p>
+     * Runs the program to just test it
+     * </p>
      * @param args commandline arguments are ignored
      */
     public static void main(String[] args) {
         System.out.println(ApiAccess.getAnimal("pig"));
-
+        System.out.println(CURRENT_ANIMALS);
     }
 }
