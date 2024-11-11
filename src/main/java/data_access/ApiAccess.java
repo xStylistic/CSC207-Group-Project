@@ -9,7 +9,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
-public final class apiAccess {  // make this a static class later and package it
+/**
+ * API access file.
+ */
+public final class ApiAccess {
 
     private static final String API_KEY = "baw+70SpL57JbD/nNLXgOQ==RTGa7BsSwkAMlsBQ";
     private static final String API_URL = "https://api.api-ninjas.com/v1/animals?name=";
@@ -27,80 +30,98 @@ public final class apiAccess {  // make this a static class later and package it
                     Map.entry("rabbit", "Leporidae"))
     );
 
-    private apiAccess(){
+    private ApiAccess() {
         throw new AssertionError("Instantiating utility class.");
     }
 
-    public static String getData(String animal){  // returns a list of animals with the keyword 'animal' in it
-        String apiUrl = API_URL + animal;
+    /**
+     * Gets all the data given the animal.
+     * @param animal is animal name
+     * @return string of animals and their data
+     */
+    public static String getData(String animal) {
+        final String apiUrl = API_URL + animal;
         try {
-            URL url = new URL(apiUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            final URL url = new URL(apiUrl);
+            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("X-Api-Key", API_KEY);
 
-            int responseCode = connection.getResponseCode();
+            final int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                final BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String inputLine;
-                StringBuilder response = new StringBuilder();
+                final StringBuilder response = new StringBuilder();
 
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
                 in.close();
                 return response.toString();
-            } else {
+            }
+            else {
                 return "Error: " + responseCode + " " + connection.getResponseMessage();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        catch (Exception exA) {
+            exA.printStackTrace();
         }
         return null;
     }
 
-    public static List getAnimal(String animal){
-        String apiUrl = API_URL + animal;
+    /**
+     * Gets all the animal name given the animal.
+     * @param animal is animal name
+     * @return list of animal names
+     */
+    public static List getAnimal(String animal) {
+        final String apiUrl = API_URL + animal;
         try {
-            URL url = new URL(apiUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            final URL url = new URL(apiUrl);
+            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("X-Api-Key", API_KEY);
-            List<String> animals = new ArrayList<>();
+            final List<String> animals = new ArrayList<>();
 
-            int responseCode = connection.getResponseCode();
+            final int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                final BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String inputLine;
-                StringBuilder response = new StringBuilder();
+                final StringBuilder response = new StringBuilder();
 
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
                 in.close();
 
-                JSONArray jsonArray = new JSONArray(response.toString());
+                final JSONArray jsonArray = new JSONArray(response.toString());
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    JSONObject taxonomy = jsonObject.getJSONObject("taxonomy");
-                    // check if it's in the same family because there might be other animals with same name but different
-                    // species
+                    final JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    final JSONObject taxonomy = jsonObject.getJSONObject("taxonomy");
+                    // check if it's in the same family because there might be other animals with same name but
+                    // different species
                     if (taxonomy.getString("family").equals(AVAILABLE_ANIMALS.get(animal))) {
                         animals.add(jsonObject.getString("name"));
                     }
                 }
                 return animals;
-            } else {
+            }
+            else {
                 return null;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        catch (Exception exA) {
+            exA.printStackTrace();
         }
         return null;
     }
 
+    /**
+     * Main test.
+     * @param args commandline arguments are ignored
+     */
     public static void main(String[] args) {
-        System.out.println(apiAccess.getAnimal("pig"));
+        System.out.println(ApiAccess.getAnimal("pig"));
 
     }
 }
