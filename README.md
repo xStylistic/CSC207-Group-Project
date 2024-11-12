@@ -78,11 +78,11 @@ Interactions:
   on the mode (i.e. How much time is given to answer each question, the severity of the punishment/rewards for answers 
   and the quantity of questions)
 
-  * If 'Easy' is chosen, in the session while answering each question (Story 1), no timer is set, punishment amount is low
-  * If 'Medium' is chosen, in the session, for each question, timer is set (Story 4) to a longer time, punishment and
-    reward amount is medium
-  * If 'Hard' is chosen, in the session, for each question, timer is set (Story 4) to a short time, punishment amount is 
-    high (and reward is high) and all questions from the set are asked
+  * If 'Easy' is chosen, in the session while answering each question (Story 1), there is no timer, and the amount of animals loss is low.
+  * If 'Medium' is chosen, in the session, there is a timer for each question (Story 4). Failing to answer the question in time will cause you
+    to lose an animal and proceed to the next question. 
+  * If 'Hard' is chosen, in the session, there is a timer for each question (Story 4). Failing to answer the question will kill all animals on the
+    farm and you will have to restart. 
 
 * The user then interacts with the use cases from story 1 or story 4 based on the selections
 
@@ -90,35 +90,38 @@ Interactions:
 Jeremy struggles under time pressure, leading to suboptimal results in his exams. Hence, as a student user, the ability to have a simulated 
 clock or some tool to keep him accountable on his time is critical. 
 
-### Use Case 1: Timed Questions Answering
+### Use Case 1: Timed Questions Answering Medium Mode
 Interactions 1:
-* While the user is answering questions (Story #1), he has a timer that paces him
-* There is a ticking clock on every single question
-* There is also an overall clock tracking his total time spent
-### Use Case 2: Questions-Time post study analysis
+* While the user is answering questions (Story #1), he has a timer that paces him.
+* There is a ticking clock on every single question.
+* Failing to answer the question in time will cause an animal to be lost from the farm
+* There is also a clock tracking his total time spent.
+### Use Case 2: Timed Questions Answering Hard Mode
 Interactions 2:
-* After the user is done with a study session, provide analytical statistics on his studying
-* The program stores the amount of time, correctness of the study program
-* After the study session a JFrame views allows for analysis on questions
+* Same as Use Case 1 but if the user fails to answer a question within the time frame or gets one wrong, you will lose all animals
+  and the game will end.
+* They will have the option to try again or choose a different difficulty level.
 
 ## Story 5:
 Polly is trying to get 100 on her psychology exam. She needs to know every term and concept very well. In order for her to achieve 100 on the exam, she needs to be able to answer all the flashcards word for word under a certain time limit to simulate a testing environment. So as a student user, she needs to be able to check if she truly understands the material fully. 
 
-### Use Case 1: Answer Evaluation and Feedback
+### Use Case 1: Answer Evaluation and Feedback (Story 1)
 Interactions 1:
 * System evaluates the user's submitted answer.
 * System displays feedback below the submission button, indicating whether the answer was correct or incorrect.
-* If incorrect, the system provides the correct answer for the user to review
-### Use Case 2: Timed Response to Questions
+* If incorrect, the system provides the correct answer for the user to review.
+### Use Case 2: Timed Response to Questions (Story 4)
 Interactions 2:
 * User initiates the question session by clicking a "Start Timer" button.
 * A countdown timer will be visible on the screen.
 * User enters their answer within the time limit and clicks "Submit".
 * Program provides immediate feedback and resets the timer for the next question.
-### Use Case 3: End-of-Game Feedback
+### Use Case 3: End-of-Game
 Interactions 3:
 * User completes the final question and clicks "Finish".
-* An overall performance summary will be displayed, including the percentage of correct answers and total time taken.
+* A performance summary that includes the percentage of correct answers and total time spent per question will be displayed at the end
+  for easy and medium mode.
+* Hard mode will only display total time spent and amount of time taken per question. 
 * The program will provide options for the user to repeat the study set or to upload a new one.
 
 
