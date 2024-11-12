@@ -26,16 +26,17 @@ As a student user, I want to be able to be given a random review question that I
 
 ### Use Case 1: Give user a question
 Interactions 1: 
-* User clicks a button (Start / Next Question)
-* (A question appears, and a text field under line appears)
-### User Case 2: Allow User to enter a text field answer and submit the question
+* User clicks the button "Start" to begin session, "Next Question" to continue through
+* A question appears, and a text field under line appears
+### User Case 2: Allow user to enter answer in a text field and submit the question
 Interactions 2:
-* User types out their answer to the generated review question in the text field
-* User clicks "Next" 
+* User types out their answer to the generated review question in the text field.
+* User clicks "Check answer".
 ### User Case 3: Check if the user's answer is right or wrong and give an output on the application
 Interactions 3:
-* After user clicks "Next", a dialogue appears below the button, indicating whether the user is right, or wrong and the correct answer
-
+* User clicks "Check Answer", to check whether their answer is correct or incorrect.
+* If users answer was correct, the text will turn green.
+* If users answer was incorrect, the correct answer will overwrite their answer in red.
 ## Story 2:
 Ben has a chemistry exam tomorrow but hasn’t started studying for it. Ben is not motivated to study and wants to spend time playing games. 
 Thankfully for Ben, this flashcard game will keep Ben motivated and entertained to study for his chemistry exam. The fun facts about these 
@@ -46,7 +47,7 @@ studying for my exam so that it would keep me entertained and encourage me to ke
 
 ### Use Case 1: Gain an animal when correctly answers the question
 Interactions 1:
-* User answers the question based on the question type (Textfield or Button)
+* User answers the question based on the question type (Textfield or Button).
 * Use the interactor to check if the question is correct.
 * The program randomly creates an instance of the abstract Animal class and adds the animal to the farm.
 ### Use Case 2: Allow users to view the fun fact about the animal they just obtained
@@ -124,6 +125,7 @@ Interactions 3:
 * Hard mode will only display total time spent and amount of time taken per question. 
 * The program will provide options for the user to repeat the study set or to upload a new one.
 ### Use Case 4: End-of-Game Review
+Interactions 4:
 * User can compare their answers and the correct answers.
 
 
