@@ -74,8 +74,7 @@ Interactions:
 
 ### Use Case 2: Adjusting Parameters Based on Selected Mode
 Interactions:
-* If 'Easy' or 'Medium' was chosen, user is prompted to enter the amount of questions they want to solve.
-* User clicks 'Start Session' to begin a session which opens the questions interface with the parameters adjusted based 
+* User clicks 'Easy', 'Medium', or 'Hard' to begin a session which opens the questions interface with the parameters adjusted based 
   on the mode (i.e. How much time is given to answer each question, the severity of the punishment/rewards for answers 
   and the quantity of questions)
 
