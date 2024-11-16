@@ -1,14 +1,13 @@
 package use_case.game;
 
+import entity.User;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import entity.User;
 
 /**
  * The "Use Case Interactor" for our two File-related use cases of refreshing
@@ -32,7 +31,7 @@ public class GameInteractor implements GameInputBoundary {
     /**
      * Executes the retrieve File use case.
      *
-     * @return File that the user gave
+     * @return
      */
     @Override
     public File executeRetrieval() {
@@ -40,31 +39,31 @@ public class GameInteractor implements GameInputBoundary {
             this.file = gameDataAccessInterface.requestFile(user);
             gameOutputBoundary.prepareSuccessView(this.file);
 
-            final Map<String, String> questionsAnswers = new HashMap<>();
+            Map<String, String> questionsAnswers = new HashMap<>();
 
             try {
-                final List<String> lines = Files.readAllLines(file.toPath());
+                List<String> lines = Files.readAllLines(file.toPath());
 
-                final Iterator<String> iterator = lines.iterator();
+                Iterator<String> iterator = lines.iterator();
                 if (iterator.hasNext()) {
                     iterator.next();
                 }
 
                 while (iterator.hasNext()) {
-                    final String[] line = iterator.next().split("\t");
+                    String[] line = iterator.next().split("\t");
 
                     if (line.length == 2) {
                         questionsAnswers.put(line[0], line[1]);
                     }
                 }
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 throw new RuntimeException("Error reading the file: " + file.getName(), ex);
             }
             System.out.println(questionsAnswers);
 
-        }
-        catch (DataAccessException ex) {
+
+
+        } catch (DataAccessException ex) {
             gameOutputBoundary.prepareFailView(ex.getMessage());
         }
         return null;

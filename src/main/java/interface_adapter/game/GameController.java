@@ -1,8 +1,8 @@
 package interface_adapter.game;
 
-import java.io.File;
-
 import use_case.game.GameInputBoundary;
+
+import java.io.File;
 
 /**
  * Controller for our File related Use Cases.
@@ -17,8 +17,6 @@ public class GameController {
 
     /**
      * Executes the File related Use Cases.
-     *
-     * @return File that the user gave
      */
     public File execute() {
         return gameInteractor.executeRetrieval();

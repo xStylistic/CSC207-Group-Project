@@ -1,8 +1,8 @@
 package interface_adapter.game;
 
-import java.io.File;
-
 import use_case.game.GameOutputBoundary;
+
+import java.io.File;
 
 /**
  * The presenter for our File viewing and editing program.

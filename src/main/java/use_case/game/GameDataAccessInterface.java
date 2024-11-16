@@ -1,8 +1,8 @@
 package use_case.game;
 
-import java.io.File;
-
 import entity.User;
+
+import java.io.File;
 
 /**
  * Interface for the GameDAO. It consists of methods for

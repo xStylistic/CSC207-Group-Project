@@ -2,9 +2,6 @@ package entity;
 
 import java.util.List;
 
-/**
- * Animal class.
- */
 public class Animal {
     private String name;
     private String family;
@@ -36,8 +33,11 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" + "name='" + name + '\'' + ", family='" + family + '\'' + ", locations="
-                + locations + ", fact='" + fact + '\'' + '}';
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", family='" + family + '\'' +
+                ", locations=" + locations +
+                ", fact='" + fact + '\'' +
+                '}';
     }
 }
-

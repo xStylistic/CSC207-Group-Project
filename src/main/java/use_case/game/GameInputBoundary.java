@@ -11,7 +11,7 @@ public interface GameInputBoundary {
     /**
      * Executes the refresh note use case.
      *
-     * @return File that the user gave
+     * @return
      */
     File executeRetrieval();
     String getFileName();
