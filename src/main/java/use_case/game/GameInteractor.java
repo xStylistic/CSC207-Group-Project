@@ -69,4 +69,9 @@ public class GameInteractor implements GameInputBoundary {
         }
         return null;
     }
+
+    public String getFileName()
+    {
+        return file.getName();
+    }
 }

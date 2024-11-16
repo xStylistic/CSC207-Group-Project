@@ -23,4 +23,8 @@ public class GameController {
     public File execute() {
         return gameInteractor.executeRetrieval();
     }
+
+    public String getFileName() {
+        return gameInteractor.getFileName();
+    }
 }

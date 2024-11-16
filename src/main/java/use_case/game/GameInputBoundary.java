@@ -14,4 +14,5 @@ public interface GameInputBoundary {
      * @return File that the user gave
      */
     File executeRetrieval();
+    String getFileName();
 }
