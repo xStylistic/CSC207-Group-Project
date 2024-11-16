@@ -21,7 +21,6 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
     private final JButton startGameButton = new JButton("Start Game");
     private GameController fileController;
 
-
     public GameView(GameViewModel fileViewModel) {
         this.fileViewModel = fileViewModel;
         this.fileViewModel.addPropertyChangeListener(this);
@@ -54,6 +53,12 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
                         {
                             // Go to the Actual Game page
                             mainPanel.remove(chooseFileButton);
+                            mainPanel.remove(startGameButton);
+                            mainPanel.remove(chooseFileButton);
+
+
+                            mainPanel.revalidate();
+                            mainPanel.repaint();
                         }
                     }
                 }
