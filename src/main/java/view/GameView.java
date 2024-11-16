@@ -16,14 +16,14 @@ import java.beans.PropertyChangeListener;
  */
 public class GameView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    private final GameViewModel fileViewModel;
+    private final GameViewModel gameViewModel;
     private final JButton chooseFileButton = new JButton("Choose File");
     private final JButton startGameButton = new JButton("Start Game");
-    private GameController fileController;
+    private GameController gameController;
 
-    public GameView(GameViewModel fileViewModel) {
-        this.fileViewModel = fileViewModel;
-        this.fileViewModel.addPropertyChangeListener(this);
+    public GameView(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
+        this.gameViewModel.addPropertyChangeListener(this);
 
         final JPanel mainPanel = new JPanel();
         mainPanel.add(chooseFileButton);
@@ -33,8 +33,8 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
         chooseFileButton.addActionListener(
                 evt -> {
                     if (evt.getSource().equals(chooseFileButton)) {
-                        fileController.execute();
-                        String name = fileController.getFileName();
+                        gameController.execute();
+                        String name = gameController.getFileName();
                         JLabel fileLabel = new JLabel(name);
                         fileLabel.setVisible(true);
                         mainPanel.add(fileLabel);
@@ -55,7 +55,6 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
                             mainPanel.remove(chooseFileButton);
                             mainPanel.remove(startGameButton);
                             mainPanel.remove(chooseFileButton);
-
 
                             mainPanel.revalidate();
                             mainPanel.repaint();
@@ -85,12 +84,12 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
         } else if (state.getFile() != null) {
             JOptionPane.showMessageDialog(this, "File loaded successfully.",
                     "Success", JOptionPane.INFORMATION_MESSAGE);
-//            SwingUtilities.getWindowAncestor(this).dispose();
+            // SwingUtilities.getWindowAncestor(this).dispose();
         }
     }
 
     public void setGameController(GameController controller) {
-        this.fileController = controller;
+        this.gameController = controller;
     }
 
 }
