@@ -20,7 +20,7 @@ import org.json.JSONObject;
 /**
  * API access file.
  */
-public final class ApiAccess {
+public final class AnimalDataAccessObject {
 
     private static final String API_KEY = "baw+70SpL57JbD/nNLXgOQ==RTGa7BsSwkAMlsBQ";
     private static final String API_URL = "https://api.api-ninjas.com/v1/animals?name=";
@@ -39,7 +39,7 @@ public final class ApiAccess {
     );
     private static final Map<String, List> CURRENT_ANIMALS = new HashMap<>();
 
-    private ApiAccess() {
+    private AnimalDataAccessObject() {
         throw new AssertionError("Instantiating utility class.");
     }
 
@@ -111,7 +111,7 @@ public final class ApiAccess {
      * @param args commandline arguments are ignored
      */
     public static void main(String[] args) {
-        System.out.println(ApiAccess.getAnimal("pig"));
+        System.out.println(AnimalDataAccessObject.getAnimal("pig"));
         System.out.println(CURRENT_ANIMALS);
     }
 }

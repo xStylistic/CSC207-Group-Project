@@ -1,13 +1,20 @@
 package use_case.game;
 
+import entity.User;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
+
 import java.util.*;
 
 import entity.QuestionAnswer;
 import entity.User;
 import entity.Game;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The "Use Case Interactor" for our two File-related use cases of refreshing
@@ -33,7 +40,7 @@ public class GameInteractor implements GameInputBoundary {
     /**
      * Executes the retrieve File use case.
      *
-     * @return File that the user gave
+     * @return
      */
     @Override
     public File executeRetrieval() {
@@ -44,22 +51,21 @@ public class GameInteractor implements GameInputBoundary {
             final List<QuestionAnswer> questionsAnswers = new ArrayList<>();
 
             try {
-                final List<String> lines = Files.readAllLines(file.toPath());
+                List<String> lines = Files.readAllLines(file.toPath());
 
-                final Iterator<String> iterator = lines.iterator();
+                Iterator<String> iterator = lines.iterator();
                 if (iterator.hasNext()) {
                     iterator.next();
                 }
 
                 while (iterator.hasNext()) {
-                    final String[] line = iterator.next().split("\t");
+                    String[] line = iterator.next().split("\t");
 
                     if (line.length == 2) {
                         questionsAnswers.add(new QuestionAnswer(line[0], line[1]));
                     }
                 }
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 throw new RuntimeException("Error reading the file: " + file.getName(), ex);
             }
 
@@ -126,5 +132,10 @@ public class GameInteractor implements GameInputBoundary {
                 gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
             }
         }
+    }
+
+    public String getFileName()
+    {
+        return file.getName();
     }
 }

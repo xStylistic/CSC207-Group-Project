@@ -18,8 +18,6 @@ public class GameController {
 
     /**
      * Executes the File related Use Cases.
-     *
-     * @return File that the user gave
      */
     public File execute() {
         return gameInteractor.executeRetrieval();
@@ -40,4 +38,10 @@ public class GameController {
     public void submitAnswer(String userAnswer) {
         gameInteractor.executeAnswerSubmit(userAnswer);
     }
+
+
+    public String getFileName() {
+        return gameInteractor.getFileName();
+    }
 }
+

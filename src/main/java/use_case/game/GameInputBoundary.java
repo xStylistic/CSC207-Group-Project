@@ -13,7 +13,7 @@ public interface GameInputBoundary {
     /**
      * Executes the refresh note use case.
      *
-     * @return File that the user gave
+     * @return
      */
     File executeRetrieval();
 
@@ -35,4 +35,7 @@ public interface GameInputBoundary {
      * @param userAnswer The user's answer.
      */
     void executeAnswerSubmit(String userAnswer);
+
+    String getFileName();
+
 }
