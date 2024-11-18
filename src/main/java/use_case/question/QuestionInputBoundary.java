@@ -1,4 +1,4 @@
-package use_case.game;
+package use_case.question;
 
 import entity.Game;
 
@@ -17,22 +17,5 @@ public interface GameInputBoundary {
      */
     File executeRetrieval();
 
-    /**
-     * Returns the Game instance.
-     *
-     * @return The Game object.
-     */
     Game getGame();
-
-    /**
-     * Starts the game by preparing the first question view.
-     */
-    void startGame();
-
-    /**
-     * Processes the user's answer and determines correctness.
-     *
-     * @param userAnswer The user's answer.
-     */
-    void executeAnswerSubmit(String userAnswer);
 }

@@ -2,6 +2,7 @@ package interface_adapter.game;
 
 import java.io.File;
 
+import entity.QuestionAnswer;
 import use_case.game.GameInputBoundary;
 
 /**
@@ -22,5 +23,21 @@ public class GameController {
      */
     public File execute() {
         return gameInteractor.executeRetrieval();
+    }
+
+    /**
+     * Starts the game after the file is loaded.
+     */
+    public void startGame() {
+        gameInteractor.startGame();
+    }
+
+    /**
+     * Submits the user's answer to the current question by delegating to the interactor.
+     *
+     * @param userAnswer The answer provided by the user.
+     */
+    public void submitAnswer(String userAnswer) {
+        gameInteractor.executeAnswerSubmit(userAnswer);
     }
 }

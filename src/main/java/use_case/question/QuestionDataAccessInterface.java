@@ -1,9 +1,8 @@
-package use_case.game;
+package use_case.question;
+
+import entity.User;
 
 import java.io.File;
-
-import entity.QuestionAnswer;
-import entity.User;
 
 /**
  * Interface for the GameDAO. It consists of methods for
