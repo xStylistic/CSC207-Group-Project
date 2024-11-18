@@ -3,9 +3,6 @@ package view;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
-import interface_adapter.question.QuestionController;
-import interface_adapter.question.QuestionState;
-import interface_adapter.question.QuestionViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,17 +11,17 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class QuestionAnswerView extends JPanel implements ActionListener, PropertyChangeListener {
-    private final QuestionViewModel questionViewModel;
+    private final GameViewModel gameViewModel;
     private final JButton submitAnswerButton = new JButton("Submit");
-    private QuestionController questionController;
+    private GameController gameController;
 
     private JLabel questionLabel;
     private JTextField answerField;
     private JLabel timerLabel;
 
-    public QuestionAnswerView(QuestionViewModel questionViewModel) {
-        this.questionViewModel = questionViewModel;
-        this.questionViewModel.addPropertyChangeListener(this);
+    public QuestionAnswerView(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
+        this.gameViewModel.addPropertyChangeListener(this);
 
         questionLabel = new JLabel("Question ... ... ?");
         timerLabel = new JLabel("Time: 30");
@@ -39,7 +36,7 @@ public class QuestionAnswerView extends JPanel implements ActionListener, Proper
         submitAnswerButton.addActionListener(
                 evt -> {
                     if (evt.getSource().equals(submitAnswerButton)) {
-                        questionController.execute(answerField.getText());
+                        gameController.submitAnswer(answerField.getText());
                     }
                 }
         );
@@ -58,14 +55,14 @@ public class QuestionAnswerView extends JPanel implements ActionListener, Proper
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        final QuestionState state = (QuestionState) evt.getNewValue();
+        final GameState state = (GameState) evt.getNewValue();
         if (state.getError() != null) {
             JOptionPane.showMessageDialog(this, state.getError(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void setQuestionController(QuestionController controller) {
-        this.questionController = controller;
+    public void setQuestionController(GameController controller) {
+        this.gameController = controller;
     }
 }

@@ -19,15 +19,6 @@ public class Game {
         return null;
     }
 
-    public boolean submitAnswer(String userAnswer) {
-        QuestionAnswer currentQuestionAnswer = questionAnswers.get(currentQuestionIndex);
-        if (currentQuestionAnswer != null) {
-            currentQuestionAnswer.setUserAnswer(userAnswer);
-            currentQuestionIndex++;
-            return currentQuestionAnswer.validateAnswer();
-        }
-    }
-
     public boolean isGameFinished() {
         return currentQuestionIndex >= questionAnswers.size();
     }
