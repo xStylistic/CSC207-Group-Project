@@ -26,21 +26,21 @@ public class EndScreennewView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        Score = new javax.swing.JLabel();
+        scoreBoard = new javax.swing.JPanel();
+        score = new javax.swing.JLabel();
         totalTime = new javax.swing.JLabel();
         averageTime = new javax.swing.JLabel();
         animalsKilled = new javax.swing.JLabel();
         reviewAnswers = new javax.swing.JButton();
-        background = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 153));
+        scoreBoard.setBackground(new java.awt.Color(241, 190, 121));
 
-        Score.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        Score.setText("Score: (insert the score)");
+        score.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        score.setText("Score: (insert the score)");
 
         totalTime.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         totalTime.setText("Total Spent: (time spent)");
@@ -51,46 +51,49 @@ public class EndScreennewView extends javax.swing.JFrame {
         animalsKilled.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         animalsKilled.setText("Animals Killed: (number of animals)");
 
+        reviewAnswers.setBackground(new java.awt.Color(255, 234, 168));
         reviewAnswers.setText("Review Answers");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout scoreBoardLayout = new javax.swing.GroupLayout(scoreBoard);
+        scoreBoard.setLayout(scoreBoardLayout);
+        scoreBoardLayout.setHorizontalGroup(
+            scoreBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scoreBoardLayout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(scoreBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(totalTime)
                     .addComponent(averageTime)
-                    .addComponent(Score)
-                    .addComponent(animalsKilled)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(reviewAnswers)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(score)
+                    .addComponent(animalsKilled))
+                .addGap(47, 47, 47))
+            .addGroup(scoreBoardLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(reviewAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(Score)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        scoreBoardLayout.setVerticalGroup(
+            scoreBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scoreBoardLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(score)
+                .addGap(28, 28, 28)
                 .addComponent(totalTime)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(averageTime)
                 .addGap(12, 12, 12)
                 .addComponent(animalsKilled)
-                .addGap(18, 18, 18)
-                .addComponent(reviewAnswers)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(reviewAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(160, 60, 320, 200);
+        getContentPane().add(scoreBoard);
+        scoreBoard.setBounds(250, 130, 360, 330);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/pixel-art-farm-landscape-sunset-with-barn-silo-mill-fence-tree-8-bit-game-background_360488-1092.png"))); // NOI18N
-        getContentPane().add(background);
-        background.setBounds(0, 0, 626, 323);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/farm.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(2, -3, 880, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,12 +134,12 @@ public class EndScreennewView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Score;
     private javax.swing.JLabel animalsKilled;
     private javax.swing.JLabel averageTime;
-    private javax.swing.JLabel background;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton reviewAnswers;
+    private javax.swing.JLabel score;
+    private javax.swing.JPanel scoreBoard;
     private javax.swing.JLabel totalTime;
     // End of variables declaration//GEN-END:variables
 }
