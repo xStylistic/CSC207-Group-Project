@@ -1,5 +1,7 @@
 package interface_adapter.game;
 
+import entity.QuestionAnswer;
+
 import java.io.File;
 
 /**
@@ -9,6 +11,8 @@ import java.io.File;
 public class GameState {
     private File file;
     private String error;
+    private QuestionAnswer currentQuestionAnswer;
+    private String message;
 
     public File getFile() {
         return file;
@@ -24,5 +28,21 @@ public class GameState {
 
     public String getError() {
         return error;
+    }
+
+    public void setCurrentQuestionAnswer(QuestionAnswer currentQuestionAnswer) {
+        this.currentQuestionAnswer = currentQuestionAnswer;
+    }
+
+    public QuestionAnswer getCurrentQuestionAnswer() {
+        return currentQuestionAnswer;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

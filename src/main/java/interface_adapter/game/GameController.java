@@ -1,8 +1,9 @@
 package interface_adapter.game;
 
-import use_case.game.GameInputBoundary;
-
 import java.io.File;
+
+import entity.QuestionAnswer;
+import use_case.game.GameInputBoundary;
 
 /**
  * Controller for our File related Use Cases.
@@ -22,7 +23,25 @@ public class GameController {
         return gameInteractor.executeRetrieval();
     }
 
+    /**
+     * Starts the game after the file is loaded.
+     */
+    public void startGame() {
+        gameInteractor.startGame();
+    }
+
+    /**
+     * Submits the user's answer to the current question by delegating to the interactor.
+     *
+     * @param userAnswer The answer provided by the user.
+     */
+    public void submitAnswer(String userAnswer) {
+        gameInteractor.executeAnswerSubmit(userAnswer);
+    }
+
+
     public String getFileName() {
         return gameInteractor.getFileName();
     }
 }
+

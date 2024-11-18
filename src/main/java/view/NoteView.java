@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import entity.QuestionAnswer;
 import interface_adapter.note.NoteController;
 import interface_adapter.note.NoteState;
 import interface_adapter.note.NoteViewModel;
@@ -92,4 +93,3 @@ public class NoteView extends JPanel implements ActionListener, PropertyChangeLi
         this.noteController = controller;
     }
 }
-

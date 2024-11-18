@@ -1,8 +1,9 @@
 package interface_adapter.game;
 
-import use_case.game.GameOutputBoundary;
-
 import java.io.File;
+
+import entity.QuestionAnswer;
+import use_case.game.GameOutputBoundary;
 
 /**
  * The presenter for our File viewing and editing program.
@@ -35,6 +36,45 @@ public class GamePresenter implements GameOutputBoundary {
     @Override
     public void prepareFailView(String errorMessage) {
         gameViewModel.getState().setError(errorMessage);
+        gameViewModel.firePropertyChanged();
+    }
+
+    @Override
+    public void prepareAnswerResultView(QuestionAnswer questionAnswer) {
+        if (Boolean.TRUE.equals(questionAnswer.isCorrect())) {
+            gameViewModel.getState().setMessage("Correct! Well done.");
+        }
+        else {
+            gameViewModel.getState().setMessage("Incorrect. The correct answer was: "
+                    + questionAnswer.getCorrectAnswer());
+        }
+        gameViewModel.firePropertyChanged();
+    }
+
+    /**
+     * Prepares the next question view.
+     *
+     * @param questionAnswer The next question to display.
+     */
+    public void prepareQuestionView(QuestionAnswer questionAnswer) {
+        gameViewModel.getState().setCurrentQuestionAnswer(questionAnswer);
+        gameViewModel.getState().setMessage("Answer the question below:");
+        gameViewModel.firePropertyChanged();
+    }
+
+    @Override
+    public void prepareAnswerConfirmView(QuestionAnswer currentQuestionAnswer) {
+        gameViewModel.getState().setMessage("Is your answer: " + currentQuestionAnswer.getUserAnswer()
+                + "\n the same as the correct answer: " + currentQuestionAnswer.getCorrectAnswer() + "?");
+        gameViewModel.firePropertyChanged();
+    }
+
+    /**
+     * Prepares the view for the end of the game.
+     */
+    public void prepareEndGameView() {
+        gameViewModel.getState().setMessage("Game over! Thanks for playing.");
+        gameViewModel.getState().setCurrentQuestionAnswer(null);
         gameViewModel.firePropertyChanged();
     }
 }
