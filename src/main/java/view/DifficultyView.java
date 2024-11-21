@@ -6,7 +6,7 @@ package view;
 
 /**
  *
- * @author bonnychen
+ * @author bonnychen and jerryq0101
  */
 public class DifficultyView extends javax.swing.JFrame {
 
@@ -101,15 +101,17 @@ public class DifficultyView extends javax.swing.JFrame {
         getContentPane().add(difficultyPanel);
         difficultyPanel.setBounds(230, 90, 470, 420);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/farm.png"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 927, 591);
 
-        pack();
+        // Set the size to the background img size, and centre the image.
+        setSize(927, 591);
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void easyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
     }//GEN-LAST:event_easyActionPerformed
 
     private void mediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumActionPerformed
@@ -151,6 +153,7 @@ public class DifficultyView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DifficultyView().setVisible(true);
+
             }
         });
     }
