@@ -1,4 +1,4 @@
-package game;
+package entity;
 
 import java.util.Timer;
 import java.util.TimerTask;

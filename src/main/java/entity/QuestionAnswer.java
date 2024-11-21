@@ -2,6 +2,9 @@ package entity;
 
 import view.AnswerConfirmView;
 
+/**
+ * Base QuestionAnswer Class.
+ */
 public class QuestionAnswer {
     private String question;
     private String correctAnswer;
@@ -41,13 +44,5 @@ public class QuestionAnswer {
 
     public boolean validateAnswer() {
         return correctAnswer.equalsIgnoreCase(userAnswer);
-//        if (correctAnswer.equalsIgnoreCase(userAnswer)) {
-//            isCorrect = true;
-//        }
-//        else {
-//            final AnswerConfirmView answerConfirmView = new AnswerConfirmView();
-//            isCorrect = answerConfirmView.confirmAnswer(question, userAnswer, correctAnswer);
-//        }
-//        return isCorrect;
     }
 }
