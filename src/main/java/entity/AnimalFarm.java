@@ -1,6 +1,6 @@
 package entity;
 
-import data_access.ApiAccess;
+import data_access.AnimalDataAccessObject;
 import java.util.*;
 
 /**
@@ -18,7 +18,7 @@ public class AnimalFarm {
         this.animalMap = new HashMap<>();
 
         for (String animalName : selectedAnimalNames) {
-            Animal animal = (Animal) ApiAccess.getAnimal(animalName.toLowerCase());
+            Animal animal = (Animal) AnimalDataAccessObject.getAnimal(animalName.toLowerCase());
             if (animal != null) {
                 selectedAnimals.add(animal);
                 currentAnimals.put(animal.getName(), 1);
