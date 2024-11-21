@@ -11,7 +11,7 @@ package view;
 public class EndScreenView extends javax.swing.JFrame {
 
     /**
-     * Creates new form EndScreenView
+     * Creates new form EndScreennewView
      */
     public EndScreenView() {
         initComponents();
@@ -26,18 +26,74 @@ public class EndScreenView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        scoreBoard = new javax.swing.JPanel();
+        score = new javax.swing.JLabel();
+        totalTime = new javax.swing.JLabel();
+        averageTime = new javax.swing.JLabel();
+        animalsKilled = new javax.swing.JLabel();
+        reviewAnswers = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        scoreBoard.setBackground(new java.awt.Color(241, 190, 121));
+
+        score.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        score.setText("Score: (insert the score)");
+
+        totalTime.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        totalTime.setText("Total Spent: (time spent)");
+
+        averageTime.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        averageTime.setText("Average Time Per Question: (time spent)");
+
+        animalsKilled.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        animalsKilled.setText("Animals Killed: (number of animals)");
+
+        reviewAnswers.setBackground(new java.awt.Color(255, 234, 168));
+        reviewAnswers.setText("Review Answers");
+
+        javax.swing.GroupLayout scoreBoardLayout = new javax.swing.GroupLayout(scoreBoard);
+        scoreBoard.setLayout(scoreBoardLayout);
+        scoreBoardLayout.setHorizontalGroup(
+            scoreBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scoreBoardLayout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(scoreBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalTime)
+                    .addComponent(averageTime)
+                    .addComponent(score)
+                    .addComponent(animalsKilled))
+                .addGap(47, 47, 47))
+            .addGroup(scoreBoardLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(reviewAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        scoreBoardLayout.setVerticalGroup(
+            scoreBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scoreBoardLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(score)
+                .addGap(28, 28, 28)
+                .addComponent(totalTime)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(averageTime)
+                .addGap(12, 12, 12)
+                .addComponent(animalsKilled)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(reviewAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
+
+        getContentPane().add(scoreBoard);
+        scoreBoard.setBounds(250, 130, 360, 330);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/farm.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(2, -3, 880, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,5 +134,12 @@ public class EndScreenView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel animalsKilled;
+    private javax.swing.JLabel averageTime;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton reviewAnswers;
+    private javax.swing.JLabel score;
+    private javax.swing.JPanel scoreBoard;
+    private javax.swing.JLabel totalTime;
     // End of variables declaration//GEN-END:variables
 }
