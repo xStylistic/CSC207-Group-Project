@@ -16,6 +16,12 @@ public class GamePresenter implements GameOutputBoundary {
         this.gameViewModel = gameViewModel;
     }
 
+//    public void prepareDifficultyView() {
+//        gameViewModel.getState().setView("DIFFICULTY");
+//        gameViewModel.getState().setMessage("Select difficulty Level:");
+//        gameViewModel.firePropertyChanged();
+//    }
+
     /**
      * Prepares the success view for the File related Use Cases.
      *

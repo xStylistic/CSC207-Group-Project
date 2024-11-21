@@ -4,30 +4,34 @@ import java.io.File;
 
 import entity.QuestionAnswer;
 import use_case.game.GameInputBoundary;
+import use_case.gameState.GameStateInputBoundary;
+import use_case.gameState.GameStateInteractor;
 
 /**
  * Controller for our File related Use Cases.
  */
 public class GameController {
-
     private final GameInputBoundary gameInteractor;
+    private GameStateInputBoundary gameStateInteractor;
 
-    public GameController(GameInputBoundary gameInteractor) {
+    public GameController(GameInputBoundary gameInteractor, GameStateInputBoundary gameStateInteractor) {
         this.gameInteractor = gameInteractor;
+        this.gameStateInteractor = gameStateInteractor;
     }
 
     /**
      * Executes the File related Use Cases.
      */
-    public File execute() {
-        return gameInteractor.executeRetrieval();
+    public void execute() {
+        gameInteractor.executeRetrieval();
+        gameStateInteractor.setQuestionsAnswers(gameInteractor.getQuestionsAnswers());
     }
 
     /**
      * Starts the game after the file is loaded.
      */
     public void startGame() {
-        gameInteractor.startGame();
+        gameStateInteractor.startGame();
     }
 
     /**
@@ -36,9 +40,8 @@ public class GameController {
      * @param userAnswer The answer provided by the user.
      */
     public void submitAnswer(String userAnswer) {
-        gameInteractor.executeAnswerSubmit(userAnswer);
+        gameStateInteractor.executeAnswerSubmit(userAnswer);
     }
-
 
     public String getFileName() {
         return gameInteractor.getFileName();

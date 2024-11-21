@@ -9,6 +9,7 @@ import interface_adapter.game.GameViewModel;
 import use_case.game.GameDataAccessInterface;
 import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
+import use_case.gameState.GameStateInteractor;
 import view.GameView;
 
 import java.io.File;
@@ -23,6 +24,7 @@ public class GameAppBuilder {
     private GameViewModel gameViewModel = new GameViewModel();
     private GameView gameView;
     private GameInteractor gameInteractor;
+    private GameStateInteractor gameStateInteractor;
     private File file;
 
     /**
@@ -46,8 +48,11 @@ public class GameAppBuilder {
         final GameOutputBoundary gameOutputBoundary = new GamePresenter(gameViewModel);
         gameInteractor = new GameInteractor(
                 fileDAO, gameOutputBoundary);
+        gameStateInteractor = new GameStateInteractor(
+                gameOutputBoundary
+        );
 
-        final GameController controller = new GameController(gameInteractor);
+        final GameController controller = new GameController(gameInteractor, gameStateInteractor);
         if (gameView == null) {
             throw new RuntimeException("addFileView must be called before addFileUseCase");
         }
