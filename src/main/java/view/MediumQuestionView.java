@@ -41,6 +41,7 @@ public class MediumQuestionView extends javax.swing.JFrame {
         questionPanel.setBackground(new java.awt.Color(255, 244, 214));
 
         checkButton.setBackground(new java.awt.Color(255, 204, 102));
+        checkButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkButton.setText("Check Answer");
 
         answer.setColumns(20);

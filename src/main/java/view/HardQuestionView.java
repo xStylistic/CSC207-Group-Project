@@ -8,12 +8,12 @@ package view;
  *
  * @author bonnychen
  */
-public class DifficultQuestionView extends javax.swing.JFrame {
+public class HardQuestionView extends javax.swing.JFrame {
 
     /**
      * Creates new form DifficultyQuestionView
      */
-    public DifficultQuestionView() {
+    public HardQuestionView() {
         initComponents();
     }
 
@@ -29,10 +29,10 @@ public class DifficultQuestionView extends javax.swing.JFrame {
         questionPanel = new javax.swing.JPanel();
         checkButton = new javax.swing.JButton();
         answer = new javax.swing.JTextArea();
-        questionNumber = new javax.swing.JLabel();
-        question = new javax.swing.JLabel();
-        timeElapsed = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        questionNumberLabel = new javax.swing.JLabel();
+        questionLabel = new javax.swing.JLabel();
+        timeElapsedLabel = new javax.swing.JLabel();
+        timerLabel = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,24 +41,25 @@ public class DifficultQuestionView extends javax.swing.JFrame {
         questionPanel.setBackground(new java.awt.Color(255, 244, 214));
 
         checkButton.setBackground(new java.awt.Color(255, 204, 102));
+        checkButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkButton.setText("Check Answer");
 
         answer.setColumns(20);
         answer.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         answer.setRows(5);
 
-        questionNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        questionNumber.setText("Question -/-");
+        questionNumberLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        questionNumberLabel.setText("Question -/-");
 
-        question.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        question.setText("Question");
+        questionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        questionLabel.setText("Question");
 
-        timeElapsed.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        timeElapsed.setText("Time Elapsed:");
+        timeElapsedLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        timeElapsedLabel.setText("Time Elapsed:");
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel1.setText("00:00");
+        timerLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        timerLabel.setForeground(new java.awt.Color(255, 102, 102));
+        timerLabel.setText("00:00");
 
         javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -70,15 +71,15 @@ public class DifficultQuestionView extends javax.swing.JFrame {
                 .addGap(315, 315, 315))
             .addGroup(questionPanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(question, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(questionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(questionPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(questionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(questionNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(timerLabel)
                 .addGap(204, 204, 204)
-                .addComponent(timeElapsed, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(timeElapsedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
             .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanelLayout.createSequentialGroup()
@@ -91,11 +92,11 @@ public class DifficultQuestionView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(questionNumber)
-                    .addComponent(timeElapsed)
-                    .addComponent(jLabel1))
+                    .addComponent(questionNumberLabel)
+                    .addComponent(timeElapsedLabel)
+                    .addComponent(timerLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(question)
+                .addComponent(questionLabel)
                 .addGap(109, 109, 109)
                 .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -133,21 +134,23 @@ public class DifficultQuestionView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DifficultQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HardQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DifficultQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HardQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DifficultQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HardQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DifficultQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HardQuestionView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DifficultQuestionView().setVisible(true);
+                new HardQuestionView().setVisible(true);
             }
         });
     }
@@ -156,10 +159,10 @@ public class DifficultQuestionView extends javax.swing.JFrame {
     private javax.swing.JTextArea answer;
     private javax.swing.JLabel background;
     private javax.swing.JButton checkButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel question;
-    private javax.swing.JLabel questionNumber;
+    private javax.swing.JLabel questionLabel;
+    private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsed;
+    private javax.swing.JLabel timeElapsedLabel;
+    private javax.swing.JLabel timerLabel;
     // End of variables declaration//GEN-END:variables
 }
