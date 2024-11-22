@@ -26,13 +26,10 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
         this.gameViewModel.addPropertyChangeListener(this);
 
         final JPanel mainPanel = new JPanel();
-        setPreferredSize(new java.awt.Dimension(927, 591));
 
         mainPanel.add(chooseFileButton);
         mainPanel.add(startGameButton);
         startGameButton.setEnabled(false);
-
-//        new ViewManager(gameViewModel);
 
         chooseFileButton.addActionListener(
                 evt -> {
@@ -87,7 +84,6 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
             } else if (state.getFile() != null) {
                 JOptionPane.showMessageDialog(this, "File loaded successfully.",
                         "Success", JOptionPane.INFORMATION_MESSAGE);
-                // SwingUtilities.getWindowAncestor(this).dispose();
             }
         }
     }
@@ -95,6 +91,4 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
     public void setGameController(GameController controller) {
         this.gameController = controller;
     }
-
 }
-

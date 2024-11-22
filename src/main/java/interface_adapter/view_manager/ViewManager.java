@@ -7,6 +7,7 @@ import view.GameView;
 import view.QuestionAnswerView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ViewManager {
     private final JFrame layout;
@@ -14,6 +15,7 @@ public class ViewManager {
 
     public ViewManager(GameViewModel gameViewModel, GameController gameController) {
         this.layout = new JFrame();
+
         final GameView gameView = new GameView(gameViewModel);
         gameView.setGameController(gameController);
         gameView.setVisible(true);
@@ -54,6 +56,10 @@ public class ViewManager {
                 System.out.println("VIEW CHANGED!");
             }
         });
+
+        layout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        layout.setMinimumSize(new Dimension(927, 591));  // Set minimum size
+        layout.setPreferredSize(new Dimension(927, 591));  // Set minimum size
     }
 
     public JFrame getCurrLayout() {
