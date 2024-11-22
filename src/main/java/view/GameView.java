@@ -81,9 +81,6 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
             if (state.getError() != null) {
                 JOptionPane.showMessageDialog(this, state.getError(),
                         "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (state.getFile() != null) {
-                JOptionPane.showMessageDialog(this, "File loaded successfully.",
-                        "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
