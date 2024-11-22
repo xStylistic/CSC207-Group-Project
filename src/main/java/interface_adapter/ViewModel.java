@@ -12,7 +12,7 @@ import java.beans.PropertyChangeSupport;
  */
 public class ViewModel<T> {
 
-    private final String viewName;
+    private String viewName;
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -24,6 +24,10 @@ public class ViewModel<T> {
 
     public String getViewName() {
         return this.viewName;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
     }
 
     public T getState() {

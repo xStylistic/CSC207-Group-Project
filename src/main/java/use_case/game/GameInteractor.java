@@ -22,20 +22,16 @@ import java.util.Map;
  * are closely related, we have combined them here for simplicity.
  */
 public class GameInteractor implements GameInputBoundary {
-
     private final GameDataAccessInterface gameDataAccessInterface;
     private final GameOutputBoundary gameOutputBoundary;
     private final User user = new User("jonathan_calver2", "abc123");
     private File file;
     private ArrayList<QuestionAnswer> questionsAnswers;
 
-    private Game game;
-
     public GameInteractor(GameDataAccessInterface gameDataAccessInterface,
                           GameOutputBoundary gameOutputBoundary) {
         this.gameDataAccessInterface = gameDataAccessInterface;
         this.gameOutputBoundary = gameOutputBoundary;
-        this.game = null;
         this.questionsAnswers = new ArrayList<>();
     }
 

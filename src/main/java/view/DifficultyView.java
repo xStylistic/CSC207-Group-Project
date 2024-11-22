@@ -4,16 +4,23 @@
  */
 package view;
 
+import interface_adapter.game.GameController;
+import interface_adapter.game.GameViewModel;
+
 /**
  *
  * @author bonnychen and jerryq0101
  */
-public class DifficultyView extends javax.swing.JFrame {
-
+public class DifficultyView extends javax.swing.JPanel {
+    private GameViewModel gameViewModel;
+    private GameController gameController;
     /**
      * Creates new form DifficultyView
+     * @param gameViewModel - variable
      */
-    public DifficultyView() {
+    public DifficultyView(GameViewModel gameViewModel, GameController gameController) {
+        this.gameViewModel = gameViewModel;
+        this.gameController = gameController;
         initComponents();
     }
 
@@ -33,8 +40,7 @@ public class DifficultyView extends javax.swing.JFrame {
         hard = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        setLayout(null);
 
         difficultyPanel.setBackground(new java.awt.Color(255, 183, 132));
 
@@ -98,65 +104,76 @@ public class DifficultyView extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        getContentPane().add(difficultyPanel);
+        // Add components directly to this panel instead of getContentPane()
+        add(difficultyPanel);
         difficultyPanel.setBounds(230, 90, 470, 420);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png"))); // NOI18N
-        getContentPane().add(background);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
+        add(background);
         background.setBounds(0, 0, 927, 591);
-
         // Set the size to the background img size, and centre the image.
-        setSize(927, 591);
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+        setPreferredSize(new java.awt.Dimension(927, 591));
+    }
 
     private void easyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_easyActionPerformed
+        this.gameViewModel.getState().setDifficulty(0);
+        System.out.println("SET DIFFICULTY TO 0");
+        // Create Game with difficulty 0 = EASY
+        triggerGameStartSwitchView(0);
+    }
 
     private void mediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mediumActionPerformed
+        this.gameViewModel.getState().setDifficulty(1);
+        System.out.println("SET DIFFICULTY TO 1");
+        // Create Game with difficulty 1 = MEDIUM
+        triggerGameStartSwitchView(1);
+    }
 
     private void hardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hardActionPerformed
+        this.gameViewModel.getState().setDifficulty(2);
+        System.out.println("SET DIFFICULTY TO 2");
+        // Create Game with Difficulty 2 = HARD
+        triggerGameStartSwitchView(2);
+    }
+
+    private void triggerGameStartSwitchView(int difficulty) {
+        gameController.startGame(difficulty);
+    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DifficultyView().setVisible(true);
-
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DifficultyView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DifficultyView().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;

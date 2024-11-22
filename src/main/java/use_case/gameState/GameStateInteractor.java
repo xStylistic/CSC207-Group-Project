@@ -1,7 +1,6 @@
 package use_case.gameState;
 
-import entity.Game;
-import entity.QuestionAnswer;
+import entity.*;
 import kotlin.jvm.Throws;
 import use_case.game.GameDataAccessInterface;
 import use_case.game.GameOutputBoundary;
@@ -46,10 +45,34 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     /**
+     * Prepares for starting the game by getting the difficulty
+     */
+    public void gatherDifficultyForGame() {
+        gameOutputBoundary.prepareDifficultyView();
+    }
+
+    /**
      * Starts the game by preparing the first question view.
      */
     @Override
-    public void startGame() {
+    public void startGame(int difficulty) {
+        // Make the game based on what difficulty the game is
+        switch (difficulty) {
+            case 0:
+                this.game = new EasyGame(questionsAnswers);
+                break;
+            case 1:
+                this.game = new MediumGame(questionsAnswers);
+                break;
+            case 2:
+                this.game = new HardGame(questionsAnswers);
+                break;
+            default:
+                this.game = null;
+                System.out.println("INVALID DIFFICULTY");
+                break;
+        }
+
         if (game != null) {
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
             gameOutputBoundary.prepareQuestionView(firstQuestion);

@@ -18,8 +18,9 @@ public interface GameStateInputBoundary {
 
     /**
      * Starts the game and prepares the first question.
+     * @param difficulty corresponds to the button pressed on the difficulty page
      */
-    void startGame();
+    void startGame(int difficulty);
 
     /**
      * Processes a submitted answer and updates game state accordingly.
@@ -33,4 +34,6 @@ public interface GameStateInputBoundary {
      * @param questionsAnswers - the array list of question and answer pairs
      */
     void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers);
+
+    void gatherDifficultyForGame();
 }

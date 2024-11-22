@@ -6,6 +6,7 @@ import javax.swing.WindowConstants;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GamePresenter;
 import interface_adapter.game.GameViewModel;
+import interface_adapter.view_manager.ViewManager;
 import use_case.game.GameDataAccessInterface;
 import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
@@ -21,9 +22,10 @@ public class GameAppBuilder {
     public static final int HEIGHT = 300;
     public static final int WIDTH = 400;
     private GameDataAccessInterface fileDAO;
-    private GameViewModel gameViewModel = new GameViewModel();
+    private GameViewModel gameViewModel;
     private GameView gameView;
     private GameInteractor gameInteractor;
+    private GameController gameController;
     private GameStateInteractor gameStateInteractor;
     private File file;
 
@@ -53,6 +55,7 @@ public class GameAppBuilder {
         );
 
         final GameController controller = new GameController(gameInteractor, gameStateInteractor);
+        gameController = controller;
         if (gameView == null) {
             throw new RuntimeException("addFileView must be called before addFileUseCase");
         }
@@ -65,7 +68,7 @@ public class GameAppBuilder {
      * @return this builder
      */
     public GameAppBuilder addGameView() {
-        gameViewModel = new GameViewModel();
+        gameViewModel = new GameViewModel(gameController);
         gameView = new GameView(gameViewModel);
         return this;
     }
@@ -75,12 +78,12 @@ public class GameAppBuilder {
      * @return the JFrame for the application
      */
     public JFrame build() {
-        final JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setTitle("File Application");
-        frame.setSize(WIDTH, HEIGHT);
-        frame.add(gameView);
-        return frame;
+        final ViewManager viewManager = new ViewManager(gameViewModel, gameController);
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.setTitle("File Application");
+//        frame.setSize(WIDTH, HEIGHT);
+//        frame.add(gameView);
+        return viewManager.getCurrLayout();
     }
 
     public File getFile() {

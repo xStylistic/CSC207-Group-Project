@@ -7,12 +7,16 @@ import java.io.File;
 /**
  * The State for a File.
  * <p>For this example, ...</p>
+ * difficulty = 0 - EASY
+ * difficulty = 0 - MEDIUM
+ * difficulty = 0 - HARD
  */
 public class GameState {
     private File file;
     private String error;
     private QuestionAnswer currentQuestionAnswer;
     private String message;
+    private int difficulty;
 
     public File getFile() {
         return file;
@@ -32,6 +36,14 @@ public class GameState {
 
     public void setCurrentQuestionAnswer(QuestionAnswer currentQuestionAnswer) {
         this.currentQuestionAnswer = currentQuestionAnswer;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
     }
 
     public QuestionAnswer getCurrentQuestionAnswer() {

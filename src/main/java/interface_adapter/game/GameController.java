@@ -27,11 +27,17 @@ public class GameController {
         gameStateInteractor.setQuestionsAnswers(gameInteractor.getQuestionsAnswers());
     }
 
+    public void setDifficulty() {
+        // change view by calling the interactor .... to eventually change the game curr view.
+        gameStateInteractor.gatherDifficultyForGame();
+    }
+
     /**
      * Starts the game after the file is loaded.
+     * @param difficulty - corresponds to the button that is pressed on the difficulty page
      */
-    public void startGame() {
-        gameStateInteractor.startGame();
+    public void startGame(int difficulty) {
+        gameStateInteractor.startGame(difficulty);
     }
 
     /**

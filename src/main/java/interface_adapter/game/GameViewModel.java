@@ -2,14 +2,18 @@ package interface_adapter.game;
 
 import interface_adapter.ViewModel;
 
-import java.beans.PropertyChangeListener;
+import java.io.FileNotFoundException;
 
 /**
  * The ViewModel for the FileView.
  */
 public class GameViewModel extends ViewModel<interface_adapter.game.GameState> {
-    public GameViewModel() {
-        super(null);
+    private final GameController controller;
+
+    public GameViewModel(GameController controller) {
+        super("file");
+        this.controller = controller;
+        this.firePropertyChanged("view");
         setState(new interface_adapter.game.GameState());
     }
 }
