@@ -36,7 +36,11 @@ public class QuestionTimer {
         timer.cancel();
     }
 
+    public int getTimeLimit() {
+        return this.timeLimit;
+    }
+
     public int getRemainingTime() {
-        return remainingTime;
+        return this.remainingTime;
     }
 }

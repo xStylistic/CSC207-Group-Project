@@ -1,10 +1,9 @@
 package use_case.game;
 
-import entity.Game;
-import entity.QuestionAnswer;
-
 import java.io.File;
 import java.util.ArrayList;
+
+import entity.QuestionAnswer;
 
 /**
  * The Input Boundary for our note-related use cases. Since they are closely related,
@@ -38,10 +37,15 @@ public interface GameInputBoundary {
 //     */
 //    void executeAnswerSubmit(String userAnswer);
 
+
+    /**
+     * Gets the File Name.
+     * @return name of file
+     */
     String getFileName();
 
     /**
-     * getter method for other interactors.
+     * Gets the QuestionAnswer Object.
      * @return question answer list
      */
     ArrayList<QuestionAnswer> getQuestionsAnswers();

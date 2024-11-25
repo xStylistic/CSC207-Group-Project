@@ -18,7 +18,7 @@ import java.util.List;
 public class GameStateInteractor implements GameStateInputBoundary {
     private final GameOutputBoundary gameOutputBoundary;
     private ArrayList<QuestionAnswer> questionsAnswers;
-    private Game game;
+    private AbstractGame game;
 
     public GameStateInteractor(GameOutputBoundary gameOutputBoundary
     ) {
@@ -40,7 +40,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
      * @return The Game object.
      */
     @Override
-    public Game getGame() {
+    public AbstractGame getGame() {
         return game;
     }
 
@@ -103,9 +103,17 @@ public class GameStateInteractor implements GameStateInputBoundary {
         else {
             if (currentQuestionAnswer.validateAnswer()) {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
+                game.updateQuestionAnswersCorrect(true);
+                if (!(game instanceof EasyGame)) {
+                    game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
+                }
             }
             else {
                 gameOutputBoundary.prepareAnswerConfirmView(currentQuestionAnswer);
+                game.updateQuestionAnswersCorrect(false);
+                if (!(game instanceof EasyGame)) {
+                    game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
+                }
             }
 
             if (game.isGameFinished()) {

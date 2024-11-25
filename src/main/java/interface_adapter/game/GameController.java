@@ -1,11 +1,7 @@
 package interface_adapter.game;
 
-import java.io.File;
-
-import entity.QuestionAnswer;
 import use_case.game.GameInputBoundary;
 import use_case.gameState.GameStateInputBoundary;
-import use_case.gameState.GameStateInteractor;
 
 /**
  * Controller for our File related Use Cases.
@@ -27,6 +23,9 @@ public class GameController {
         gameStateInteractor.setQuestionsAnswers(gameInteractor.getQuestionsAnswers());
     }
 
+    /**
+     * Sets the game difficulty.
+     */
     public void setDifficulty() {
         // change view by calling the interactor .... to eventually change the game curr view.
         gameStateInteractor.gatherDifficultyForGame();

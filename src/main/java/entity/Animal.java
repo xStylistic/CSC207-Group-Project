@@ -33,11 +33,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", family='" + family + '\'' +
-                ", locations=" + locations +
-                ", fact='" + fact + '\'' +
-                '}';
+        return "Animal{" + "name='" + name + '\'' + ", family='" + family + '\'' + ", locations=" + locations
+                + ", fact='" + fact + '\'' + '}';
     }
 }

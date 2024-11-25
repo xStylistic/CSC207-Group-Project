@@ -47,7 +47,7 @@ public class MainApplication {
         final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
 
         final GameAppBuilder gameBuilder = new GameAppBuilder();
-        gameBuilder.addGameDAO(gameDataAccess)
+        gameBuilder.addGameDao(gameDataAccess)
                 .addGameView()
                 .addGameUseCase()
                 .build().setVisible(true);

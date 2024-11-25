@@ -1,7 +1,5 @@
 package entity;
 
-import view.AnswerConfirmView;
-
 /**
  * Base QuestionAnswer Class.
  */
