@@ -13,7 +13,6 @@ public class GameViewModel extends ViewModel<interface_adapter.game.GameState> {
     public GameViewModel(GameController controller) {
         super("file");
         this.controller = controller;
-        this.firePropertyChanged("view");
         setState(new interface_adapter.game.GameState());
     }
 }

@@ -77,7 +77,8 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final GameState state = (GameState) evt.getNewValue();
-        if (gameViewModel.getViewName().equals("file")){
+        String propertyChanged = evt.getPropertyName();
+        if (gameViewModel.getViewName().equals("file")) {
             if (state.getError() != null) {
                 JOptionPane.showMessageDialog(this, state.getError(),
                         "Error", JOptionPane.ERROR_MESSAGE);

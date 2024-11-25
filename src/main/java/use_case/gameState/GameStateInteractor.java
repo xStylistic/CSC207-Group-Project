@@ -92,12 +92,15 @@ public class GameStateInteractor implements GameStateInputBoundary {
         if (game == null) {
             gameOutputBoundary.prepareFailView("The game is not active");
         }
+
+        // Execute Answer Submit Logic
+
         final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
+        currentQuestionAnswer.setUserAnswer(userAnswer);
         if (currentQuestionAnswer == null) {
             gameOutputBoundary.prepareEndGameView();
         }
         else {
-//            game.submitAnswer(userAnswer);
             if (currentQuestionAnswer.validateAnswer()) {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 game.updateQuestionAnswersCorrect(true);
@@ -116,9 +119,9 @@ public class GameStateInteractor implements GameStateInputBoundary {
             if (game.isGameFinished()) {
                 gameOutputBoundary.prepareEndGameView();
             }
-            else {
-                gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
-            }
+//            else {
+//                gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
+//            }
         }
     }
 

@@ -35,12 +35,14 @@ public class QuestionAnswer {
         this.question = question;
     }
 
-    public boolean setUserAnswer(String uAnswer) {
-        this.userAnswer = uAnswer;
-        return validateAnswer();
+    public boolean setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+        this.validateAnswer();
+        return this.isCorrect;
     }
 
     public boolean validateAnswer() {
-        return correctAnswer.equalsIgnoreCase(userAnswer);
+        this.isCorrect = correctAnswer.equalsIgnoreCase(userAnswer);
+        return this.isCorrect;
     }
 }
