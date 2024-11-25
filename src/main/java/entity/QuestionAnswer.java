@@ -39,10 +39,12 @@ public class QuestionAnswer {
 
     public boolean setUserAnswer(String userAnswer) {
         this.userAnswer = userAnswer;
-        return validateAnswer();
+        this.validateAnswer();
+        return this.isCorrect;
     }
 
     public boolean validateAnswer() {
-        return correctAnswer.equalsIgnoreCase(userAnswer);
+        this.isCorrect = correctAnswer.equalsIgnoreCase(userAnswer);
+        return this.isCorrect;
     }
 }

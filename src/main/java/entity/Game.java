@@ -19,6 +19,14 @@ abstract public class Game {
         return null;
     }
 
+    public void goToNextQuestion() {
+        currentQuestionIndex++;
+    }
+
+    public int getSizeOfQuestionAnswers() {
+        return questionAnswers.size();
+    }
+
     public boolean isGameFinished() {
         return currentQuestionIndex >= questionAnswers.size();
     }

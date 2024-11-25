@@ -19,7 +19,7 @@ public class GamePresenter implements GameOutputBoundary {
     // Function to prepare difficulty view
     public void prepareDifficultyView() {
         gameViewModel.setViewName("difficulty");
-        gameViewModel.firePropertyChanged("view");
+        gameViewModel.firePropertyChanged("pageChange");
     }
 
     /**
@@ -45,16 +45,20 @@ public class GamePresenter implements GameOutputBoundary {
         gameViewModel.firePropertyChanged();
     }
 
+    /**
+     * Trigger question result view.
+     * @param questionAnswer the question answer variable which includes the user answers
+     */
     @Override
     public void prepareAnswerResultView(QuestionAnswer questionAnswer) {
         if (Boolean.TRUE.equals(questionAnswer.isCorrect())) {
-            gameViewModel.getState().setMessage("Correct! Well done.");
+            gameViewModel.getState().setMessage("Correct! Well done. The answer is " + questionAnswer.getCorrectAnswer());
         }
         else {
             gameViewModel.getState().setMessage("Incorrect. The correct answer was: "
                     + questionAnswer.getCorrectAnswer());
         }
-        gameViewModel.firePropertyChanged();
+        gameViewModel.firePropertyChanged("message");
     }
 
     /**
@@ -67,7 +71,7 @@ public class GamePresenter implements GameOutputBoundary {
         gameViewModel.getState().setMessage("Answer the question below:");
 //        gameViewModel.firePropertyChanged();
         gameViewModel.setViewName("questions");
-        gameViewModel.firePropertyChanged("view");
+        gameViewModel.firePropertyChanged("pageChange");
     }
 
     @Override
