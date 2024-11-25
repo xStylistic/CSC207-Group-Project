@@ -11,7 +11,7 @@ public class HardGame extends AbstractGame {
     private boolean shouldMoveOn;
 
     public HardGame(List<QuestionAnswer> questionAnswers) {
-        super(questionAnswers);
+        super(questionAnswers, "medium");
 
         this.timer = new QuestionTimer(
                 HARD_PER_QUESTION_TIME,

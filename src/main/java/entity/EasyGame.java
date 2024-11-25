@@ -7,6 +7,6 @@ import java.util.List;
  */
 public class EasyGame extends AbstractGame {
     public EasyGame(List<QuestionAnswer> questionAnswers) {
-        super(questionAnswers);
+        super(questionAnswers, "easy");
     }
 }
