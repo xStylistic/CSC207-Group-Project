@@ -12,7 +12,7 @@ public abstract class AbstractGame {
     private final List<QuestionAnswer> questionAnswers;
     private final Map<QuestionAnswer, Boolean> questionAnswersCorrect;
     private final Map<QuestionAnswer, Integer> questionAnswerTimes;
-    private final int currentQuestionIndex;
+    private int currentQuestionIndex;
 
     public AbstractGame(List<QuestionAnswer> questionAnswers) {
         this.questionAnswers = new ArrayList<>(questionAnswers);
@@ -34,7 +34,7 @@ public abstract class AbstractGame {
     }
 
     public boolean isGameFinished() {
-        return currentQuestionIndex >= questionAnswers.size();
+        return currentQuestionIndex >= questionAnswers.size() - 1;
     }
 
     public Map<QuestionAnswer, Boolean> getQuestionAnswersCorrect() {
@@ -59,6 +59,10 @@ public abstract class AbstractGame {
      */
     public void updateQuestionAnswerTimes(int time) {
         this.questionAnswerTimes.put(questionAnswers.get(currentQuestionIndex), time);
+    }
+
+    public void moveToNextQuestion() {
+        this.currentQuestionIndex++;
     }
 
     public QuestionTimer getTimer() {

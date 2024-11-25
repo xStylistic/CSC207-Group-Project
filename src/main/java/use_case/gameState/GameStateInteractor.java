@@ -116,13 +116,27 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 }
             }
 
-            if (game.isGameFinished()) {
-                gameOutputBoundary.prepareEndGameView();
-            }
+
 //            else {
 //                gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
 //            }
         }
+    }
+
+    public void moveAnswerToNextQuestion() {
+        if (game == null) {
+            gameOutputBoundary.prepareFailView("The game is not active");
+        }
+        if (game.isGameFinished()) {
+            gameOutputBoundary.prepareEndGameView();
+        }
+        else {
+            // Execute Answer Submit Logic
+            game.moveToNextQuestion();
+            final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
+            gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+        }
+
     }
 
     @Override

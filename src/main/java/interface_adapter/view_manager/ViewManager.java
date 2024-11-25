@@ -3,6 +3,7 @@ import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
 import view.DifficultyView;
+import view.EndScreenView;
 import view.GameView;
 import view.QuestionAnswerView;
 
@@ -51,6 +52,17 @@ public class ViewManager {
                             layout.remove(currView);
                             this.currView = questionAnswerView;
                             layout.add(questionAnswerView);
+                            layout.revalidate();
+                            layout.repaint();
+                        }
+                        else if (viewName.equals("end"))
+                        {
+                            final EndScreenView endScreenView = new EndScreenView();
+                            endScreenView.setVisible(true);
+
+                            layout.remove(currView);
+                            this.currView = endScreenView;
+                            layout.add(endScreenView);
                             layout.revalidate();
                             layout.repaint();
                         }

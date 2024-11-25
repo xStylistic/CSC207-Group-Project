@@ -82,9 +82,19 @@ public class QuestionAnswerView extends JPanel implements ActionListener, Proper
     private JButton createButtonThatGoesToTheNextState() {
         // TODO: Return JButton with actionlistener attached that goes to the next
 
+        // Q -> A -> Q -> A -> Q -> A
         // Go to the next state
 
-        return new JButton("Go to next state");
+        JButton nextQuestionButton = new JButton("Go to next state");
+        nextQuestionButton.addActionListener(
+                evt -> {
+                    if (evt.getSource().equals(nextQuestionButton)) {
+                        // call game controller
+                        gameController.goToNextQuestion();
+                    }
+                }
+        );
+        return nextQuestionButton;
     }
 
     private void revealCorrectOrIncorrect(GameState state) {
