@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * Medium Game implementation.
  */
-public class HardGame extends Game {
-    private static final int MEDIUM_PER_QUESTION_TIME = 180;
+public class HardGame extends AbstractGame {
+    private static final int HARD_PER_QUESTION_TIME = 180;
     private QuestionTimer timer;
     private boolean shouldMoveOn;
 
@@ -14,7 +14,7 @@ public class HardGame extends Game {
         super(questionAnswers);
 
         this.timer = new QuestionTimer(
-                MEDIUM_PER_QUESTION_TIME,
+                HARD_PER_QUESTION_TIME,
                 () -> {
                     // What happens when timer is up.
                     System.out.println("Time is up");
@@ -35,5 +35,9 @@ public class HardGame extends Game {
 
     public boolean getShouldMoveOn() {
         return shouldMoveOn;
+    }
+
+    public QuestionTimer getTimer() {
+        return timer;
     }
 }

@@ -1,7 +1,5 @@
 package entity;
 
-import view.AnswerConfirmView;
-
 /**
  * Base QuestionAnswer Class.
  */
@@ -37,8 +35,8 @@ public class QuestionAnswer {
         this.question = question;
     }
 
-    public boolean setUserAnswer(String userAnswer) {
-        this.userAnswer = userAnswer;
+    public boolean setUserAnswer(String uAnswer) {
+        this.userAnswer = uAnswer;
         return validateAnswer();
     }
 

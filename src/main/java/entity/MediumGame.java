@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Medium Game implementation.
  */
-public class MediumGame extends Game {
+public class MediumGame extends AbstractGame {
     private static final int MEDIUM_PER_QUESTION_TIME = 180;
     private QuestionTimer timer;
     private boolean shouldMoveOn;
@@ -35,5 +35,9 @@ public class MediumGame extends Game {
 
     public boolean getShouldMoveOn() {
         return shouldMoveOn;
+    }
+
+    public QuestionTimer getTimer() {
+        return timer;
     }
 }
