@@ -17,10 +17,11 @@ public class GameDataAccessObject implements GameDataAccessInterface {
         final JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a TXT File");
         final int result = fileChooser.showOpenDialog(null);
+        File file = null;
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            return fileChooser.getSelectedFile();
+            file = fileChooser.getSelectedFile();
         }
-        return null;
+        return file;
     }
 }

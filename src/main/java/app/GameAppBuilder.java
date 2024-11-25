@@ -78,10 +78,10 @@ public class GameAppBuilder {
      */
     public JFrame build() {
         final ViewManager viewManager = new ViewManager(gameViewModel, gameController);
-        //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //frame.setTitle("File Application");
-        //frame.setSize(WIDTH, HEIGHT);
-        //frame.add(gameView);
+        // frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        // frame.setTitle("File Application");
+        // frame.setSize(WIDTH, HEIGHT);
+        // frame.add(gameView);
         return viewManager.getCurrLayout();
     }
 

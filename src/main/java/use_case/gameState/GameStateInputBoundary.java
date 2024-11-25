@@ -1,6 +1,6 @@
 package use_case.gameState;
 
-import entity.Game;
+import entity.AbstractGame;
 import entity.QuestionAnswer;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public interface GameStateInputBoundary {
      *
      * @return The current Game object
      */
-    Game getGame();
+    AbstractGame getGame();
 
     /**
      * Starts the game and prepares the first question.

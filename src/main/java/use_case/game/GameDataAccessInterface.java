@@ -2,7 +2,6 @@ package use_case.game;
 
 import java.io.File;
 
-import entity.QuestionAnswer;
 import entity.User;
 
 /**

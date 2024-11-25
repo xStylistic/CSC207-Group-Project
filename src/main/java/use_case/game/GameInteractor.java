@@ -1,20 +1,14 @@
 package use_case.game;
 
-import entity.User;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import entity.QuestionAnswer;
 import entity.User;
-import entity.Game;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The "Use Case Interactor" for our two File-related use cases of refreshing

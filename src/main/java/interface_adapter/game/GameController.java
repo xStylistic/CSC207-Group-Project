@@ -23,6 +23,9 @@ public class GameController {
         gameStateInteractor.setQuestionsAnswers(gameInteractor.getQuestionsAnswers());
     }
 
+    /**
+     * Sets the game difficulty.
+     */
     public void setDifficulty() {
         // change view by calling the interactor .... to eventually change the game curr view.
         gameStateInteractor.gatherDifficultyForGame();
