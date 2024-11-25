@@ -27,4 +27,6 @@ public interface GameOutputBoundary {
     void prepareAnswerResultView(QuestionAnswer questionAnswer);
 
     void prepareAnswerConfirmView(QuestionAnswer currentQuestionAnswer);
+
+    void prepareDifficultyView();
 }

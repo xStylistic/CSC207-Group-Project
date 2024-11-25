@@ -16,6 +16,12 @@ public class GamePresenter implements GameOutputBoundary {
         this.gameViewModel = gameViewModel;
     }
 
+    // Function to prepare difficulty view
+    public void prepareDifficultyView() {
+        gameViewModel.setViewName("difficulty");
+        gameViewModel.firePropertyChanged("view");
+    }
+
     /**
      * Prepares the success view for the File related Use Cases.
      *
@@ -59,7 +65,9 @@ public class GamePresenter implements GameOutputBoundary {
     public void prepareQuestionView(QuestionAnswer questionAnswer) {
         gameViewModel.getState().setCurrentQuestionAnswer(questionAnswer);
         gameViewModel.getState().setMessage("Answer the question below:");
-        gameViewModel.firePropertyChanged();
+//        gameViewModel.firePropertyChanged();
+        gameViewModel.setViewName("questions");
+        gameViewModel.firePropertyChanged("view");
     }
 
     @Override

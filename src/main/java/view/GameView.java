@@ -3,6 +3,7 @@ package view;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
+import interface_adapter.view_manager.ViewManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,6 @@ import java.beans.PropertyChangeListener;
  * The View for when the user is adding a game into the program
  */
 public class GameView extends JPanel implements ActionListener, PropertyChangeListener {
-
     private final GameViewModel gameViewModel;
     private final JButton chooseFileButton = new JButton("Choose File");
     private final JButton startGameButton = new JButton("Start Game");
@@ -26,6 +26,7 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
         this.gameViewModel.addPropertyChangeListener(this);
 
         final JPanel mainPanel = new JPanel();
+
         mainPanel.add(chooseFileButton);
         mainPanel.add(startGameButton);
         startGameButton.setEnabled(false);
@@ -55,9 +56,7 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
                             mainPanel.remove(chooseFileButton);
                             mainPanel.remove(startGameButton);
                             mainPanel.remove(chooseFileButton);
-
-                            mainPanel.revalidate();
-                            mainPanel.repaint();
+                            gameController.setDifficulty();
                         }
                     }
                 }
@@ -78,19 +77,15 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final GameState state = (GameState) evt.getNewValue();
-        if (state.getError() != null) {
-            JOptionPane.showMessageDialog(this, state.getError(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (state.getFile() != null) {
-            JOptionPane.showMessageDialog(this, "File loaded successfully.",
-                    "Success", JOptionPane.INFORMATION_MESSAGE);
-            // SwingUtilities.getWindowAncestor(this).dispose();
+        if (gameViewModel.getViewName().equals("file")){
+            if (state.getError() != null) {
+                JOptionPane.showMessageDialog(this, state.getError(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
     public void setGameController(GameController controller) {
         this.gameController = controller;
     }
-
 }
-
