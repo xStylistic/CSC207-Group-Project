@@ -109,7 +109,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 }
             }
             else {
-                gameOutputBoundary.prepareAnswerConfirmView(currentQuestionAnswer);
+                gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 game.updateQuestionAnswersCorrect(false);
                 if (!(game instanceof EasyGame)) {
                     game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
