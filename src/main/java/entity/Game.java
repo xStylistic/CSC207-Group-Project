@@ -3,7 +3,10 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Game {
+/**
+ * Easy Game - No modifications to parent class.
+ */
+public abstract class Game {
     private final List<QuestionAnswer> questionAnswers;
     private int currentQuestionIndex;
 
@@ -16,7 +19,9 @@ abstract public class Game {
         if (currentQuestionIndex < questionAnswers.size()) {
             return questionAnswers.get(currentQuestionIndex);
         }
-        return null;
+        else {
+            return null;
+        }
     }
 
     public boolean isGameFinished() {
