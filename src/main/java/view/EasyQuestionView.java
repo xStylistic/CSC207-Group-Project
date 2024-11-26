@@ -18,6 +18,7 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     private GameController gameController;
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
+    // TODO: CONNECT TIMER LOGIC SASS
 
     public EasyQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
