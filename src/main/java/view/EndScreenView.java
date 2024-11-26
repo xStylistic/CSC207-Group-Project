@@ -84,6 +84,7 @@ public class EndScreenView extends javax.swing.JPanel {
         jLabel1.setBounds(0, 0, 927, 591);
 
         setPreferredSize(new java.awt.Dimension(927, 591));
+
     }
 
     // Variables declaration

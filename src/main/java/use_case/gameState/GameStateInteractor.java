@@ -116,10 +116,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 }
             }
 
-
-//            else {
-//                gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
-//            }
         }
     }
 
