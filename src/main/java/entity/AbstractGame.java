@@ -15,7 +15,6 @@ public abstract class AbstractGame {
     private final int currentQuestionIndex;
     private final AnimalFarm animalFarm;
     private final String difficulty;
-    private int currentQuestionIndex;
 
     public AbstractGame(List<QuestionAnswer> questionAnswers, String difficulty) {
         this.questionAnswers = new ArrayList<>(questionAnswers);
