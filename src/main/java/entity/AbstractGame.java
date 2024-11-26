@@ -12,7 +12,7 @@ public abstract class AbstractGame {
     private final List<QuestionAnswer> questionAnswers;
     private final Map<QuestionAnswer, Boolean> questionAnswersCorrect;
     private final Map<QuestionAnswer, Integer> questionAnswerTimes;
-    private final int currentQuestionIndex;
+    private int currentQuestionIndex;
     private final AnimalFarm animalFarm;
     private final String difficulty;
 
@@ -85,7 +85,7 @@ public abstract class AbstractGame {
     }
 
     public void moveToNextQuestion() {
-        this.currentQuestionIndex++;
+        this.currentQuestionIndex++;                        // if it's final it can't run, lmk if it causes any error for u
     }
 
     public QuestionTimer getTimer() {
