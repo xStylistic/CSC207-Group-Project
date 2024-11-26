@@ -21,7 +21,9 @@ public abstract class AbstractGame {
         this.questionAnswersCorrect = new HashMap<>();
         this.questionAnswerTimes = new HashMap<>();
         this.currentQuestionIndex = 0;
-        final String[] animals = {"pig", "alpaca", "horse", "cow", "chicken", "fox", "bear", "tiger", "flamingo", "rabbit"};
+        final String[] animals = {
+            "pig", "alpaca", "horse", "cow", "chicken", "fox", "bear", "tiger", "flamingo", "rabbit",
+        };
         this.animalFarm = new AnimalFarm(animals);
         this.difficulty = difficulty;
     }
@@ -48,6 +50,20 @@ public abstract class AbstractGame {
 
     public Map<QuestionAnswer, Integer> getQuestionAnswerTimes() {
         return this.questionAnswerTimes;
+    }
+
+    public int getNumberCorrect() {
+        int correct = 0;
+        for (Boolean value : this.questionAnswersCorrect.values()) {
+            if (Boolean.TRUE.equals(value)) {
+                correct++;
+            }
+        }
+        return correct;
+    }
+
+    public int getNumberAnswered() {
+        return this.questionAnswersCorrect.size();
     }
 
     /**
@@ -84,8 +100,11 @@ public abstract class AbstractGame {
         this.questionAnswerTimes.put(questionAnswers.get(currentQuestionIndex), time);
     }
 
+    /**
+     * Increments the currect question index.
+     */
     public void moveToNextQuestion() {
-        this.currentQuestionIndex++;                        // if it's final it can't run, lmk if it causes any error for u
+        this.currentQuestionIndex++;
     }
 
     public QuestionTimer getTimer() {

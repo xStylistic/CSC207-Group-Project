@@ -7,12 +7,16 @@ public class Animal {
     private String family;
     private List<String> locations;
     private String fact;
+    private double xCoordinate;
+    private double yCoordinate;
 
     public Animal(String name, String family, List<String> locations, String fact) {
         this.name = name;
         this.family = family;
         this.locations = locations;
         this.fact = fact;
+        this.xCoordinate = Math.random() * 9;
+        this.yCoordinate = Math.random() * 9;
     }
 
     public String getName() {
@@ -29,6 +33,14 @@ public class Animal {
 
     public String getFact() {
         return fact;
+    }
+
+    public double getxCoordinate() {
+        return xCoordinate;
+    }
+
+    public double getyCoordinate() {
+        return yCoordinate;
     }
 
     @Override
