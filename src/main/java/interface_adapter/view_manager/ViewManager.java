@@ -66,7 +66,7 @@ public class ViewManager {
                                 this.currView = mediumQuestionView;
                                 layout.add(mediumQuestionView);
                             }
-//                            // HARD = 2
+                            // HARD = 2
                             else if (difficulty == 2) {
                                 final HardQuestionView hardQuestionView = new HardQuestionView(gameViewModel);
                                 hardQuestionView.setQuestionController(gameController);
@@ -76,6 +76,19 @@ public class ViewManager {
                                 layout.add(hardQuestionView);
                             }
 
+                            layout.revalidate();
+                            layout.repaint();
+                        }
+                        else if (viewName.equals("reward")) // Going to Reward Page
+                        {
+                            layout.remove(currView);
+
+                            final UnlockNewAnimalView unlockNewAnimalView = new UnlockNewAnimalView(gameViewModel);
+                            unlockNewAnimalView.setQuestionController(gameController);
+                            unlockNewAnimalView.setVisible(true);
+
+                            this.currView = unlockNewAnimalView;
+                            layout.add(unlockNewAnimalView);
                             layout.revalidate();
                             layout.repaint();
                         }

@@ -82,6 +82,15 @@ public class GamePresenter implements GameOutputBoundary {
     }
 
     /**
+     * Prepare reward view
+     */
+
+    public void prepareAnimalRewardView() {
+        gameViewModel.setViewName("reward");
+        gameViewModel.firePropertyChanged("pageChange");
+    }
+
+    /**
      * Prepares the view for the end of the game.
      */
     public void prepareEndGameView() {

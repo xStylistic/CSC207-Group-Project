@@ -170,7 +170,8 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
                 }
                 // Add new action listener
                 checkButton.addActionListener(evt2 -> {
-                    gameController.goToNextQuestion();
+                    // just submitted should be true
+                    gameController.goToNextQuestion(true);
                 });
 
                 questionPanel.revalidate();
@@ -179,22 +180,6 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
             default:
                 break;
         }
-    }
-
-    private JButton createButtonThatGoesToTheNextState() {
-        // Q -> A -> Q -> A -> Q -> A
-        // Go to the next state
-
-        JButton nextQuestionButton = new JButton("Go to next state");
-        nextQuestionButton.addActionListener(
-                evt -> {
-                    if (evt.getSource().equals(nextQuestionButton)) {
-                        // call game controller
-                        gameController.goToNextQuestion();
-                    }
-                }
-        );
-        return nextQuestionButton;
     }
 
     private void revealCorrectOrIncorrect(GameState state) {

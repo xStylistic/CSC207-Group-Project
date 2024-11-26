@@ -11,11 +11,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 /**
  *
- * @author bonnychen
+ * @author bonnychen and jerryq0101
  */
 public class EasyQuestionView extends JPanel implements ActionListener, PropertyChangeListener {
     private final GameViewModel gameViewModel;
-    private final JButton submitAnswerButton = new JButton("Submit");
     private GameController gameController;
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
@@ -170,7 +169,8 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
                 }
                 // Add new action listener
                 checkButton.addActionListener(evt2 -> {
-                    gameController.goToNextQuestion();
+                        // just submitted is true since we just submitted
+                        gameController.goToNextQuestion(true);
                 });
 
                 questionPanel.revalidate();
@@ -181,25 +181,10 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         }
     }
 
-    private JButton createButtonThatGoesToTheNextState() {
-        // Q -> A -> Q -> A -> Q -> A
-        // Go to the next state
-
-        JButton nextQuestionButton = new JButton("Go to next state");
-        nextQuestionButton.addActionListener(
-                evt -> {
-                    if (evt.getSource().equals(nextQuestionButton)) {
-                        // call game controller
-                        gameController.goToNextQuestion();
-                    }
-                }
-        );
-        return nextQuestionButton;
-    }
-
     private void revealCorrectOrIncorrect(GameState state) {
         // Sets the textfield to the message i the game state
-        this.answerTextArea.setText(state.getMessage());
+        String rightOrWrongMsg = state.getMessage();
+        this.answerTextArea.setText(rightOrWrongMsg);
         System.out.println(state.getMessage());
     }
 

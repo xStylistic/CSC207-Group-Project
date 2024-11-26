@@ -52,8 +52,8 @@ public class GameController {
     /**
      * Function to go to the next question from an answer
      */
-    public void goToNextQuestion() {
-        gameStateInteractor.moveAnswerToNextQuestion();
+    public void goToNextQuestion(boolean justSubmitted) {
+        gameStateInteractor.moveAnswerToNextQuestion(justSubmitted);
     }
 
     public String getFileName() {
