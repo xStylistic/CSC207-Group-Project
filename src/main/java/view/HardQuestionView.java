@@ -1,14 +1,31 @@
 package view;
 
-import javax.swing.JPanel;
+import interface_adapter.game.GameController;
+import interface_adapter.game.GameState;
+import interface_adapter.game.GameViewModel;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 /**
  *
  * @author bonnychen
  */
-public class HardQuestionView extends JPanel {
+public class HardQuestionView extends JPanel implements ActionListener, PropertyChangeListener {
+    private final GameViewModel gameViewModel;
+    private final JButton submitAnswerButton = new JButton("Submit");
+    private GameController gameController;
+    private String currentQuestion;
+    private JPanel entireQuestionContextPanel;
 
-    public HardQuestionView() {
+    public HardQuestionView(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
+        this.gameViewModel.addPropertyChangeListener(this);
+        this.currentQuestion = gameViewModel.getState().getCurrentQuestionAnswer().getQuestion();
+        this.entireQuestionContextPanel = new JPanel();
+
         initComponents();
     }
 
@@ -16,11 +33,10 @@ public class HardQuestionView extends JPanel {
 
         questionPanel = new JPanel();
         checkButton = new javax.swing.JButton();
-        answer = new javax.swing.JTextArea();
+        answerTextArea = new javax.swing.JTextArea();
         questionNumberLabel = new javax.swing.JLabel();
         questionLabel = new javax.swing.JLabel();
         timeElapsedLabel = new javax.swing.JLabel();
-        timerLabel = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setLayout(null);
@@ -29,24 +45,20 @@ public class HardQuestionView extends JPanel {
 
         checkButton.setBackground(new java.awt.Color(255, 204, 102));
         checkButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        checkButton.setText("Check Answer");
+        checkButton.setText("Submit Answer");
 
-        answer.setColumns(20);
-        answer.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
-        answer.setRows(5);
+        answerTextArea.setColumns(15);
+        answerTextArea.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
+        answerTextArea.setRows(5);
 
         questionNumberLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
         questionNumberLabel.setText("Question -/-");
 
         questionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
-        questionLabel.setText("Question");
+        questionLabel.setText("Question: " + this.currentQuestion);
 
         timeElapsedLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        timeElapsedLabel.setText("Time Elapsed:");
-
-        timerLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
-        timerLabel.setForeground(new java.awt.Color(255, 102, 102));
-        timerLabel.setText("00:00");
+        timeElapsedLabel.setText("Time Elapsed: "); // TODO: SASWATA
 
         javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -64,25 +76,22 @@ public class HardQuestionView extends JPanel {
                                 .addGap(21, 21, 21)
                                 .addComponent(questionNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(timerLabel)
-                                .addGap(204, 204, 204)
                                 .addComponent(timeElapsedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21))
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanelLayout.createSequentialGroup()
                                         .addContainerGap(51, Short.MAX_VALUE)
-                                        .addComponent(answer, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(52, Short.MAX_VALUE)))
         );
         questionPanelLayout.setVerticalGroup(
                 questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanelLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addContainerGap(18, Short.MAX_VALUE)
                                 .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(questionNumberLabel)
-                                        .addComponent(timeElapsedLabel)
-                                        .addComponent(timerLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                        .addComponent(timeElapsedLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                                 .addComponent(questionLabel)
                                 .addGap(109, 109, 109)
                                 .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -90,24 +99,95 @@ public class HardQuestionView extends JPanel {
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanelLayout.createSequentialGroup()
                                         .addContainerGap(79, Short.MAX_VALUE)
-                                        .addComponent(answer, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(63, Short.MAX_VALUE)))
         );
 
-        add(questionPanel);
-        questionPanel.setBounds(80, 40, 760, 230);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/farm.png")));
-        add(background);
+        checkButton.addActionListener(
+                evt -> {
+                    if (evt.getSource().equals(checkButton)) {
+                        gameController.submitAnswer(answerTextArea.getText());
+                    }
+                }
+        );
+
+        this.setLayout(null);
+
+        // Set layout for entireQuestionContextPanel
+        entireQuestionContextPanel.setLayout(null);
+        entireQuestionContextPanel.setBounds(0, 0, 927, 591);  // Set size to match background
+
+        // Setup background
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
         background.setBounds(0, 0, 927, 591);
+
+        // Setup questionPanel bounds - centered and smaller than background
+        questionPanel.setBounds(50, 90, 800, 194);  // Similar sizing to DifficultyView
+
+        // Add components in correct order (background first, then panel on top)
+        entireQuestionContextPanel.add(questionPanel);   // Question panel will be on top
+        entireQuestionContextPanel.add(background);      // Background will be behind
+
+        // Move background to back
+        entireQuestionContextPanel.setComponentZOrder(background, 1);
+        entireQuestionContextPanel.setComponentZOrder(questionPanel, 0);
+
+        this.add(entireQuestionContextPanel);
+
+        // Set preferred size for the main panel
+        setPreferredSize(new java.awt.Dimension(927, 591));
     }
 
-    private javax.swing.JTextArea answer;
+    private javax.swing.JTextArea answerTextArea;
     private javax.swing.JLabel background;
     private javax.swing.JButton checkButton;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
     private javax.swing.JLabel timeElapsedLabel;
-    private javax.swing.JLabel timerLabel;
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Click " + e.getActionCommand());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        final GameState state = (GameState) evt.getNewValue();
+        String propertyName = evt.getPropertyName();
+        switch (propertyName) {
+            case "message":
+                revealCorrectOrIncorrect(state);
+
+                // Update existing button
+                checkButton.setText("Next Question");
+                // Remove old action listeners
+                for (ActionListener al : checkButton.getActionListeners()) {
+                    checkButton.removeActionListener(al);
+                }
+                // Add new action listener
+                checkButton.addActionListener(evt2 -> {
+                    // just submitted is true
+                    gameController.goToNextQuestion(true);
+                });
+
+                questionPanel.revalidate();
+                questionPanel.repaint();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void revealCorrectOrIncorrect(GameState state) {
+        // Sets the textfield to the message i the game state
+        this.answerTextArea.setText(state.getMessage());
+        System.out.println(state.getMessage());
+    }
+
+    public void setQuestionController(GameController controller) {
+        this.gameController = controller;
+    }
 }

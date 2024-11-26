@@ -107,6 +107,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 if (!(game instanceof EasyGame)) {
                     game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
                 }
+
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
@@ -116,14 +117,15 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 }
             }
 
-
-//            else {
-//                gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
-//            }
         }
     }
 
-    public void moveAnswerToNextQuestion() {
+    /**
+     * either move to the next question from the reward page or go to the reward page
+     * @param justSubmitted indicates the current page was the submit button, therefore we should test for reward page
+     */
+    public void moveAnswerToNextQuestion(boolean justSubmitted)
+    {
         if (game == null) {
             gameOutputBoundary.prepareFailView("The game is not active");
         }
@@ -132,9 +134,32 @@ public class GameStateInteractor implements GameStateInputBoundary {
         }
         else {
             // Execute Answer Submit Logic
-            game.moveToNextQuestion();
-            final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
-            gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+            QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
+
+            if (game instanceof EasyGame || game instanceof MediumGame) // EASY GAME or MEDIUM GAME
+            {
+                if (currentQuestionAnswer.validateAnswer() && justSubmitted) // if correct, go to rewards page
+                {
+                    gameOutputBoundary.prepareAnimalRewardView();
+                }
+                else    // Go to next question
+                {
+                    game.moveToNextQuestion();
+                    currentQuestionAnswer = game.getCurrentQuestion();
+                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+                }
+            }
+            else // HARD GAME
+            {
+                if (currentQuestionAnswer.validateAnswer()) // If correct go to rewards page
+                {
+                    gameOutputBoundary.prepareAnimalRewardView();
+                }
+                else // Game over if one incorrect
+                {
+                    gameOutputBoundary.prepareEndGameView();
+                }
+            }
         }
 
     }

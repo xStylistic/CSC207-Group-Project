@@ -37,5 +37,5 @@ public interface GameStateInputBoundary {
 
     void gatherDifficultyForGame();
 
-    void moveAnswerToNextQuestion();
+    void moveAnswerToNextQuestion(boolean justSubmitted);
 }

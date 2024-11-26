@@ -2,10 +2,7 @@ package interface_adapter.view_manager;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
-import view.DifficultyView;
-import view.EndScreenView;
-import view.GameView;
-import view.QuestionAnswerView;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,17 +42,57 @@ public class ViewManager {
                         }
                         else if (viewName.equals("questions")) // SETTING CURRENT PAGE TO BE QUESTIONS
                         {
-                            final QuestionAnswerView questionAnswerView = new QuestionAnswerView(gameViewModel);
-                            questionAnswerView.setQuestionController(gameController);
-                            questionAnswerView.setVisible(true);
+
+                            // Render depending on which type of question it is on
+                            // check type of question
+                            int difficulty = gameViewModel.getState().getDifficulty();
 
                             layout.remove(currView);
-                            this.currView = questionAnswerView;
-                            layout.add(questionAnswerView);
+                            // EASY = 0
+                            if (difficulty == 0) {
+                                final EasyQuestionView easyQuestionView = new EasyQuestionView(gameViewModel);
+                                easyQuestionView.setQuestionController(gameController);
+                                easyQuestionView.setVisible(true);
+
+                                this.currView = easyQuestionView;
+                                layout.add(easyQuestionView);
+                            }
+                            // MEDIUM = 1
+                            else if (difficulty == 1) {
+                                final MediumQuestionView mediumQuestionView = new MediumQuestionView(gameViewModel);
+                                mediumQuestionView.setQuestionController(gameController);
+                                mediumQuestionView.setVisible(true);
+
+                                this.currView = mediumQuestionView;
+                                layout.add(mediumQuestionView);
+                            }
+                            // HARD = 2
+                            else if (difficulty == 2) {
+                                final HardQuestionView hardQuestionView = new HardQuestionView(gameViewModel);
+                                hardQuestionView.setQuestionController(gameController);
+                                hardQuestionView.setVisible(true);
+
+                                this.currView = hardQuestionView;
+                                layout.add(hardQuestionView);
+                            }
+
                             layout.revalidate();
                             layout.repaint();
                         }
-                        else if (viewName.equals("end"))
+                        else if (viewName.equals("reward")) // Going to Reward Page
+                        {
+                            layout.remove(currView);
+
+                            final UnlockNewAnimalView unlockNewAnimalView = new UnlockNewAnimalView(gameViewModel);
+                            unlockNewAnimalView.setQuestionController(gameController);
+                            unlockNewAnimalView.setVisible(true);
+
+                            this.currView = unlockNewAnimalView;
+                            layout.add(unlockNewAnimalView);
+                            layout.revalidate();
+                            layout.repaint();
+                        }
+                        else if (viewName.equals("end"))    // Going to the end screen
                         {
                             final EndScreenView endScreenView = new EndScreenView();
                             endScreenView.setVisible(true);
