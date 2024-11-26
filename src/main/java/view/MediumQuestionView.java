@@ -32,7 +32,7 @@ public class MediumQuestionView extends javax.swing.JFrame {
         questionNumber = new javax.swing.JLabel();
         question = new javax.swing.JLabel();
         timeElapsed = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        timerLabel = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,9 +57,9 @@ public class MediumQuestionView extends javax.swing.JFrame {
         timeElapsed.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         timeElapsed.setText("Time Elapsed:");
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel1.setText("00:00");
+        timerLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        timerLabel.setForeground(new java.awt.Color(255, 102, 102));
+        timerLabel.setText("00:00");
 
         javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -77,7 +77,7 @@ public class MediumQuestionView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(questionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(timerLabel)
                 .addGap(204, 204, 204)
                 .addComponent(timeElapsed, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -94,7 +94,7 @@ public class MediumQuestionView extends javax.swing.JFrame {
                 .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(questionNumber)
                     .addComponent(timeElapsed)
-                    .addComponent(jLabel1))
+                    .addComponent(timerLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(question)
                 .addGap(109, 109, 109)
@@ -156,7 +156,7 @@ public class MediumQuestionView extends javax.swing.JFrame {
     private javax.swing.JTextArea answer;
     private javax.swing.JLabel background;
     private javax.swing.JButton checkButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel timerLabel;
     private javax.swing.JLabel question;
     private javax.swing.JLabel questionNumber;
     private javax.swing.JPanel questionPanel;

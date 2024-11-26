@@ -8,12 +8,12 @@ package view;
  *
  * @author bonnychen
  */
-public class EasyQuestionAnswerView extends javax.swing.JFrame {
+public class EasyQuestionWrongView extends javax.swing.JFrame {
 
     /**
      * Creates new form EasyQuestionAnswerView
      */
-    public EasyQuestionAnswerView() {
+    public EasyQuestionWrongView() {
         initComponents();
     }
 
@@ -31,6 +31,7 @@ public class EasyQuestionAnswerView extends javax.swing.JFrame {
         correctAnswer = new javax.swing.JTextArea();
         questionNumberLabel = new javax.swing.JLabel();
         questionLabel = new javax.swing.JLabel();
+        funFactLabel = new javax.swing.JLabel();
         timeElapsedLabel = new javax.swing.JLabel();
         answer = new javax.swing.JTextArea();
         yesButton = new javax.swing.JButton();
@@ -74,6 +75,8 @@ public class EasyQuestionAnswerView extends javax.swing.JFrame {
 
         wasItCorrectLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         wasItCorrectLabel.setText("Was your answer correct?");
+
+        funFactLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
 
         javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -130,6 +133,9 @@ public class EasyQuestionAnswerView extends javax.swing.JFrame {
         getContentPane().add(questionPanel);
         questionPanel.setBounds(80, 40, 760, 230);
 
+        funFactLabel.setBounds(80, 280, 760, 30);
+        getContentPane().add(funFactLabel);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/farm.png"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 927, 591);
@@ -154,20 +160,20 @@ public class EasyQuestionAnswerView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EasyQuestionAnswerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EasyQuestionWrongView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EasyQuestionAnswerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EasyQuestionWrongView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EasyQuestionAnswerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EasyQuestionWrongView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EasyQuestionAnswerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EasyQuestionWrongView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EasyQuestionAnswerView().setVisible(true);
+                new EasyQuestionWrongView().setVisible(true);
             }
         });
     }
@@ -182,6 +188,7 @@ public class EasyQuestionAnswerView extends javax.swing.JFrame {
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
     private javax.swing.JLabel timeElapsedLabel;
+    private javax.swing.JLabel funFactLabel;
     private javax.swing.JLabel wasItCorrectLabel;
     private javax.swing.JButton yesButton;
     // End of variables declaration//GEN-END:variables
