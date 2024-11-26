@@ -126,25 +126,35 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
                 }
         );
 
-
+        // Set null for all panels that need absolute positioning layout
         this.setLayout(null);
+        entireRewardAnimalPanel.setLayout(null);
 
-        entireRewardAnimalPanel.setBackground(new java.awt.Color(255, 204, 102));
+        // Set bounds for all panels
         entireRewardAnimalPanel.setBounds(0, 0, 927, 591);
 
+        // Set up background
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
         background.setBounds(0, 0, 927, 591);
 
-        newAnimePanel.setBounds(260, 110, 400, 340);
+        // Center the newAnimePanel
+        // calculate center position: (parent width - panel width)/2
+        int x = (927 - 400)/2;  // 927 is parent width, 400 is panel width
+        int y = (591 - 340)/2;  // 591 is parent height, 340 is panel height
+        newAnimePanel.setBounds(x, y, 400, 340);  // This will center it
 
+        // Add components to entireRewardAnimalPanel in order
         entireRewardAnimalPanel.add(newAnimePanel);
         entireRewardAnimalPanel.add(background);
 
-        // Move background to back
-        entireRewardAnimalPanel.setComponentZOrder(background, 1);
-        entireRewardAnimalPanel.setComponentZOrder(newAnimePanel, 0);
+        // Set the z-order (what appears on top)
+        entireRewardAnimalPanel.setComponentZOrder(newAnimePanel, 0);  // On top
+        entireRewardAnimalPanel.setComponentZOrder(background, 1);     // At back
 
+        // Add the entireRewardAnimalPanel to the main panel
         this.add(entireRewardAnimalPanel);
+
+        // Set the preferred size for the main panel
         setPreferredSize(new java.awt.Dimension(927, 591));
     }
 
