@@ -1,7 +1,8 @@
 package entity;
 
-import data_access.AnimalDataAccessObject;
 import java.util.*;
+
+import data_access.AnimalDataAccessObject;
 
 /**
  * The animals in the program.
@@ -10,20 +11,23 @@ public class AnimalFarm {
     private Map<String, Integer> currentAnimals;
     private List<Animal> selectedAnimals;
     private Map<String, Animal> animalMap;
-    Random rand = new Random();
+    private Random rand = new Random();
+    private List<String> availableAnimals;
 
-    public AnimalFarm(List<String> selectedAnimalNames) {
+    public AnimalFarm(String[] availableAnimals) {
+        this.availableAnimals = Arrays.asList(availableAnimals);
         this.selectedAnimals = new ArrayList<>();
         this.currentAnimals = new HashMap<>();
         this.animalMap = new HashMap<>();
 
-        for (String animalName : selectedAnimalNames) {
+        for (String animalName : availableAnimals) {
             Animal animal = (Animal) AnimalDataAccessObject.getAnimal(animalName.toLowerCase());
             if (animal != null) {
                 selectedAnimals.add(animal);
                 currentAnimals.put(animal.getName(), 1);
                 animalMap.put(animal.getName(), animal);
-            } else {
+            }
+            else {
                 System.err.println("Animal not found or family does not match: " + animalName);
             }
         }
@@ -45,21 +49,24 @@ public class AnimalFarm {
 
     /**
      * Remove an animal from the farm.
+     * @param removeCount the number of animals to remove
      */
-    public void removeAnimal() {
+    public void removeAnimal(int removeCount) {
         if (!currentAnimals.isEmpty()) {
-            // Get a list of animal names currently on the farm
-            List<String> animalNames = new ArrayList<>(currentAnimals.keySet());
-            int index = rand.nextInt(animalNames.size());
-            String name = animalNames.get(index);
+            for (int i = 0; i < removeCount; i++) {
+                // Get a list of animal names currently on the farm
+                List<String> animalNames = new ArrayList<>(currentAnimals.keySet());
+                int index = rand.nextInt(animalNames.size());
+                String name = animalNames.get(index);
 
-            // Decrease the count of the animal
-            int count = currentAnimals.get(name);
-            if (count > 1) {
-                currentAnimals.put(name, count - 1);
-            }
-            else {
-                currentAnimals.remove(name);
+                // Decrease the count of the animal
+                int count = currentAnimals.get(name);
+                if (count > 1) {
+                    currentAnimals.put(name, count - 1);
+                }
+                else {
+                    currentAnimals.remove(name);
+                }
             }
         }
     }

@@ -39,6 +39,7 @@ public class GameController {
         gameStateInteractor.startGame(difficulty);
     }
 
+
     /**
      * Submits the user's answer to the current question by delegating to the interactor.
      *
@@ -46,6 +47,13 @@ public class GameController {
      */
     public void submitAnswer(String userAnswer) {
         gameStateInteractor.executeAnswerSubmit(userAnswer);
+    }
+
+    /**
+     * Function to go to the next question from an answer
+     */
+    public void goToNextQuestion() {
+        gameStateInteractor.moveAnswerToNextQuestion();
     }
 
     public String getFileName() {

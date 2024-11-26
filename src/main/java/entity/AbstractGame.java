@@ -13,12 +13,17 @@ public abstract class AbstractGame {
     private final Map<QuestionAnswer, Boolean> questionAnswersCorrect;
     private final Map<QuestionAnswer, Integer> questionAnswerTimes;
     private final int currentQuestionIndex;
+    private final AnimalFarm animalFarm;
+    private final String difficulty;
 
-    public AbstractGame(List<QuestionAnswer> questionAnswers) {
+    public AbstractGame(List<QuestionAnswer> questionAnswers, String difficulty) {
         this.questionAnswers = new ArrayList<>(questionAnswers);
         this.questionAnswersCorrect = new HashMap<>();
         this.questionAnswerTimes = new HashMap<>();
         this.currentQuestionIndex = 0;
+        final String[] animals = {"pig", "alpaca", "horse", "cow", "chicken", "fox", "bear", "tiger", "flamingo", "rabbit"};
+        this.animalFarm = new AnimalFarm(animals);
+        this.difficulty = difficulty;
     }
 
     /**
@@ -34,7 +39,7 @@ public abstract class AbstractGame {
     }
 
     public boolean isGameFinished() {
-        return currentQuestionIndex >= questionAnswers.size();
+        return currentQuestionIndex >= questionAnswers.size() - 1;
     }
 
     public Map<QuestionAnswer, Boolean> getQuestionAnswersCorrect() {
@@ -51,6 +56,24 @@ public abstract class AbstractGame {
      */
     public void updateQuestionAnswersCorrect(boolean correct) {
         this.questionAnswersCorrect.put(questionAnswers.get(currentQuestionIndex), correct);
+        if (correct) {
+            this.animalFarm.addAnimal();
+        }
+        else {
+            int count = 1;
+            switch (difficulty) {
+                case "medium":
+                    count = 2;
+                    break;
+                case "hard":
+                    count = Integer.MAX_VALUE;
+                    break;
+                default:
+                    count = 1;
+                    break;
+            }
+            this.animalFarm.removeAnimal(count);
+        }
     }
 
     /**
@@ -59,6 +82,10 @@ public abstract class AbstractGame {
      */
     public void updateQuestionAnswerTimes(int time) {
         this.questionAnswerTimes.put(questionAnswers.get(currentQuestionIndex), time);
+    }
+
+    public void moveToNextQuestion() {
+        this.currentQuestionIndex++;
     }
 
     public QuestionTimer getTimer() {

@@ -141,11 +141,12 @@ public class QuestionsWrongView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QuestionsWrongView().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new QuestionsWrongView().setVisible(true);
+//            }
+//        });
+        QuestionsWrongView test = new QuestionsWrongView();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

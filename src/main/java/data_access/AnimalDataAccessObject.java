@@ -103,6 +103,10 @@ public final class AnimalDataAccessObject {
         return animals;
     }
 
+    public static Map<String, List> getAnimalsList() {
+        return CURRENT_ANIMALS;
+    }
+
     /**
      * The main entry point of the application.
      * <p>
@@ -111,7 +115,7 @@ public final class AnimalDataAccessObject {
      * @param args commandline arguments are ignored
      */
     public static void main(String[] args) {
-        System.out.println(AnimalDataAccessObject.getAnimal("pig"));
+        System.out.println(AnimalDataAccessObject.getAnimal("cat"));
         System.out.println(CURRENT_ANIMALS);
     }
 }
