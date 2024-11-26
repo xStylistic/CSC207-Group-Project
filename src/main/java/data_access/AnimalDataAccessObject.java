@@ -48,9 +48,10 @@ public final class AnimalDataAccessObject {
      * @param animal is animal name
      * @return list of animal names
      */
-    public static List getAnimal(String animal) {
+    public static Map getAnimal(String animal) {
         final String apiUrl = API_URL + animal;
         final List<String> animals = new ArrayList<>();
+        final Map<String, List> animalsMap = new HashMap<>();
         try {
             final URL url = new URL(apiUrl);
             final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -83,10 +84,18 @@ public final class AnimalDataAccessObject {
                     }
                     final String randomKey = keyArray[new Random().nextInt(keyArray.length)];
                     System.out.println(jsonObject.getJSONArray("locations"));
+
+                    final List<String> animalLocations = new ArrayList<String>();
+                    if (jsonObject.getJSONArray("locations") != null) {
+                        for (int j = 0; j < jsonObject.getJSONArray("locations").length(); j++) {
+                            animalLocations.add(jsonObject.getJSONArray("locations").getString(j));
+                        }
+                    }
+
                     if (taxonomy.getString("family").equals(AVAILABLE_ANIMALS.get(animal))) {
                         animals.add(jsonObject.getString("name"));
-                        CURRENT_ANIMALS.put(jsonObject.getString("name"), new ArrayList<>(Arrays.asList(
-                                jsonObject.getJSONArray("locations"),
+                        animalsMap.put(jsonObject.getString("name"), new ArrayList<>(Arrays.asList(
+                                animalLocations,
                                 randomKey + ": " + characteristics.getString(randomKey),
                                 taxonomy.getString("family")
                         )));
@@ -100,18 +109,10 @@ public final class AnimalDataAccessObject {
         catch (JSONException exA) {
             exA.printStackTrace();
         }
-        return animals;
+        return animalsMap;
     }
 
-    /**
-     * The main entry point of the application.
-     * <p>
-     * Runs the program to just test it
-     * </p>
-     * @param args commandline arguments are ignored
-     */
-    public static void main(String[] args) {
-        System.out.println(AnimalDataAccessObject.getAnimal("pig"));
-        System.out.println(CURRENT_ANIMALS);
+    public static Map<String, List> getAnimalsList() {
+        return CURRENT_ANIMALS;
     }
 }

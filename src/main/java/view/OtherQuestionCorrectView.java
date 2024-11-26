@@ -4,9 +4,9 @@ package view;
  *
  * @author bonnychen
  */
-public class OtherQuestionAnswerView extends javax.swing.JFrame {
+public class OtherQuestionCorrectView extends javax.swing.JFrame {
 
-    public OtherQuestionAnswerView() {
+    public OtherQuestionCorrectView() {
         initComponents();
     }
 

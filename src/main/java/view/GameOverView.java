@@ -4,9 +4,6 @@ package view;
  *
  * @author bonnychen
  */
-
-
-// This happens at one question wrong for hard
 public class GameOverView extends javax.swing.JPanel {
 
     public GameOverView() {

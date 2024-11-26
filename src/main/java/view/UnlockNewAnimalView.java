@@ -164,7 +164,7 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        // TODO: Doesn't do anything yet, property change may not be necessary
     }
 
     public void setQuestionController(GameController controller) {

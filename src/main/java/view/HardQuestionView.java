@@ -39,7 +39,6 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
         timeElapsedLabel = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
-
         setLayout(null);
 
         questionPanel.setBackground(new java.awt.Color(255, 244, 214));
