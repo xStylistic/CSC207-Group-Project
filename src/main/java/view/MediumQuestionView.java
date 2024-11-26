@@ -19,6 +19,7 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
     private GameController gameController;
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
+    // TODO: CONNECT TIMER LOGIC SASS
 
     public MediumQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
