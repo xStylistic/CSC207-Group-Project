@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import interface_adapter.game.GameController;
@@ -14,6 +10,7 @@ import interface_adapter.game.GameViewModel;
 public class DifficultyView extends javax.swing.JPanel {
     private GameViewModel gameViewModel;
     private GameController gameController;
+
     /**
      * Creates new form DifficultyView
      * @param gameViewModel - variable
@@ -44,11 +41,11 @@ public class DifficultyView extends javax.swing.JPanel {
 
         difficultyPanel.setBackground(new java.awt.Color(255, 183, 132));
 
-        title.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); // NOI18N
+        title.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); 
         title.setText("CHOOSE YOUR DIFFICULTY");
 
         easy.setBackground(new java.awt.Color(165, 235, 165));
-        easy.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        easy.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); 
         easy.setText("EASY");
         easy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +54,7 @@ public class DifficultyView extends javax.swing.JPanel {
         });
 
         medium.setBackground(new java.awt.Color(255, 204, 51));
-        medium.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        medium.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); 
         medium.setText("MEDIUM");
         medium.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +63,7 @@ public class DifficultyView extends javax.swing.JPanel {
         });
 
         hard.setBackground(new java.awt.Color(255, 102, 102));
-        hard.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        hard.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); 
         hard.setText("HARD");
         hard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,21 +112,21 @@ public class DifficultyView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(927, 591));
     }
 
-    private void easyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyActionPerformed
+    private void easyActionPerformed(java.awt.event.ActionEvent evt) {
         this.gameViewModel.getState().setDifficulty(0);
         System.out.println("SET DIFFICULTY TO 0");
         // Create Game with difficulty 0 = EASY
         triggerGameStartSwitchView(0);
     }
 
-    private void mediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumActionPerformed
+    private void mediumActionPerformed(java.awt.event.ActionEvent evt) {
         this.gameViewModel.getState().setDifficulty(1);
         System.out.println("SET DIFFICULTY TO 1");
         // Create Game with difficulty 1 = MEDIUM
         triggerGameStartSwitchView(1);
     }
 
-    private void hardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardActionPerformed
+    private void hardActionPerformed(java.awt.event.ActionEvent evt) {
         this.gameViewModel.getState().setDifficulty(2);
         System.out.println("SET DIFFICULTY TO 2");
         // Create Game with Difficulty 2 = HARD
@@ -139,13 +136,10 @@ public class DifficultyView extends javax.swing.JPanel {
     private void triggerGameStartSwitchView(int difficulty) {
         gameController.startGame(difficulty);
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JPanel difficultyPanel;
     private javax.swing.JButton easy;
     private javax.swing.JButton hard;
     private javax.swing.JButton medium;
     private javax.swing.JLabel title;
-    // End of variables declaration//GEN-END:variables
 }
