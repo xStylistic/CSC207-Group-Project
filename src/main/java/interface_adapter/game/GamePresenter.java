@@ -88,5 +88,8 @@ public class GamePresenter implements GameOutputBoundary {
         gameViewModel.getState().setMessage("Game over! Thanks for playing.");
         gameViewModel.getState().setCurrentQuestionAnswer(null);
         gameViewModel.firePropertyChanged();
+        // Set the ending screen
+        gameViewModel.setViewName("end");
+        gameViewModel.firePropertyChanged("pageChange");
     }
 }

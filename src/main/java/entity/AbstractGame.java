@@ -15,6 +15,7 @@ public abstract class AbstractGame {
     private final int currentQuestionIndex;
     private final AnimalFarm animalFarm;
     private final String difficulty;
+    private int currentQuestionIndex;
 
     public AbstractGame(List<QuestionAnswer> questionAnswers, String difficulty) {
         this.questionAnswers = new ArrayList<>(questionAnswers);
@@ -39,7 +40,7 @@ public abstract class AbstractGame {
     }
 
     public boolean isGameFinished() {
-        return currentQuestionIndex >= questionAnswers.size();
+        return currentQuestionIndex >= questionAnswers.size() - 1;
     }
 
     public Map<QuestionAnswer, Boolean> getQuestionAnswersCorrect() {
@@ -82,6 +83,10 @@ public abstract class AbstractGame {
      */
     public void updateQuestionAnswerTimes(int time) {
         this.questionAnswerTimes.put(questionAnswers.get(currentQuestionIndex), time);
+    }
+
+    public void moveToNextQuestion() {
+        this.currentQuestionIndex++;
     }
 
     public QuestionTimer getTimer() {

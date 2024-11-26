@@ -36,4 +36,6 @@ public interface GameStateInputBoundary {
     void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers);
 
     void gatherDifficultyForGame();
+
+    void moveAnswerToNextQuestion();
 }

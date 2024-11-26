@@ -109,20 +109,34 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 }
             }
             else {
-                gameOutputBoundary.prepareAnswerConfirmView(currentQuestionAnswer);
+                gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 game.updateQuestionAnswersCorrect(false);
                 if (!(game instanceof EasyGame)) {
                     game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
                 }
             }
 
-            if (game.isGameFinished()) {
-                gameOutputBoundary.prepareEndGameView();
-            }
+
 //            else {
 //                gameOutputBoundary.prepareQuestionView(game.getCurrentQuestion());
 //            }
         }
+    }
+
+    public void moveAnswerToNextQuestion() {
+        if (game == null) {
+            gameOutputBoundary.prepareFailView("The game is not active");
+        }
+        if (game.isGameFinished()) {
+            gameOutputBoundary.prepareEndGameView();
+        }
+        else {
+            // Execute Answer Submit Logic
+            game.moveToNextQuestion();
+            final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
+            gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+        }
+
     }
 
     @Override
