@@ -20,15 +20,23 @@ public class AnimalFarm {
         this.currentAnimals = new HashMap<>();
         this.animalMap = new HashMap<>();
 
-        for (String animalName : availableAnimals) {
-            Animal animal = (Animal) AnimalDataAccessObject.getAnimal(animalName.toLowerCase());
-            if (animal != null) {
-                selectedAnimals.add(animal);
-                currentAnimals.put(animal.getName(), 1);
-                animalMap.put(animal.getName(), animal);
-            }
-            else {
-                System.err.println("Animal not found or family does not match: " + animalName);
+        for (String animalsSpecies : availableAnimals) {
+            final Map<String, List> listOfAnimalSameSpecies =
+                    AnimalDataAccessObject.getAnimal(animalsSpecies.toLowerCase());
+            for (String animalName : listOfAnimalSameSpecies.keySet()) {
+                if (animalName != null) {
+                    final Animal tempAnimal = new Animal(animalName,
+                            (String) listOfAnimalSameSpecies.get(animalName).get(2),
+                            (List<String>) listOfAnimalSameSpecies.get(animalName).get(0),
+                            (String) listOfAnimalSameSpecies.get(animalName).get(1));
+
+                    selectedAnimals.add(tempAnimal);
+                    currentAnimals.put(tempAnimal.getName(), 1);
+                    animalMap.put(tempAnimal.getName(), tempAnimal);
+                }
+                else {
+                    System.err.println("Animal not found or family does not match: " + animalName);
+                }
             }
         }
     }
