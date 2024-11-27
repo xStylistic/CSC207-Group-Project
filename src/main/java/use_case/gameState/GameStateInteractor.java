@@ -124,39 +124,60 @@ public class GameStateInteractor implements GameStateInputBoundary {
      * either move to the next question from the reward page or go to the reward page
      * @param justSubmitted indicates the current page was the submit button, therefore we should test for reward page
      */
-    public void moveAnswerToNextQuestion(boolean justSubmitted)
-    {
+    public void moveAnswerToNextQuestion(boolean justSubmitted) {
         if (game == null) {
             gameOutputBoundary.prepareFailView("The game is not active");
         }
-        if (game.isGameFinished()) {
-            gameOutputBoundary.prepareEndGameView();
-        }
+
         else {
             // Execute Answer Submit Logic
             QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
 
-            if (game instanceof EasyGame || game instanceof MediumGame) // EASY GAME or MEDIUM GAME
-            {
-                if (currentQuestionAnswer.validateAnswer() && justSubmitted) // if correct, go to rewards page
-                {
+            // EASY GAME or MEDIUM GAME
+            if (game instanceof EasyGame || game instanceof MediumGame) {
+                // if correct, go to rewards page
+                if (currentQuestionAnswer.validateAnswer() && justSubmitted) {
                     gameOutputBoundary.prepareAnimalRewardView();
                 }
-                else    // Go to next question
-                {
+                // Go to next question via a call from the rewards page
+                else {
                     game.moveToNextQuestion();
-                    currentQuestionAnswer = game.getCurrentQuestion();
-                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+                    // If game is finished after the rewards page, then just end the game
+                    if (game.isGameFinished()) {
+                        gameOutputBoundary.prepareEndGameView();
+                    }
+                    // If game not finished, then go to next question
+                    else {
+                        currentQuestionAnswer = game.getCurrentQuestion();
+                        gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+                    }
+
                 }
             }
-            else // HARD GAME
-            {
-                if (currentQuestionAnswer.validateAnswer()) // If correct go to rewards page
-                {
-                    gameOutputBoundary.prepareAnimalRewardView();
+            // HARD GAME
+            else {
+                // If correct go to rewards page
+                if (currentQuestionAnswer.validateAnswer()) {
+                    // If just submitted and going to the next page
+                    if (justSubmitted) {
+                        gameOutputBoundary.prepareAnimalRewardView();
+                    }
+                    // If going to next page after rewards view
+                    else {
+                        game.moveToNextQuestion();
+                        // If game is finished after the rewards page, then just end the game
+                        if (game.isGameFinished()) {
+                            gameOutputBoundary.prepareEndGameView();
+                        }
+                        // If game not finished, then go to next question
+                        else {
+                            currentQuestionAnswer = game.getCurrentQuestion();
+                            gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+                        }
+                    }
                 }
-                else // Game over if one incorrect
-                {
+                // Game over if one incorrect
+                else {
                     gameOutputBoundary.prepareEndGameView();
                 }
             }

@@ -41,7 +41,7 @@ public abstract class AbstractGame {
     }
 
     public boolean isGameFinished() {
-        return currentQuestionIndex >= questionAnswers.size() - 1;
+        return currentQuestionIndex >= questionAnswers.size();
     }
 
     public Map<QuestionAnswer, Boolean> getQuestionAnswersCorrect() {
