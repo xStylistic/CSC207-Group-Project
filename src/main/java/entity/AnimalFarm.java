@@ -20,7 +20,7 @@ public class AnimalFarm {
         this.currentAnimals = new HashMap<>();
         this.animalMap = new HashMap<>();
 
-        for (String animalsSpecies : availableAnimals) {
+        for (String animalsSpecies : this.availableAnimals) {
             final Map<String, List> listOfAnimalSameSpecies =
                     AnimalDataAccessObject.getAnimal(animalsSpecies.toLowerCase());
             for (String animalName : listOfAnimalSameSpecies.keySet()) {
@@ -31,7 +31,6 @@ public class AnimalFarm {
                             (String) listOfAnimalSameSpecies.get(animalName).get(1));
 
                     selectedAnimals.add(tempAnimal);
-                    currentAnimals.put(tempAnimal.getName(), 1);
                     animalMap.put(tempAnimal.getName(), tempAnimal);
                 }
                 else {
