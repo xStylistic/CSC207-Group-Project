@@ -2,6 +2,9 @@ package entity;
 
 import java.util.List;
 
+/**
+ * Blueprint for the animal object.
+ */
 public class Animal {
     private String name;
     private String typeAnimal;
@@ -41,10 +44,18 @@ public class Animal {
         return fact;
     }
 
+    /**
+     * Gets the x coordinate.
+     * @return the x coordinate.
+     */
     public double getxCoordinate() {
         return xCoordinate;
     }
 
+    /**
+     * Gets the y coordinate.
+     * @return the x coordinate.
+     */
     public double getyCoordinate() {
         return yCoordinate;
     }

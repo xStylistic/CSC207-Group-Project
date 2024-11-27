@@ -4,16 +4,22 @@ import interface_adapter.game.GameController;
 import interface_adapter.game.GameViewModel;
 
 /**
- *
- * @author bonnychen and jerryq0101
+ * The Blueprint for the difficulty view.
  */
 public class DifficultyView extends javax.swing.JPanel {
     private GameViewModel gameViewModel;
     private GameController gameController;
+    private javax.swing.JLabel background;
+    private javax.swing.JPanel difficultyPanel;
+    private javax.swing.JButton easy;
+    private javax.swing.JButton hard;
+    private javax.swing.JButton medium;
+    private javax.swing.JLabel title;
 
     /**
-     * Creates new form DifficultyView
-     * @param gameViewModel - variable
+     * Creates new form DifficultyView.
+     * @param gameViewModel the gameViewModel
+     * @param gameController the gameController
      */
     public DifficultyView(GameViewModel gameViewModel, GameController gameController) {
         this.gameViewModel = gameViewModel;
@@ -64,16 +70,18 @@ public class DifficultyView extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout difficultyPanelLayout = new javax.swing.GroupLayout(difficultyPanel);
+        final javax.swing.GroupLayout difficultyPanelLayout = new javax.swing.GroupLayout(difficultyPanel);
         difficultyPanel.setLayout(difficultyPanelLayout);
         difficultyPanelLayout.setHorizontalGroup(
             difficultyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(difficultyPanelLayout.createSequentialGroup()
                 .addGap(152, 152, 152)
                 .addGroup(difficultyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(easy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(easy, javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(medium, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(hard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(hard, javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, difficultyPanelLayout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
@@ -86,11 +94,14 @@ public class DifficultyView extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(title)
                 .addGap(40, 40, 40)
-                .addComponent(easy, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(easy, javax.swing.GroupLayout.PREFERRED_SIZE,
+                        59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(medium, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(medium, javax.swing.GroupLayout.PREFERRED_SIZE,
+                        59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(hard, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hard, javax.swing.GroupLayout.PREFERRED_SIZE,
+                        59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -129,10 +140,4 @@ public class DifficultyView extends javax.swing.JPanel {
     private void triggerGameStartSwitchView(int difficulty) {
         gameController.startGame(difficulty);
     }
-    private javax.swing.JLabel background;
-    private javax.swing.JPanel difficultyPanel;
-    private javax.swing.JButton easy;
-    private javax.swing.JButton hard;
-    private javax.swing.JButton medium;
-    private javax.swing.JLabel title;
 }
