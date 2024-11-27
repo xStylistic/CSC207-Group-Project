@@ -25,7 +25,7 @@ public class AnimalFarm {
                     AnimalDataAccessObject.getAnimal(animalsSpecies.toLowerCase());
             for (String animalName : listOfAnimalSameSpecies.keySet()) {
                 if (animalName != null) {
-                    final Animal tempAnimal = new Animal(animalName,
+                    final Animal tempAnimal = new Animal(animalName, animalsSpecies,
                             (String) listOfAnimalSameSpecies.get(animalName).get(2),
                             (List<String>) listOfAnimalSameSpecies.get(animalName).get(0),
                             (String) listOfAnimalSameSpecies.get(animalName).get(1));

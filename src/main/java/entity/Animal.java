@@ -4,14 +4,16 @@ import java.util.List;
 
 public class Animal {
     private String name;
+    private String typeAnimal;
     private String family;
     private List<String> locations;
     private String fact;
     private double xCoordinate;
     private double yCoordinate;
 
-    public Animal(String name, String family, List<String> locations, String fact) {
+    public Animal(String name, String typeAnimal, String family, List<String> locations, String fact) {
         this.name = name;
+        this.typeAnimal = typeAnimal;
         this.family = family;
         this.locations = locations;
         this.fact = fact;
@@ -21,6 +23,10 @@ public class Animal {
 
     public String getName() {
         return name;
+    }
+
+    public String getTypeAnimal() {
+        return typeAnimal;
     }
 
     public String getFamily() {
