@@ -1,6 +1,8 @@
 package view;
 
+import entity.Animal;
 import interface_adapter.game.GameController;
+import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
 
 import javax.swing.*;
@@ -8,23 +10,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 /**
  *
  * @author bonnychen and jerryq0101
  */
 
-
 // This happens every time difficulty correct.
-public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionListener, PropertyChangeListener{
+public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionListener, PropertyChangeListener {
     private final GameViewModel gameViewModel;
     private GameController gameController;
     private JPanel entireRewardAnimalPanel;
+    private List<Animal> animalsToDisplay;
 
     public UnlockNewAnimalView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
         this.gameViewModel.addPropertyChangeListener(this);
         this.entireRewardAnimalPanel = new JPanel();
+        this.animalsToDisplay = gameViewModel.getState().getAnimalsToDisplay();
 
         initComponents();
     }
@@ -34,7 +38,7 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         newAnimalHolderPanel = new javax.swing.JPanel();
         animal = new javax.swing.JLabel();
         animalLabel = new javax.swing.JLabel();
-        funFactLabel = new javax.swing.JLabel();
+        funFactLabel = new javax.swing.JTextArea();
         titleLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
         background = new javax.swing.JLabel();
@@ -42,16 +46,39 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         setLayout(null);
 
         newAnimePanel.setBackground(new java.awt.Color(255, 204, 102));
-
         newAnimalHolderPanel.setBackground(new java.awt.Color(255, 238, 173));
 
-        animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alpaca.png")));
+        if (animalsToDisplay.size() >= 1) {
+            animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getName() + ".png")));
+        } else {
+            animal.setIcon(new javax.swing.ImageIcon(getClass()
+                    .getResource("/alpaca.png")));
+        }
+        animal.repaint();
+        animal.revalidate();
 
-        animalLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); 
-        animalLabel.setText("Animal Name");
+        animalLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
+        if (animalsToDisplay.size() >= 1) {
+            animalLabel.setText("Animal Name: " + animalsToDisplay.get(animalsToDisplay.size() - 1).getName());
+        } else {
+            animalLabel.setText("Animal Name: N/A");
+        }
+        animalLabel.repaint();
+        animalLabel.revalidate();
 
-        funFactLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); 
-        funFactLabel.setText("Fun Fact: ");
+        funFactLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
+        funFactLabel.setLineWrap(true);
+        funFactLabel.setWrapStyleWord(true);
+        funFactLabel.setOpaque(false);
+        funFactLabel.setEditable(false);
+        funFactLabel.setBackground(new java.awt.Color(255, 238, 173));
+        if (animalsToDisplay.size() >= 1) {
+            funFactLabel.setText("Fun Fact: " + animalsToDisplay.get(animalsToDisplay.size() - 1).getFact());
+        } else {
+            funFactLabel.setText("Fun Fact: N/A");
+        }
+        funFactLabel.repaint();
+        funFactLabel.revalidate();
 
         javax.swing.GroupLayout newAnimalHolderPanelLayout = new javax.swing.GroupLayout(newAnimalHolderPanel);
         newAnimalHolderPanel.setLayout(newAnimalHolderPanelLayout);
@@ -143,6 +170,20 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         int y = (591 - 340)/2;  // 591 is parent height, 340 is panel height
         newAnimePanel.setBounds(x, y, 400, 340);  // This will center it
 
+        for (Animal animal : animalsToDisplay) {
+            JLabel animalLabel = new JLabel();
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            animalLabel.setBounds(
+                    (int) animal.getxCoordinate(),
+                    (int) animal.getyCoordinate(),
+                    100,
+                    100
+            );
+            background.add(animalLabel);
+        }
+        background.revalidate();
+        background.repaint();
+
         // Add components to entireRewardAnimalPanel in order
         entireRewardAnimalPanel.add(newAnimePanel);
         entireRewardAnimalPanel.add(background);
@@ -161,7 +202,7 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
     private javax.swing.JLabel animal;
     private javax.swing.JLabel animalLabel;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel funFactLabel;
+    private javax.swing.JTextArea funFactLabel;
     private javax.swing.JPanel newAnimalHolderPanel;
     private javax.swing.JPanel newAnimePanel;
     private javax.swing.JButton nextButton;
@@ -174,7 +215,10 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        // TODO: Doesn't do anything yet, property change may not be necessary
+        if ("displayAnimals".equals(evt.getPropertyName())) {
+            final GameState state = (GameState) evt.getNewValue();
+            this.animalsToDisplay = state.getAnimalsToDisplay();
+        }
     }
 
     public void setQuestionController(GameController controller) {

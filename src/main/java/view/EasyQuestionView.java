@@ -1,5 +1,6 @@
 package view;
 
+import entity.Animal;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
@@ -9,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bonnychen and jerryq0101
@@ -18,6 +22,7 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     private GameController gameController;
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
+    private List<Animal> animalsToDisplay;
     // TODO: CONNECT TIMER LOGIC SASS
 
     public EasyQuestionView(GameViewModel gameViewModel) {
@@ -25,6 +30,7 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         this.gameViewModel.addPropertyChangeListener(this);
         this.currentQuestion = gameViewModel.getState().getCurrentQuestionAnswer().getQuestion();
         this.entireQuestionContextPanel = new JPanel();
+        this.animalsToDisplay = gameViewModel.getState().getAnimalsToDisplay();
 
         initComponents();
     }
@@ -121,6 +127,20 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         // Setup background
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
         background.setBounds(0, 0, 927, 591);
+
+        for (Animal animal : animalsToDisplay) {
+            JLabel animalLabel = new JLabel();
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            animalLabel.setBounds(
+                    (int) animal.getxCoordinate(),
+                    (int) animal.getyCoordinate(),
+                    100,
+                    100
+            );
+            background.add(animalLabel);
+        }
+        background.revalidate();
+        background.repaint();
 
         // Setup questionPanel bounds - centered and smaller than background
         questionPanel.setBounds(50, 90, 800, 194);  // Similar sizing to DifficultyView

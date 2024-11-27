@@ -1,7 +1,9 @@
 package interface_adapter.game;
 
 import java.io.File;
+import java.util.List;
 
+import entity.Animal;
 import entity.QuestionAnswer;
 import use_case.game.GameOutputBoundary;
 
@@ -84,7 +86,6 @@ public class GamePresenter implements GameOutputBoundary {
     /**
      * Prepare reward view
      */
-
     public void prepareAnimalRewardView() {
         gameViewModel.setViewName("reward");
         gameViewModel.firePropertyChanged("pageChange");
@@ -100,5 +101,14 @@ public class GamePresenter implements GameOutputBoundary {
         // Set the ending screen
         gameViewModel.setViewName("end");
         gameViewModel.firePropertyChanged("pageChange");
+    }
+
+    /**
+     * Updates the current state with the latest animal list state.
+     * @param animals the list of animals
+     */
+    public void setDisplayAnimalsToGameState(List<Animal> animals) {
+        gameViewModel.getState().setAnimalsToDisplay(animals);
+        gameViewModel.firePropertyChanged("displayAnimals");
     }
 }
