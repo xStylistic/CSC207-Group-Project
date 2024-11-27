@@ -1,6 +1,8 @@
 package view;
 
+import entity.Animal;
 import interface_adapter.game.GameController;
+import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
 
 import javax.swing.*;
@@ -8,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 /**
  *
@@ -16,15 +19,17 @@ import java.beans.PropertyChangeListener;
 
 
 // This happens every time difficulty correct.
-public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionListener, PropertyChangeListener{
+public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionListener, PropertyChangeListener {
     private final GameViewModel gameViewModel;
     private GameController gameController;
     private JPanel entireRewardAnimalPanel;
+    private List<Animal> animalsToDisplay;
 
     public UnlockNewAnimalView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
         this.gameViewModel.addPropertyChangeListener(this);
         this.entireRewardAnimalPanel = new JPanel();
+        this.animalsToDisplay = gameViewModel.getState().getAnimalsToDisplay();
 
         initComponents();
     }
@@ -143,6 +148,20 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         int y = (591 - 340)/2;  // 591 is parent height, 340 is panel height
         newAnimePanel.setBounds(x, y, 400, 340);  // This will center it
 
+        for (Animal animal : animalsToDisplay) {
+            JLabel animalLabel = new JLabel();
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            animalLabel.setBounds(
+                    (int) animal.getxCoordinate(),
+                    (int) animal.getyCoordinate(),
+                    100,
+                    100
+            );
+            background.add(animalLabel);
+        }
+        background.revalidate();
+        background.repaint();
+
         // Add components to entireRewardAnimalPanel in order
         entireRewardAnimalPanel.add(newAnimePanel);
         entireRewardAnimalPanel.add(background);
@@ -174,7 +193,10 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        // TODO: Doesn't do anything yet, property change may not be necessary
+        if ("displayAnimals".equals(evt.getPropertyName())) {
+            final GameState state = (GameState) evt.getNewValue();
+            this.animalsToDisplay = state.getAnimalsToDisplay();
+        }
     }
 
     public void setQuestionController(GameController controller) {

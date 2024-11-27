@@ -1,8 +1,10 @@
 package interface_adapter.game;
 
+import entity.Animal;
 import entity.QuestionAnswer;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * The State for a File.
@@ -17,6 +19,8 @@ public class GameState {
     private QuestionAnswer currentQuestionAnswer;
     private String message;
     private int difficulty;
+
+    private List<Animal> animalsToDisplay;
 
     public File getFile() {
         return file;
@@ -56,5 +60,21 @@ public class GameState {
 
     public String getMessage() {
         return message;
+    }
+
+    /**
+     * Function sets the animals to display in game state.
+     * @param animalsToDisplay the current list of animals
+     */
+    public void setAnimalsToDisplay(List<Animal> animalsToDisplay) {
+        this.animalsToDisplay = animalsToDisplay;
+    }
+
+    /**
+     * Getter to allow rest of game to have access to what to display.
+     * @return animalsToDisplay
+     */
+    public List<Animal> getAnimalsToDisplay() {
+        return animalsToDisplay;
     }
 }

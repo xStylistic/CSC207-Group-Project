@@ -8,9 +8,7 @@ import use_case.game.GameOutputBoundary;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Individualized logic for game interactions
@@ -94,7 +92,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
         }
 
         // Execute Answer Submit Logic
-
         final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
         currentQuestionAnswer.setUserAnswer(userAnswer);
         if (currentQuestionAnswer == null) {
@@ -130,6 +127,8 @@ public class GameStateInteractor implements GameStateInputBoundary {
         }
 
         else {
+            this.updateGameStateWithNewDisplayAnimals();
+
             // Execute Answer Submit Logic
             QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
 
@@ -185,8 +184,8 @@ public class GameStateInteractor implements GameStateInputBoundary {
                     gameOutputBoundary.prepareEndGameView();
                 }
             }
-        }
 
+        }
     }
 
     /**
@@ -201,6 +200,33 @@ public class GameStateInteractor implements GameStateInputBoundary {
      */
     private void decreaseAnimal() {
         game.updateQuestionAnswersCorrect(false);
+    }
+
+    private void updateGameStateWithNewDisplayAnimals() {
+        gameOutputBoundary.setDisplayAnimalsToGameState(this.getCurrentListAnimalsToDisplay());
+    }
+
+    /**
+     * Function to return current list of animals that we should display for each view in the background.
+     * @return animalsShouldDisplay - the list of animals we should display on each view in the background.
+     */
+    private List<Animal> getCurrentListAnimalsToDisplay() {
+        final AnimalFarm animalStorage = game.getAnimalFarm();
+        final List<String> availableAnimals = animalStorage.getAvailableAnimals();
+        final Map<String, Integer> currentAnimals = animalStorage.getCurrentAnimals();
+        final Map<String, Animal> animalMap = animalStorage.getAnimalMap();
+
+        List<Animal> animalsShouldDisplay = new ArrayList<>();
+
+        for (String animalName : availableAnimals) {
+
+            final int availableAnimalsCount = currentAnimals.getOrDefault(animalName, 0);
+            if (availableAnimalsCount > 0) {
+                animalsShouldDisplay.add(animalMap.get(animalName));
+            }
+        }
+
+        return animalsShouldDisplay;
     }
 
     @Override

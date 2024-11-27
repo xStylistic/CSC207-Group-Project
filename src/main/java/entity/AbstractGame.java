@@ -22,7 +22,51 @@ public abstract class AbstractGame {
         this.questionAnswerTimes = new HashMap<>();
         this.currentQuestionIndex = 0;
         final String[] animals = {
-            "pig", "alpaca", "horse", "cow", "chicken", "fox", "bear", "tiger", "flamingo", "rabbit",
+                "Sumatran Tiger",
+                "Indochinese Tiger",
+                "Rabbit",
+                "Asiatic Black Bear",
+                "American Foxhound",
+                "Alpaca",
+                "Cross Fox",
+                "Bear",
+                "Giant Panda Bear",
+                "Smooth Fox Terrier",
+                "Tiger",
+                "Tennessee Walker Horse",
+                "Fox Terrier",
+                "Wire Fox Terrier",
+                "Siberian Tiger",
+                "Fennec Fox",
+                "Polar Bear",
+                "Toy Fox Terrier",
+                "Horse",
+                "Kit Fox",
+                "Malayan Tiger",
+                "Sun Bear",
+                "North American Black Bear",
+                "Jackrabbit",
+                "Arctic Fox",
+                "White Tiger",
+                "Saber-Toothed Tiger",
+                "Silkie Chicken",
+                "Red Fox",
+                "Cow",
+                "Gray Fox",
+                "Fox",
+                "Pig",
+                "Grizzly Bear",
+                "Tibetan Fox",
+                "Spectacled Bear",
+                "English Foxhound",
+                "Marble Fox",
+                "Canadian Horse",
+                "Flamingo",
+                "Darwin's fox",
+                "Brown Bear",
+                "South China Tiger",
+                "Chicken",
+                "Bengal Tiger"
         };
         this.animalFarm = new AnimalFarm(animals);
         this.difficulty = difficulty;
@@ -105,6 +149,11 @@ public abstract class AbstractGame {
      */
     public void moveToNextQuestion() {
         this.currentQuestionIndex++;
+    }
+
+
+    public AnimalFarm getAnimalFarm() {
+        return animalFarm;
     }
 
     public QuestionTimer getTimer() {

@@ -49,6 +49,12 @@ public class AnimalFarm {
             Animal animalToAdd = selectedAnimals.get(index);
             String name = animalToAdd.getName();
 
+            while (name.contains(" ")) {
+                index = rand.nextInt(selectedAnimals.size());
+                animalToAdd = selectedAnimals.get(index);
+                name = animalToAdd.getName();
+            }
+
             // Increase the number of the animal
             currentAnimals.put(name, currentAnimals.getOrDefault(name, 0) + 1);
         }
