@@ -137,10 +137,14 @@ public class GameStateInteractor implements GameStateInputBoundary {
             if (game instanceof EasyGame || game instanceof MediumGame) {
                 // if correct, go to rewards page
                 if (currentQuestionAnswer.validateAnswer() && justSubmitted) {
+                    this.increaseAnimal();
                     gameOutputBoundary.prepareAnimalRewardView();
                 }
-                // Go to next question via a call from the rewards page
+                // Go to next question from the rewards page or directly to the next question due to incorrect
                 else {
+                    if (!currentQuestionAnswer.isCorrect()) {
+                        this.decreaseAnimal();
+                    }
                     game.moveToNextQuestion();
                     // If game is finished after the rewards page, then just end the game
                     if (game.isGameFinished()) {
@@ -183,6 +187,20 @@ public class GameStateInteractor implements GameStateInputBoundary {
             }
         }
 
+    }
+
+    /**
+     * Function to increase animals currently in farm.
+     */
+    private void increaseAnimal() {
+        game.updateQuestionAnswersCorrect(true);
+    }
+
+    /**
+     * Function to decrease animals currently in farm.
+     */
+    private void decreaseAnimal() {
+        game.updateQuestionAnswersCorrect(false);
     }
 
     @Override
