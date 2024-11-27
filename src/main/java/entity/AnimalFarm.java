@@ -66,7 +66,7 @@ public class AnimalFarm {
         return selectedAnimals;
     }
 
-    public Map<String, Animal> getAnimalMap() {
-        return animalMap;
+    public List<Animal> getCurrentAnimals() {
+        return currentAnimals;
     }
 }
