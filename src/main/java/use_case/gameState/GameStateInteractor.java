@@ -72,6 +72,8 @@ public class GameStateInteractor implements GameStateInputBoundary {
         }
 
         if (game != null) {
+            this.updateGameStateWithNewDisplayAnimals();
+
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
             gameOutputBoundary.prepareQuestionView(firstQuestion);
         }
