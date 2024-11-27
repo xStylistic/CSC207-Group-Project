@@ -128,65 +128,47 @@ public class GameStateInteractor implements GameStateInputBoundary {
             gameOutputBoundary.prepareFailView("The game is not active");
         }
 
-        else {
+        // Execute Answer Submit Logic
+        QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
+
+        // Move to rewards page
+        if (currentQuestionAnswer.isCorrect() && justSubmitted) {
+            this.increaseAnimal();
+            this.updateGameStateWithNewDisplayAnimals();
+            gameOutputBoundary.prepareAnimalRewardView();
+        }
+        // The call from Rewards page to go to the next question
+        else if (!justSubmitted) {
+            game.moveToNextQuestion();
+            // check if game ended
+            if (game.isGameFinished()) {
+                gameOutputBoundary.prepareEndGameView();
+            } else {
+                currentQuestionAnswer = game.getCurrentQuestion();
+                gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+            }
+        }
+        else if (!currentQuestionAnswer.isCorrect() && justSubmitted) {
+            this.decreaseAnimal();
             this.updateGameStateWithNewDisplayAnimals();
 
-            // Execute Answer Submit Logic
-            QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
-
-            // EASY GAME or MEDIUM GAME
+            // Incorrect so we need to go to the next question for easy and medium
             if (game instanceof EasyGame || game instanceof MediumGame) {
-                // if correct, go to rewards page
-                if (currentQuestionAnswer.validateAnswer() && justSubmitted) {
-                    this.increaseAnimal();
-                    gameOutputBoundary.prepareAnimalRewardView();
-                }
-                // Go to next question from the rewards page or directly to the next question due to incorrect
-                else {
-                    if (!currentQuestionAnswer.isCorrect()) {
-                        this.decreaseAnimal();
-                    }
-                    game.moveToNextQuestion();
-                    // If game is finished after the rewards page, then just end the game
-                    if (game.isGameFinished()) {
-                        gameOutputBoundary.prepareEndGameView();
-                    }
-                    // If game not finished, then go to next question
-                    else {
-                        currentQuestionAnswer = game.getCurrentQuestion();
-                        gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
-                    }
+                game.moveToNextQuestion();
 
-                }
-            }
-            // HARD GAME
-            else {
-                // If correct go to rewards page
-                if (currentQuestionAnswer.validateAnswer()) {
-                    // If just submitted and going to the next page
-                    if (justSubmitted) {
-                        gameOutputBoundary.prepareAnimalRewardView();
-                    }
-                    // If going to next page after rewards view
-                    else {
-                        game.moveToNextQuestion();
-                        // If game is finished after the rewards page, then just end the game
-                        if (game.isGameFinished()) {
-                            gameOutputBoundary.prepareEndGameView();
-                        }
-                        // If game not finished, then go to next question
-                        else {
-                            currentQuestionAnswer = game.getCurrentQuestion();
-                            gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
-                        }
-                    }
-                }
-                // Game over if one incorrect
-                else {
+                // Check if game ended
+                if (game.isGameFinished()) {
                     gameOutputBoundary.prepareEndGameView();
+                } else {
+                    // if not, go to the next question
+                    currentQuestionAnswer = game.getCurrentQuestion();
+                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
                 }
             }
-
+            // Incorrect for hard game ends everything
+            else {
+                gameOutputBoundary.prepareEndGameView();
+            }
         }
     }
 

@@ -49,7 +49,20 @@ public class AnimalFarm {
             Animal animalToAdd = selectedAnimals.get(index);
             String name = animalToAdd.getName();
 
-            while (name.contains(" ")) {
+            final Set<String> animalNames = new HashSet<>(Arrays.asList(
+                    "alpaca",
+                    "bear",
+                    "chicken",
+                    "cow",
+                    "farm",
+                    "flamingo",
+                    "fox",
+                    "pig",
+                    "rabbit",
+                    "tiger"
+            ));
+
+            while (!animalNames.contains(animalToAdd.getName().toLowerCase())) {
                 index = rand.nextInt(selectedAnimals.size());
                 animalToAdd = selectedAnimals.get(index);
                 name = animalToAdd.getName();
@@ -61,26 +74,43 @@ public class AnimalFarm {
     }
 
     /**
-     * Remove an animal from the farm.
+     * Remove specific animals from the farm.
      * @param removeCount the number of animals to remove
+     * @return List of removed animal names for tracking/notification purposes
      */
     public void removeAnimal(int removeCount) {
-        if (!currentAnimals.isEmpty()) {
-            for (int i = 0; i < removeCount; i++) {
-                // Get a list of animal names currently on the farm
-                List<String> animalNames = new ArrayList<>(currentAnimals.keySet());
-                int index = rand.nextInt(animalNames.size());
-                String name = animalNames.get(index);
+        // Safety check - if there are no animals or invalid removeCount, return empty list
+        if (currentAnimals.isEmpty() || removeCount <= 0) {
+            return;
+        }
 
-                // Decrease the count of the animal
-                int count = currentAnimals.get(name);
-                if (count > 1) {
-                    currentAnimals.put(name, count - 1);
-                }
-                else {
-                    currentAnimals.remove(name);
-                }
+        // Create a list to track available animals for removal
+        List<String> availableForRemoval = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : currentAnimals.entrySet()) {
+            // Add each animal name according to its current count
+            for (int i = 0; i < entry.getValue(); i++) {
+                availableForRemoval.add(entry.getKey());
             }
+        }
+
+        // Remove animals while we still have animals available and haven't hit our target
+        int animalsRemoved = 0;
+        while (!availableForRemoval.isEmpty() && animalsRemoved < removeCount) {
+            int index = rand.nextInt(availableForRemoval.size());
+            String nameToRemove = availableForRemoval.get(index);
+
+            // Update the currentAnimals map
+            int currentCount = currentAnimals.get(nameToRemove);
+            if (currentCount > 1) {
+                currentAnimals.put(nameToRemove, currentCount - 1);
+            } else {
+                currentAnimals.remove(nameToRemove);
+            }
+
+            // Remove one instance of this animal from available pool
+            availableForRemoval.remove(index);
+
+            animalsRemoved++;
         }
     }
 
