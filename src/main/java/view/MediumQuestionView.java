@@ -131,7 +131,7 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
 
         for (Animal animal : animalsToDisplay) {
             JLabel animalLabel = new JLabel();
-            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal() + ".png")));
             animalLabel.setBounds(
                     (int) animal.getxCoordinate(),
                     (int) animal.getyCoordinate(),
