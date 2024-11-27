@@ -16,7 +16,7 @@ public class Animal {
         this.locations = locations;
         this.fact = fact;
         this.xCoordinate = 100 + Math.random() * 723;
-        this.yCoordinate = 50 + Math.random() * 150;
+        this.yCoordinate = 25 + Math.random() * 50;
     }
 
     public String getName() {
