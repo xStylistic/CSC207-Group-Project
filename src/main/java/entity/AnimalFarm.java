@@ -78,6 +78,10 @@ public class AnimalFarm {
         }
     }
 
+    public List<Animal> getSelectedAnimals() {
+        return selectedAnimals;
+    }
+
     public Map<String, Integer> getCurrentAnimals() {
         return currentAnimals;
     }
