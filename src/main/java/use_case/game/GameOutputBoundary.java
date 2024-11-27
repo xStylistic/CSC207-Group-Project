@@ -1,8 +1,10 @@
 package use_case.game;
 
+import entity.Animal;
 import entity.QuestionAnswer;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * The output boundary for the Login Use Case.
@@ -31,4 +33,6 @@ public interface GameOutputBoundary {
     void prepareDifficultyView();
 
     void prepareAnimalRewardView();
+
+    void setDisplayAnimalsToGameState(List<Animal> currentListAnimalsToDisplay);
 }

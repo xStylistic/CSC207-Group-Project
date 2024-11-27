@@ -50,8 +50,9 @@ public class AnimalFarm {
     }
 
     /**
-     * Remove an animal from the farm.
+     * Remove specific animals from the farm.
      * @param removeCount the number of animals to remove
+     * @return List of removed animal names for tracking/notification purposes
      */
     public void removeAnimal(int removeCount) {
         if (!currentAnimals.isEmpty()) {
@@ -60,8 +61,32 @@ public class AnimalFarm {
                 currentAnimals.remove(randomInt);
             }
         }
+
+        // Remove animals while we still have animals available and haven't hit our target
+        int animalsRemoved = 0;
+        while (!availableForRemoval.isEmpty() && animalsRemoved < removeCount) {
+            int index = rand.nextInt(availableForRemoval.size());
+            String nameToRemove = availableForRemoval.get(index);
+
+            // Update the currentAnimals map
+            int currentCount = currentAnimals.get(nameToRemove);
+            if (currentCount > 1) {
+                currentAnimals.put(nameToRemove, currentCount - 1);
+            } else {
+                currentAnimals.remove(nameToRemove);
+            }
+
+            // Remove one instance of this animal from available pool
+            availableForRemoval.remove(index);
+
+            animalsRemoved++;
+        }
     }
 
+    public List<String> getAvailableAnimals() {
+        return availableAnimals;
+    }
+    
     public List<Animal> getSelectedAnimals() {
         return selectedAnimals;
     }
