@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,7 +131,9 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
 
         for (Animal animal : animalsToDisplay) {
             JLabel animalLabel = new JLabel();
-            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            System.out.println(getClass().getResource("/" + animal.getTypeAnimal() + ".png"));
+            System.out.println(getClass());
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal() + ".png")));
             animalLabel.setBounds(
                     (int) animal.getxCoordinate(),
                     (int) animal.getyCoordinate(),

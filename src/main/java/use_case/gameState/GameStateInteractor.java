@@ -102,6 +102,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
         else {
             if (currentQuestionAnswer.validateAnswer()) {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
+                System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
                 if (!(game instanceof EasyGame)) {
                     game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
@@ -110,6 +111,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
+                System.out.println("CAlls updateQuestion Fasle");
                 game.updateQuestionAnswersCorrect(false);
                 if (!(game instanceof EasyGame)) {
                     game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
@@ -133,7 +135,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
 
         // Move to rewards page
         if (currentQuestionAnswer.isCorrect() && justSubmitted) {
-            this.increaseAnimal();
             this.updateGameStateWithNewDisplayAnimals();
             gameOutputBoundary.prepareAnimalRewardView();
         }
@@ -149,7 +150,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
             }
         }
         else if (!currentQuestionAnswer.isCorrect() && justSubmitted) {
-            this.decreaseAnimal();
             this.updateGameStateWithNewDisplayAnimals();
 
             // Incorrect so we need to go to the next question for easy and medium
@@ -159,7 +159,8 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 // Check if game ended
                 if (game.isGameFinished()) {
                     gameOutputBoundary.prepareEndGameView();
-                } else {
+                }
+                else {
                     // if not, go to the next question
                     currentQuestionAnswer = game.getCurrentQuestion();
                     gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
@@ -195,8 +196,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
      * @return animalsShouldDisplay - the list of animals we should display on each view in the background.
      */
     private List<Animal> getCurrentListAnimalsToDisplay() {
-        final AnimalFarm animalStorage = game.getAnimalFarm();
-        final List<Integer> currentAnimals = animalStorage.getCurrentAnimals();
+        final List<Animal> currentAnimals = game.getAnimalFarm().getCurrentAnimals();
         return currentAnimals;
     }
 
