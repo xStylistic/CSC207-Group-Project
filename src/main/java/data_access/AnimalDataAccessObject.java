@@ -83,7 +83,6 @@ public final class AnimalDataAccessObject {
                         keyArray[index++] = keys.next();
                     }
                     final String randomKey = keyArray[new Random().nextInt(keyArray.length)];
-                    System.out.println(jsonObject.getJSONArray("locations"));
 
                     final List<String> animalLocations = new ArrayList<String>();
                     if (jsonObject.getJSONArray("locations") != null) {
@@ -110,9 +109,5 @@ public final class AnimalDataAccessObject {
             exA.printStackTrace();
         }
         return animalsMap;
-    }
-
-    public static Map<String, List> getAnimalsList() {
-        return CURRENT_ANIMALS;
     }
 }
