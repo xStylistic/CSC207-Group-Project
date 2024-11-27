@@ -196,21 +196,8 @@ public class GameStateInteractor implements GameStateInputBoundary {
      */
     private List<Animal> getCurrentListAnimalsToDisplay() {
         final AnimalFarm animalStorage = game.getAnimalFarm();
-        final List<String> availableAnimals = animalStorage.getAvailableAnimals();
-        final Map<String, Integer> currentAnimals = animalStorage.getCurrentAnimals();
-        final Map<String, Animal> animalMap = animalStorage.getAnimalMap();
-
-        List<Animal> animalsShouldDisplay = new ArrayList<>();
-
-        for (String animalName : availableAnimals) {
-
-            final int availableAnimalsCount = currentAnimals.getOrDefault(animalName, 0);
-            if (availableAnimalsCount > 0) {
-                animalsShouldDisplay.add(animalMap.get(animalName));
-            }
-        }
-
-        return animalsShouldDisplay;
+        final List<Integer> currentAnimals = animalStorage.getCurrentAnimals();
+        return currentAnimals;
     }
 
     @Override

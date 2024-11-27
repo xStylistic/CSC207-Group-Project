@@ -17,7 +17,6 @@ import java.util.List;
  * @author bonnychen and jerryq0101
  */
 
-
 // This happens every time difficulty correct.
 public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionListener, PropertyChangeListener {
     private final GameViewModel gameViewModel;
