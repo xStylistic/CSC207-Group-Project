@@ -18,26 +18,6 @@ public interface GameInputBoundary {
      */
     File executeRetrieval();
 
-//    /**
-//     * Returns the Game instance.
-//     *
-//     * @return The Game object.
-//     */
-//    Game getGame();
-//
-//    /**
-//     * Starts the game by preparing the first question view.
-//     */
-//    void startGame();
-//
-//    /**
-//     * Processes the user's answer and determines correctness.
-//     *
-//     * @param userAnswer The user's answer.
-//     */
-//    void executeAnswerSubmit(String userAnswer);
-
-
     /**
      * Gets the File Name.
      * @return name of file

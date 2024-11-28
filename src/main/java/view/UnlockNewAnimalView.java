@@ -1,28 +1,36 @@
 package view;
 
-import entity.Animal;
-import interface_adapter.game.GameController;
-import interface_adapter.game.GameState;
-import interface_adapter.game.GameViewModel;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import entity.Animal;
+import interface_adapter.game.GameController;
+import interface_adapter.game.GameState;
+import interface_adapter.game.GameViewModel;
+
 /**
- *
+ * This happens every time difficulty correct.
  * @author bonnychen and jerryq0101
  */
-
-// This happens every time difficulty correct.
 public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionListener, PropertyChangeListener {
     private final GameViewModel gameViewModel;
     private GameController gameController;
     private JPanel entireRewardAnimalPanel;
     private List<Animal> animalsToDisplay;
+    private javax.swing.JLabel animal;
+    private javax.swing.JLabel animalLabel;
+    private javax.swing.JLabel background;
+    private javax.swing.JTextArea funFactLabel;
+    private javax.swing.JPanel newAnimalHolderPanel;
+    private javax.swing.JPanel newAnimePanel;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JLabel titleLabel;
 
     public UnlockNewAnimalView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
@@ -47,16 +55,16 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
 
         newAnimePanel.setBackground(new java.awt.Color(255, 204, 102));
         newAnimalHolderPanel.setBackground(new java.awt.Color(255, 238, 173));
-
-        System.out.println(getClass().getResource("/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getTypeAnimal() + ".png"));
-        animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getTypeAnimal() + ".png")));
+        animal.setIcon(new javax.swing.ImageIcon(getClass().getResource(
+                "/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getTypeAnimal() + ".png")));
         animal.repaint();
         animal.revalidate();
 
         animalLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
         if (animalsToDisplay.size() >= 1) {
             animalLabel.setText("Animal Name: " + animalsToDisplay.get(animalsToDisplay.size() - 1).getName());
-        } else {
+        }
+        else {
             animalLabel.setText("Animal Name: N/A");
         }
         animalLabel.repaint();
@@ -70,7 +78,8 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         funFactLabel.setBackground(new java.awt.Color(255, 238, 173));
         if (animalsToDisplay.size() >= 1) {
             funFactLabel.setText("Fun Fact: " + animalsToDisplay.get(animalsToDisplay.size() - 1).getFact());
-        } else {
+        }
+        else {
             funFactLabel.setText("Fun Fact: N/A");
         }
         funFactLabel.repaint();
@@ -194,15 +203,6 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         // Set the preferred size for the main panel
         setPreferredSize(new java.awt.Dimension(927, 591));
     }
-
-    private javax.swing.JLabel animal;
-    private javax.swing.JLabel animalLabel;
-    private javax.swing.JLabel background;
-    private javax.swing.JTextArea funFactLabel;
-    private javax.swing.JPanel newAnimalHolderPanel;
-    private javax.swing.JPanel newAnimePanel;
-    private javax.swing.JButton nextButton;
-    private javax.swing.JLabel titleLabel;
 
     @Override
     public void actionPerformed(ActionEvent e) {

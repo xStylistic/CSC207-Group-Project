@@ -22,16 +22,16 @@ public abstract class AbstractGame {
         this.questionAnswerTimes = new HashMap<>();
         this.currentQuestionIndex = 0;
         final String[] animals = {
-                "pig",
-                "alpaca",
+            "pig",
+            "alpaca",
 //                "horse",
-                "cow",
-                "chicken",
-                "fox",
-                "bear",
-                "tiger",
-                "flamingo",
-                "rabbit",
+            "cow",
+            "chicken",
+            "fox",
+            "bear",
+            "tiger",
+            "flamingo",
+            "rabbit",
         };
         this.animalFarm = new AnimalFarm(animals);
         this.gDifficulty = difficulty;
@@ -61,6 +61,10 @@ public abstract class AbstractGame {
         return this.questionAnswerTimes;
     }
 
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
     public int getNumberCorrect() {
         int correct = 0;
         for (Boolean value : this.questionAnswersCorrect.values()) {
@@ -108,12 +112,11 @@ public abstract class AbstractGame {
     }
 
     /**
-     * Increments the currect question index.
+     * Increments the correct question index.
      */
     public void moveToNextQuestion() {
         this.currentQuestionIndex++;
     }
-
 
     public AnimalFarm getAnimalFarm() {
         return animalFarm;

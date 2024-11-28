@@ -1,11 +1,15 @@
 package entity;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import data_access.AnimalDataAccessObject;
 
 /**
- * The animals in the program.
+ * The Animal Farm in the program.
  */
 public class AnimalFarm {
     private List<Animal> currentAnimals;
@@ -51,7 +55,6 @@ public class AnimalFarm {
     /**
      * Remove specific animals from the farm.
      * @param removeCount the number of animals to remove
-     * @return List of removed animal names for tracking/notification purposes.
      */
     public void removeAnimal(int removeCount) {
         int i = 0;
