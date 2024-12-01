@@ -158,22 +158,18 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         background.revalidate();
         background.repaint();
 
-        // Center questionPanel horizontally while keeping its y-position
-        int panelWidth = 800;
-        int x = (927 - panelWidth) / 2;
+        final int panelWidth = 800;
+        final int x = (927 - panelWidth) / 2;
         questionPanel.setBounds(x, 90, 800, 194);
 
-        // Add components in correct order (background first, then panel on top)
         entireQuestionContextPanel.add(questionPanel);
         entireQuestionContextPanel.add(background);
 
-        // Move background to back
         entireQuestionContextPanel.setComponentZOrder(background, 1);
         entireQuestionContextPanel.setComponentZOrder(questionPanel, 0);
 
         this.add(entireQuestionContextPanel);
 
-        // Set preferred size for the main panel
         setPreferredSize(new java.awt.Dimension(927, 619));
     }
 
