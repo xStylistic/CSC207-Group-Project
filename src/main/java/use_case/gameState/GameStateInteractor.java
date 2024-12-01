@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * Individualized logic for game interactions
+ * Individualized logic for game interactions.
  */
 public class GameStateInteractor implements GameStateInputBoundary {
     private final GameOutputBoundary gameOutputBoundary;
@@ -43,7 +43,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     /**
-     * Prepares for starting the game by getting the difficulty
+     * Prepares for starting the game by getting the difficulty.
      */
     public void gatherDifficultyForGame() {
         gameOutputBoundary.prepareDifficultyView();
@@ -206,5 +206,29 @@ public class GameStateInteractor implements GameStateInputBoundary {
     @Override
     public void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers) {
         this.questionsAnswers = questionsAnswers;
+    }
+
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
+    public int getScore() {
+        return this.game.getScore();
+    }
+
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
+    public int getAvgTime() {
+        return this.game.getAvgTime();
+    }
+
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
+    public int getTotalTime() {
+        return this.game.getTotalTime();
     }
 }

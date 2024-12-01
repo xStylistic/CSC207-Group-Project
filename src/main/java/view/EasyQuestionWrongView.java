@@ -11,9 +11,20 @@ public class EasyQuestionWrongView extends JPanel {
     public EasyQuestionWrongView() {
         initComponents();
     }
+    private javax.swing.JTextArea answer;
+    private javax.swing.JLabel background;
+    private javax.swing.JTextArea correctAnswer;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JButton noButton;
+    private javax.swing.JLabel questionLabel;
+    private javax.swing.JLabel questionNumberLabel;
+    private javax.swing.JPanel questionPanel;
+    private javax.swing.JLabel timeElapsedLabel;
+    private javax.swing.JLabel funFactLabel;
+    private javax.swing.JLabel wasItCorrectLabel;
+    private javax.swing.JButton yesButton;
 
     private void initComponents() {
-
         questionPanel = new JPanel();
         nextButton = new javax.swing.JButton();
         correctAnswer = new javax.swing.JTextArea();
@@ -128,17 +139,4 @@ public class EasyQuestionWrongView extends JPanel {
         add(background);
         background.setBounds(0, 0, 927, 591);
     }
-
-    private javax.swing.JTextArea answer;
-    private javax.swing.JLabel background;
-    private javax.swing.JTextArea correctAnswer;
-    private javax.swing.JButton nextButton;
-    private javax.swing.JButton noButton;
-    private javax.swing.JLabel questionLabel;
-    private javax.swing.JLabel questionNumberLabel;
-    private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsedLabel;
-    private javax.swing.JLabel funFactLabel;
-    private javax.swing.JLabel wasItCorrectLabel;
-    private javax.swing.JButton yesButton;
 }

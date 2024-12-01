@@ -1,12 +1,23 @@
 package view;
 
-public class EndScreenView extends javax.swing.JPanel {
+import interface_adapter.game.GameController;
 
-    public EndScreenView() {
+public class EndScreenView extends javax.swing.JPanel {
+    private final GameController gameController;
+    private javax.swing.JLabel animalsKilled;
+    private javax.swing.JLabel averageTime;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton reviewAnswers;
+    private javax.swing.JLabel score;
+    private javax.swing.JPanel scoreBoard;
+    private javax.swing.JLabel totalTime;
+    private javax.swing.JPanel endScreenPanel;
+
+    public EndScreenView(GameController gameController) {
+        this.gameController = gameController;
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
         endScreenPanel = new javax.swing.JPanel();
         scoreBoard = new javax.swing.JPanel();
@@ -26,16 +37,11 @@ public class EndScreenView extends javax.swing.JPanel {
         scoreBoard.setBackground(new java.awt.Color(241, 190, 121));
 
         score.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
-        score.setText("Score: (insert the score)");
-
         totalTime.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        totalTime.setText("Total Spent: (time spent)");
-
         averageTime.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        averageTime.setText("Average Time Per Question: (time spent)");
-
-        animalsKilled.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        animalsKilled.setText("Animals Killed: (number of animals)");
+        score.setText("Score: " + this.gameController.getScore());
+        totalTime.setText("Total Spent: " + this.gameController.getTotalTime());
+        averageTime.setText("Average Time Per Question: " + this.gameController.getAverageTime());
 
         reviewAnswers.setBackground(new java.awt.Color(255, 234, 168));
         reviewAnswers.setText("Review Answers");
@@ -85,14 +91,4 @@ public class EndScreenView extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(927, 591));
     }
-
-    // Variables declaration
-    private javax.swing.JLabel animalsKilled;
-    private javax.swing.JLabel averageTime;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton reviewAnswers;
-    private javax.swing.JLabel score;
-    private javax.swing.JPanel scoreBoard;
-    private javax.swing.JLabel totalTime;
-    private javax.swing.JPanel endScreenPanel;
 }
