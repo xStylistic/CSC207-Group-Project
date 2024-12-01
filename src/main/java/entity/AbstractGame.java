@@ -39,6 +39,7 @@ public abstract class AbstractGame {
                 () -> { },
                 () -> System.out.println("Elapsed: " + this.timer.getSecondsElapsed() + " seconds.")
         );
+        this.difficulty = difficulty;
     }
 
     /**

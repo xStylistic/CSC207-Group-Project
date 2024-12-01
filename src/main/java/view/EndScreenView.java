@@ -6,10 +6,9 @@ import javax.swing.*;
 
 public class EndScreenView extends javax.swing.JPanel {
     private final GameController gameController;
-    private javax.swing.JLabel animalsKilled;
     private javax.swing.JLabel averageTime;
     private javax.swing.JLabel background;
-    private javax.swing.JButton reviewAnswers;
+    private javax.swing.JButton restartButton;
     private javax.swing.JLabel score;
     private javax.swing.JPanel scoreBoard;
     private javax.swing.JLabel totalTime;
@@ -26,8 +25,7 @@ public class EndScreenView extends javax.swing.JPanel {
         score = new javax.swing.JLabel();
         totalTime = new javax.swing.JLabel();
         averageTime = new javax.swing.JLabel();
-        animalsKilled = new javax.swing.JLabel();
-        reviewAnswers = new javax.swing.JButton();
+        restartButton = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setLayout(null);
@@ -36,15 +34,15 @@ public class EndScreenView extends javax.swing.JPanel {
         endScreenPanel.setBackground(panelColor);
         scoreBoard.setBackground(panelColor);
 
-        int panelWidth = 400;
-        int panelHeight = 320;
-        int x = (927 - panelWidth) / 2;
-        int y = (591 - panelHeight) / 2;
+        final int panelWidth = 400;
+        final int panelHeight = 320;
+        final int x = (927 - panelWidth) / 2;
+        final int y = (591 - panelHeight) / 2;
         endScreenPanel.setBounds(x, y, panelWidth, panelHeight);
         endScreenPanel.setLayout(null);
 
         // Text components with bold font
-        java.awt.Font boldFont = new java.awt.Font("Helvetica Neue", java.awt.Font.BOLD, 16);
+        final java.awt.Font boldFont = new java.awt.Font("Helvetica Neue", java.awt.Font.BOLD, 16);
 
         score.setFont(boldFont);
         score.setHorizontalAlignment(SwingConstants.CENTER);
@@ -52,15 +50,15 @@ public class EndScreenView extends javax.swing.JPanel {
 
         totalTime.setFont(boldFont);
         totalTime.setHorizontalAlignment(SwingConstants.CENTER);
-        totalTime.setText("Total Spent: " + this.gameController.getTotalTime());
+        totalTime.setText("Total Seconds Spent: " + this.gameController.getTotalTime());
 
         averageTime.setFont(boldFont);
         averageTime.setHorizontalAlignment(SwingConstants.CENTER);
-        averageTime.setText("Average Time Per Question: " + this.gameController.getAverageTime());
+        averageTime.setText("Average Seconds Per Question: " + this.gameController.getAverageTime());
 
-        reviewAnswers.setBackground(new java.awt.Color(255, 234, 168));
-        reviewAnswers.setFont(new java.awt.Font("Helvetica Neue", java.awt.Font.PLAIN, 14));
-        reviewAnswers.setText("Review Answers");
+        restartButton.setBackground(new java.awt.Color(255, 234, 168));
+        restartButton.setFont(new java.awt.Font("Helvetica Neue", java.awt.Font.PLAIN, 14));
+        restartButton.setText("Restart");
 
         // Arrange components in scoreBoard
         scoreBoard.setLayout(null);
@@ -72,14 +70,12 @@ public class EndScreenView extends javax.swing.JPanel {
         score.setBounds(10, 30, 360, labelHeight);
         totalTime.setBounds(10, 32 + labelHeight + spacing, 360, labelHeight);
         averageTime.setBounds(10, 32 + 2 * (labelHeight + spacing), 360, labelHeight);
-        animalsKilled.setBounds(10, 32 + 3 * (labelHeight + spacing), 360, labelHeight);
-        reviewAnswers.setBounds(115, 32 + 4 * (labelHeight + spacing) + 10, 150, 40);
+        restartButton.setBounds(115, 32 + 4 * (labelHeight + spacing) + 10, 150, 40);
 
         scoreBoard.add(score);
         scoreBoard.add(totalTime);
         scoreBoard.add(averageTime);
-        scoreBoard.add(animalsKilled);
-        scoreBoard.add(reviewAnswers);
+        scoreBoard.add(restartButton);
 
         endScreenPanel.add(scoreBoard);
 
