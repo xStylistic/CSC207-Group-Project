@@ -10,10 +10,11 @@
 
 ## ℹ️ Overview
 
-We made this program to help students like us stay motivated to study. Doing so dozens to hundreds of flashcards gets mundane and tiring, so to solve that problem, 
-Flashcard Farm was born. This colourful and vibrant studying tool will be sure to keep you captivated. An animal joins your farm with every correct answer and leaves your
-farm with every incorrect answer. This program also has timer features so your speed and knowledge to ensure you truly know it all. Download Flashcard Farm to enhance
-your studying experience :)
+We made this program to help students like us stay motivated to study. Doing so dozens to hundreds of flashcards gets mundane and tiring, so to solve that problem, Flashcard Farm was born. This colourful and vibrant studying tool will be sure to keep you captivated. 
+
+Upload your flashcard set as a .txt file to begin the game. You will have the option of three different difficulties, 'Easy', 'Medium', and 'Hard'. 'Medium' and 'Hard' difficulties will have a time limit for how long you have to answer the question. An animal joins your farm with every correct answer and leaves your farm with every incorrect answer. The timer feature is there to test your speed and knowledge to ensure you truly know it all. 
+
+Download Flashcard Farm today to enhance your studying experience :)
 
 ### ✍️ Authors
 
@@ -34,7 +35,8 @@ Zeke Weng | ZekeWeng
 
 - Download all the files from this repository and launch a Java IDE
 - Minimum JDK Requirements: Java SE 11
-- After downloading all the files, go to: src -> main -> java -> app -> MainApplication and run
+- After downloading all the files, go to: src -> main -> java -> app -> MainApplication and click run
+- Make sure all problem sets you upload are in .txt format
 
 ## License
 
