@@ -13,27 +13,26 @@ public class AnimalDataAccessTest {
 
     @Test
     public void testAnimalList() {
-        List<String> recievedAnimals = AnimalDataAccessObject.getAnimal("tiger");
-        String[] animals = {"Bengal Tiger", "Indochinese Tiger", "Malayan Tiger", "Saber-Toothed Tiger", "Siberian Tiger", "South China Tiger", "Sumatran Tiger", "Tiger", "White Tiger"};
+        Map<String, List<Object>> recievedAnimals = AnimalDataAccessObject.getAnimal("tiger");
+        String[] animals = {"Bengal Tiger", "Indochinese Tiger", "Malayan Tiger", "Saber-Toothed Tiger",
+                "Siberian Tiger", "South China Tiger", "Sumatran Tiger", "Tiger", "White Tiger"};
         List<String> expectedAnimals = Arrays.asList(animals);
         assertEquals(recievedAnimals, expectedAnimals);
     }
 
     @Test
     public void testAnimalLocation() {
-        List<String> recievedAnimals = AnimalDataAccessObject.getAnimal("pig");
-        Map<String, List> animalList = AnimalDataAccessObject.getAnimalsList();
-        List location = animalList.get("pig");
+        Map<String, List<Object>> recievedAnimals = AnimalDataAccessObject.getAnimal("pig");
+        List<String> location = (List) recievedAnimals.get("pig").get(1);
         String[] locationPig = {"Asia","Eurasia","Europe","North-America"};
-        List expectedLocation = Arrays.asList(locationPig);
+        List<String> expectedLocation = Arrays.asList(locationPig);
         assertEquals(location, expectedLocation);
     }
 
     @Test
-    public void animalNotInAvailbleAnimals() {
-        List<String> recievedAnimals = AnimalDataAccessObject.getAnimal("cat");
-        Map<String, List> animalList = AnimalDataAccessObject.getAnimalsList();
-        assertEquals(null, animalList);
+    public void animalNotInAvailableAnimals() {
+        Map<String, List<Object>> recievedAnimals = AnimalDataAccessObject.getAnimal("cat");
+        assertNull(recievedAnimals);
     }
 
 }
