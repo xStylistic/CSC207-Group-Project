@@ -5,29 +5,25 @@ import java.util.TimerTask;
 
 public class GameTimer {
     private final Timer timer = new Timer();
-    private final int timeLimit;
-    private int remainingTime;
+    private int secondsElapsed;
     private final Runnable onTimeUpCallback;
-    private final Runnable onTickCallback;
+    private Runnable onTickCallback;
+    private boolean isRunning = false;
 
-    public GameTimer(int timeLimit, Runnable onTimeUpCallback, Runnable onTickCallback) {
-        this.timeLimit = timeLimit;
+    public GameTimer(Runnable onTimeUpCallback, Runnable onTickCallback) {
+        this.secondsElapsed = 0;
         this.onTimeUpCallback = onTimeUpCallback;
         this.onTickCallback = onTickCallback;
-        this.remainingTime = timeLimit;
     }
 
-    public void start() {
+    public void start(Runnable onTickCallback) {
+        this.onTickCallback = onTickCallback;
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (remainingTime > 0) {
-                    remainingTime--;
+                secondsElapsed++;
+                if (onTickCallback != null) {
                     onTickCallback.run();
-                }
-                else {
-                    onTimeUpCallback.run();
-                    stop();
                 }
             }
         }, 0, 1000);
@@ -35,13 +31,17 @@ public class GameTimer {
 
     public void stop() {
         timer.cancel();
+        isRunning = false;
     }
 
-    public int getTimeLimit() {
-        return this.timeLimit;
+    public int getSecondsElapsed() {
+        return secondsElapsed;
     }
 
-    public int getRemainingTime() {
-        return this.remainingTime;
+    public void setOnTickCallback(Runnable onTickCallback) {
+        this.onTickCallback = onTickCallback;
+        if (onTickCallback != null) {
+            onTickCallback.run();
+        }
     }
 }

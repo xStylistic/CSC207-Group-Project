@@ -1,6 +1,7 @@
 package use_case.game_interactor;
 
 import data_access.GameDataAccessObject;
+import entity.AbstractGame;
 import entity.QuestionAnswer;
 import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
@@ -39,12 +40,12 @@ public class GameInteractorTest {
         }
 
         @Override
-        public void prepareQuestionView(QuestionAnswer firstQuestion, Integer answerTimes) {
+        public void prepareQuestionView(QuestionAnswer firstQuestion, AbstractGame game) {
 
         }
 
         @Override
-        public void prepareEndGameView() {
+        public void prepareEndGameView(AbstractGame game) {
 
         }
 

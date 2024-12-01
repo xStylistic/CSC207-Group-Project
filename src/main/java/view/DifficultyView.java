@@ -1,14 +1,16 @@
 package view;
 
+import java.awt.*;
+
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameViewModel;
-
-import java.awt.*;
 
 /**
  * The Blueprint for the difficulty view.
  */
 public class DifficultyView extends javax.swing.JPanel {
+    private static final String HELVETICA_NEUE = "Helvetica Neue";
+
     private GameViewModel gameViewModel;
     private GameController gameController;
     private javax.swing.JLabel background;
@@ -42,12 +44,12 @@ public class DifficultyView extends javax.swing.JPanel {
         difficultyPanel.setBackground(new java.awt.Color(255, 183, 132));
         difficultyPanel.setOpaque(true);
 
-        title.setFont(new java.awt.Font("Helvetica Neue", 1, 28));
+        title.setFont(new java.awt.Font(HELVETICA_NEUE, 1, 28));
         title.setText("CHOOSE YOUR DIFFICULTY");
 
         // Easy Button
         easy.setBackground(new Color(165, 235, 165));
-        easy.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
+        easy.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 18));
         easy.setText("EASY");
         easy.setOpaque(true);
         easy.setContentAreaFilled(true);
@@ -57,7 +59,7 @@ public class DifficultyView extends javax.swing.JPanel {
 
         // Medium Button
         medium.setBackground(new Color(255, 204, 51));
-        medium.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
+        medium.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 18));
         medium.setText("MEDIUM");
         medium.setOpaque(true);
         medium.setContentAreaFilled(true);
@@ -67,7 +69,7 @@ public class DifficultyView extends javax.swing.JPanel {
 
         // Hard Button
         hard.setBackground(new Color(255, 102, 102));
-        hard.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
+        hard.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 18));
         hard.setText("HARD");
         hard.setOpaque(true);
         hard.setContentAreaFilled(true);
@@ -75,20 +77,23 @@ public class DifficultyView extends javax.swing.JPanel {
         hard.setFocusPainted(false);
         hard.addActionListener(evt -> hardActionPerformed(evt));
 
-        javax.swing.GroupLayout difficultyPanelLayout = new javax.swing.GroupLayout(difficultyPanel);
+        final javax.swing.GroupLayout difficultyPanelLayout = new javax.swing.GroupLayout(difficultyPanel);
         difficultyPanel.setLayout(difficultyPanelLayout);
         difficultyPanelLayout.setHorizontalGroup(
                 difficultyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(difficultyPanelLayout.createSequentialGroup()
                                 .addGap(152, 152, 152)
-                                .addGroup(difficultyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(difficultyPanelLayout.createParallelGroup(javax.swing
+                                                .GroupLayout.Alignment.LEADING, false)
                                         .addComponent(easy, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(medium, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                        .addComponent(medium, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                158, Short.MAX_VALUE)
                                         .addComponent(hard, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, difficultyPanelLayout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, difficultyPanelLayout
+                                .createSequentialGroup()
                                 .addContainerGap(42, Short.MAX_VALUE)
                                 .addComponent(title)
                                 .addGap(42, 42, 42))
@@ -110,10 +115,10 @@ public class DifficultyView extends javax.swing.JPanel {
                                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        int panelWidth = 470;
-        int panelHeight = 420;
-        int x = (927 - panelWidth) / 2;
-        int y = (591 - panelHeight) / 2;
+        final int panelWidth = 470;
+        final int panelHeight = 420;
+        final int x = (927 - panelWidth) / 2;
+        final int y = (591 - panelHeight) / 2;
 
         add(difficultyPanel);
         difficultyPanel.setBounds(x, y, panelWidth, panelHeight);

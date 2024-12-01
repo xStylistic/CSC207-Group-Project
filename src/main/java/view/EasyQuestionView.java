@@ -6,10 +6,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import entity.Animal;
+import entity.GameTimer;
+import entity.QuestionTimer;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
@@ -25,13 +26,18 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
     private List<Animal> animalsToDisplay;
+    private final QuestionTimer questionTimer;
+    private static GameTimer gameTimer;
+    private int currentQuestionIndex;
+    private int totalNumQuestions;
+
     private javax.swing.JTextArea answerTextArea;
     private javax.swing.JLabel background;
     private javax.swing.JButton checkButton;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsedLabel;
+    private static javax.swing.JLabel timeElapsedLabel;
 
     public EasyQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
@@ -39,8 +45,28 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         this.currentQuestion = gameViewModel.getState().getCurrentQuestionAnswer().getQuestion();
         this.entireQuestionContextPanel = new JPanel();
         this.animalsToDisplay = gameViewModel.getState().getAnimalsToDisplay();
+        this.currentQuestionIndex = gameViewModel.getState().getGame().getCurrentQuestionIndex() + 1;
+        this.totalNumQuestions = gameViewModel.getState().getGame().getTotalNumQuestions();
 
         initComponents();
+
+        this.questionTimer = gameViewModel.getState().getCurrentQuestionAnswer().getTimer();
+        this.questionTimer.start(() -> SwingUtilities.invokeLater(() -> handleQuestionTimer()));
+
+        gameTimer = gameViewModel.getState().getGame().getTimer();
+    }
+
+    public static void handleGameTimer() {
+        timeElapsedLabel.setText("Time Elapsed: " + gameTimer.getSecondsElapsed());
+        timeElapsedLabel.repaint();
+    }
+
+    private void handleQuestionTimer() {
+        if (questionTimer.getRemainingTime() <= 0) {
+            // Submit an incorrect answer (I put it as blank assuming that the correct answer is never blank)
+            gameController.submitAnswer("");
+            gameController.goToNextQuestion(true);
+        }
     }
 
     private void initComponents() {
@@ -65,10 +91,10 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         answerTextArea.setRows(5);
 
         questionNumberLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
-        questionNumberLabel.setText("Question -/-");
+        questionNumberLabel.setText("Question " + currentQuestionIndex + "/" + totalNumQuestions);
 
         questionLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
-        questionLabel.setText("Question: " + this.currentQuestion);
+        questionLabel.setText(this.currentQuestion);
 
         final javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -158,22 +184,18 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         background.revalidate();
         background.repaint();
 
-        // Center questionPanel horizontally while keeping its y-position
-        int panelWidth = 800;
-        int x = (927 - panelWidth) / 2;
+        final int panelWidth = 800;
+        final int x = (927 - panelWidth) / 2;
         questionPanel.setBounds(x, 90, 800, 194);
 
-        // Add components in correct order (background first, then panel on top)
         entireQuestionContextPanel.add(questionPanel);
         entireQuestionContextPanel.add(background);
 
-        // Move background to back
         entireQuestionContextPanel.setComponentZOrder(background, 1);
         entireQuestionContextPanel.setComponentZOrder(questionPanel, 0);
 
         this.add(entireQuestionContextPanel);
 
-        // Set preferred size for the main panel
         setPreferredSize(new java.awt.Dimension(927, 619));
     }
 

@@ -7,8 +7,6 @@ import java.util.List;
  */
 public class MediumGame extends AbstractGame {
     private static final int MEDIUM_PER_QUESTION_TIME = 60;
-    private GameTimer timer;
-    private boolean shouldMoveOn;
 
     public MediumGame(List<QuestionAnswer> questionAnswers) {
         super(questionAnswers, "medium");
@@ -30,19 +28,6 @@ public class MediumGame extends AbstractGame {
                     )
             );
         }
-
-        this.timer = new GameTimer(
-                MEDIUM_PER_QUESTION_TIME,
-                () -> {
-                    // What happens when timer is up.
-                    System.out.println("Time is up");
-                    forceMoveOn();
-                },
-                () -> {
-                    System.out.println("Tick");
-                    // Timer Updates here
-                }
-        );
     }
 
     public void forceMoveOn() {
@@ -67,9 +52,5 @@ public class MediumGame extends AbstractGame {
                         () -> System.out.println("Tick" + getCurrentQuestion().getTimer().getRemainingTime())
                 )
         );
-    }
-
-    public GameTimer getTimer() {
-        return timer;
     }
 }
