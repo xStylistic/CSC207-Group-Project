@@ -1,16 +1,12 @@
 # 📦 Flashcard Farm
 
-(add your badges here)
-
-> *Your documentation is a direct reflection of your software, so hold it to the same standards.*
+> *Your new fun tool for studying!*
 
 
 ## 🌟 Highlights
 
-- Some functionality made easy!
-- This problem handled
-- etc.
-
+- Sick of using boring old Anki flashcard? Flashcard Farm will solve your problem. 
+- Animal themed flashcard game to get you those A's!
 
 ## ℹ️ Overview
 
@@ -29,24 +25,13 @@ Zeke Weng | ZekeWeng
 
 *Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
 
-```py
->>> import mypackage
->>> mypackage.do_stuff()
-'Oh yeah!'
-```
+
 
 
 ## ⬇️ Installation
 
-
-```bash
-pip install my-package
-```
-
-And be sure to specify any other minimum requirements like Python versions or operating systems.
-
-*You may be inclined to add development instructions here, don't.*
-
+- Download all the files from this repository and launch a Java IDE
+- Minimum JDK Requirements: Java SE 11
 
 ## 💭 Feedback and Contributing
 
