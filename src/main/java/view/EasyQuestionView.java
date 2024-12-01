@@ -6,6 +6,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import javax.swing.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,6 +19,8 @@ import interface_adapter.game.GameViewModel;
  * The Blueprint for the EasyQuestionView.
  */
 public class EasyQuestionView extends JPanel implements ActionListener, PropertyChangeListener {
+    private static final String HELVETICA_NEUE = "Helvetica Neue";
+
     private final GameViewModel gameViewModel;
     private GameController gameController;
     private String currentQuestion;
@@ -30,7 +33,6 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
     private javax.swing.JLabel timeElapsedLabel;
-    // TODO: CONNECT TIMER LOGIC SASS
 
     public EasyQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
@@ -43,7 +45,6 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     }
 
     private void initComponents() {
-
         questionPanel = new JPanel();
         checkButton = new javax.swing.JButton();
         answerTextArea = new javax.swing.JTextArea();
@@ -57,21 +58,18 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         questionPanel.setBackground(new java.awt.Color(255, 244, 214));
 
         checkButton.setBackground(new java.awt.Color(255, 204, 102));
-        checkButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
+        checkButton.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
         checkButton.setText("Submit Answer");
 
         answerTextArea.setColumns(15);
-        answerTextArea.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
+        answerTextArea.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
         answerTextArea.setRows(5);
 
-        questionNumberLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
+        questionNumberLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
         questionNumberLabel.setText("Question -/-");
 
-        questionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
+        questionLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
         questionLabel.setText("Question: " + this.currentQuestion);
-
-        timeElapsedLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        timeElapsedLabel.setText("Time Elapsed: "); // TODO: SASWATA
 
         final javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -140,7 +138,7 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
 
         this.setLayout(null);
 
-        // Set layout for entireQuestionContextPanel
+        /* Set layout for entireQuestionContextPanel */
         entireQuestionContextPanel.setLayout(null);
         entireQuestionContextPanel.setBounds(0, 0, 927, 591);
 

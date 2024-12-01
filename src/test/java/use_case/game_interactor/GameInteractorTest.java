@@ -40,7 +40,7 @@ public class GameInteractorTest {
         }
 
         @Override
-        public void prepareQuestionView(QuestionAnswer firstQuestion) {
+        public void prepareQuestionView(QuestionAnswer firstQuestion, Integer answerTimes) {
 
         }
 

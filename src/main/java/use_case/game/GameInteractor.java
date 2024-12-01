@@ -20,7 +20,7 @@ public class GameInteractor implements GameInputBoundary {
     private final GameOutputBoundary gameOutputBoundary;
     private final User user = new User("jonathan_calver2", "abc123");
     private File file;
-    private ArrayList<QuestionAnswer> questionsAnswers;
+    private final ArrayList<QuestionAnswer> questionsAnswers;
 
     public GameInteractor(GameDataAccessInterface gameDataAccessInterface,
                           GameOutputBoundary gameOutputBoundary) {

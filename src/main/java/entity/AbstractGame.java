@@ -103,6 +103,10 @@ public abstract class AbstractGame {
         }
     }
 
+    public Integer getCurrentQuestionAnswerTime() {
+        return this.questionAnswerTimes.get(questionAnswers.get(currentQuestionIndex));
+    }
+
     /**
      * Add a keymap value for whether the question is correct.
      * @param time the amount of time spent on the question
@@ -122,7 +126,7 @@ public abstract class AbstractGame {
         return animalFarm;
     }
 
-    public QuestionTimer getTimer() {
+    public GameTimer getTimer() {
         return null;
     }
 }

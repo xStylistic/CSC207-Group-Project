@@ -22,7 +22,7 @@ public interface GameOutputBoundary {
      */
     void prepareFailView(String errorMessage);
 
-    void prepareQuestionView(QuestionAnswer firstQuestion);
+    void prepareQuestionView(QuestionAnswer questionAnswer, Integer answerTime);
 
     void prepareEndGameView();
 
