@@ -1,16 +1,16 @@
 package interface_adapter.game;
 
-import use_case.game.GameInputBoundary;
+import use_case.retrieveFile.FileInputBoundary;
 import use_case.gameState.GameStateInputBoundary;
 
 /**
  * Controller for our File related Use Cases.
  */
 public class GameController {
-    private final GameInputBoundary gameInteractor;
+    private final FileInputBoundary gameInteractor;
     private GameStateInputBoundary gameStateInteractor;
 
-    public GameController(GameInputBoundary gameInteractor, GameStateInputBoundary gameStateInteractor) {
+    public GameController(FileInputBoundary gameInteractor, GameStateInputBoundary gameStateInteractor) {
         this.gameInteractor = gameInteractor;
         this.gameStateInteractor = gameStateInteractor;
     }
@@ -39,7 +39,6 @@ public class GameController {
         gameStateInteractor.startGame(difficulty);
     }
 
-
     /**
      * Submits the user's answer to the current question by delegating to the interactor.
      *
@@ -50,7 +49,7 @@ public class GameController {
     }
 
     /**
-     * Function to go to the next question from an answer
+     * Function to go to the next question from an answer.
      */
     public void goToNextQuestion(boolean justSubmitted) {
         gameStateInteractor.moveAnswerToNextQuestion(justSubmitted);

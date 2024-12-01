@@ -1,4 +1,4 @@
-package use_case.game;
+package use_case.retrieveFile;
 
 import java.io.File;
 import java.util.List;
@@ -9,7 +9,7 @@ import entity.QuestionAnswer;
 /**
  * The output boundary for the Login Use Case.
  */
-public interface GameOutputBoundary {
+public interface FileOutputBoundary {
     /**
      * Prepares the success view for the File related Use Cases.
      * @param message the output data

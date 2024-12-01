@@ -1,16 +1,14 @@
 package app;
 
-import data_access.GameDataAccessObject;
-import entity.User;
+import data_access.FileDataAccessObject;
 import org.junit.Before;
 import org.junit.Test;
-import use_case.game.GameDataAccessInterface;
+import use_case.retrieveFile.FileDataAccessInterface;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static java.lang.Thread.sleep;
-import static org.junit.Assert.*;
 
 public class GameApplicationTest {
 
@@ -18,10 +16,10 @@ public class GameApplicationTest {
 
     @Before
     public void setUp() throws Exception {
-        final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
+        final FileDataAccessInterface fileDataAccess = new FileDataAccessObject();
 
         final GameAppBuilder gameBuilder = new GameAppBuilder();
-        gameBuilder.addGameDao(gameDataAccess)
+        gameBuilder.addGameDao(fileDataAccess)
                 .addGameView()
                 .addGameUseCase()
                 .build().setVisible(true);

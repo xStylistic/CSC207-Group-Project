@@ -1,4 +1,4 @@
-package use_case.game;
+package use_case.retrieveFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,17 +15,17 @@ import entity.User;
  * the contents of the File and saving the contents of the File. Since they
  * are closely related, we have combined them here for simplicity.
  */
-public class GameInteractor implements GameInputBoundary {
-    private final GameDataAccessInterface gameDataAccessInterface;
-    private final GameOutputBoundary gameOutputBoundary;
+public class FileInteractor implements FileInputBoundary {
+    private final FileDataAccessInterface fileDataAccessInterface;
+    private final FileOutputBoundary fileOutputBoundary;
     private final User user = new User("jonathan_calver2", "abc123");
     private File file;
     private final ArrayList<QuestionAnswer> questionsAnswers;
 
-    public GameInteractor(GameDataAccessInterface gameDataAccessInterface,
-                          GameOutputBoundary gameOutputBoundary) {
-        this.gameDataAccessInterface = gameDataAccessInterface;
-        this.gameOutputBoundary = gameOutputBoundary;
+    public FileInteractor(FileDataAccessInterface fileDataAccessInterface,
+                          FileOutputBoundary fileOutputBoundary) {
+        this.fileDataAccessInterface = fileDataAccessInterface;
+        this.fileOutputBoundary = fileOutputBoundary;
         this.questionsAnswers = new ArrayList<>();
     }
 
@@ -37,8 +37,8 @@ public class GameInteractor implements GameInputBoundary {
     @Override
     public File executeRetrieval() {
         try {
-            this.file = gameDataAccessInterface.requestFile(user);
-            gameOutputBoundary.prepareSuccessView(this.file);
+            this.file = fileDataAccessInterface.requestFile(user);
+            fileOutputBoundary.prepareSuccessView(this.file);
 
             try {
                 final List<String> lines = Files.readAllLines(file.toPath());
@@ -61,7 +61,7 @@ public class GameInteractor implements GameInputBoundary {
             }
         }
         catch (DataAccessException ex) {
-            gameOutputBoundary.prepareFailView(ex.getMessage());
+            fileOutputBoundary.prepareFailView(ex.getMessage());
         }
         return file;
     }

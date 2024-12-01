@@ -1,33 +1,28 @@
 package use_case.gameState;
 
 import entity.*;
-import kotlin.jvm.Throws;
-import use_case.game.GameDataAccessInterface;
-import use_case.game.GameOutputBoundary;
+import use_case.retrieveFile.FileOutputBoundary;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 
 /**
  * Individualized logic for game interactions
  */
 public class GameStateInteractor implements GameStateInputBoundary {
-    private final GameOutputBoundary gameOutputBoundary;
+    private final FileOutputBoundary fileOutputBoundary;
     private ArrayList<QuestionAnswer> questionsAnswers;
     private AbstractGame game;
 
-    public GameStateInteractor(GameOutputBoundary gameOutputBoundary
+    public GameStateInteractor(FileOutputBoundary fileOutputBoundary
     ) {
-        this.gameOutputBoundary = gameOutputBoundary;
+        this.fileOutputBoundary = fileOutputBoundary;
         this.game = null;
     }
 
-    public GameStateInteractor(GameOutputBoundary gameOutputBoundary,
+    public GameStateInteractor(FileOutputBoundary fileOutputBoundary,
                                ArrayList<QuestionAnswer> questionsAnswers
                                ) {
-        this.gameOutputBoundary = gameOutputBoundary;
+        this.fileOutputBoundary = fileOutputBoundary;
         this.game = null;
         this.questionsAnswers = questionsAnswers;
     }
@@ -46,7 +41,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
      * Prepares for starting the game by getting the difficulty
      */
     public void gatherDifficultyForGame() {
-        gameOutputBoundary.prepareDifficultyView();
+        fileOutputBoundary.prepareDifficultyView();
     }
 
     /**
@@ -76,10 +71,10 @@ public class GameStateInteractor implements GameStateInputBoundary {
 
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
             final Integer answerTime = game.getCurrentQuestionAnswerTime();
-            gameOutputBoundary.prepareQuestionView(firstQuestion, answerTime);
+            fileOutputBoundary.prepareQuestionView(firstQuestion, answerTime);
         }
         else {
-            gameOutputBoundary.prepareFailView("The game is not active");
+            fileOutputBoundary.prepareFailView("The game is not active");
         }
     }
 
@@ -91,18 +86,18 @@ public class GameStateInteractor implements GameStateInputBoundary {
     @Override
     public void executeAnswerSubmit(String userAnswer) {
         if (game == null) {
-            gameOutputBoundary.prepareFailView("The game is not active");
+            fileOutputBoundary.prepareFailView("The game is not active");
         }
 
         // Execute Answer Submit Logic
         final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
         currentQuestionAnswer.setUserAnswer(userAnswer);
         if (currentQuestionAnswer == null) {
-            gameOutputBoundary.prepareEndGameView();
+            fileOutputBoundary.prepareEndGameView();
         }
         else {
             if (currentQuestionAnswer.validateAnswer()) {
-                gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
+                fileOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
                 if (!(game instanceof EasyGame)) {
@@ -111,7 +106,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 }
             }
             else {
-                gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
+                fileOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Calls updateQuestion False");
                 game.updateQuestionAnswersCorrect(false);
                 if (!(game instanceof EasyGame)) {
@@ -129,7 +124,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
      */
     public void moveAnswerToNextQuestion(boolean justSubmitted) {
         if (game == null) {
-            gameOutputBoundary.prepareFailView("The game is not active");
+            fileOutputBoundary.prepareFailView("The game is not active");
         }
 
         // Execute Answer Submit Logic
@@ -138,18 +133,18 @@ public class GameStateInteractor implements GameStateInputBoundary {
         // Move to rewards page
         if (currentQuestionAnswer.isCorrect() && justSubmitted) {
             this.updateGameStateWithNewDisplayAnimals();
-            gameOutputBoundary.prepareAnimalRewardView();
+            fileOutputBoundary.prepareAnimalRewardView();
         }
         // The call from Rewards page to go to the next question
         else if (!justSubmitted) {
             game.moveToNextQuestion();
             // check if game ended
             if (game.isGameFinished()) {
-                gameOutputBoundary.prepareEndGameView();
+                fileOutputBoundary.prepareEndGameView();
             }
             else {
                 currentQuestionAnswer = game.getCurrentQuestion();
-                gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, game.getCurrentQuestionAnswerTime());
+                fileOutputBoundary.prepareQuestionView(currentQuestionAnswer, game.getCurrentQuestionAnswerTime());
             }
         }
         else if (!currentQuestionAnswer.isCorrect() && justSubmitted) {
@@ -161,17 +156,17 @@ public class GameStateInteractor implements GameStateInputBoundary {
 
                 // Check if game ended
                 if (game.isGameFinished()) {
-                    gameOutputBoundary.prepareEndGameView();
+                    fileOutputBoundary.prepareEndGameView();
                 }
                 else {
                     // if not, go to the next question
                     currentQuestionAnswer = game.getCurrentQuestion();
-                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, game.getCurrentQuestionAnswerTime());
+                    fileOutputBoundary.prepareQuestionView(currentQuestionAnswer, game.getCurrentQuestionAnswerTime());
                 }
             }
             // Incorrect for hard game ends everything
             else {
-                gameOutputBoundary.prepareEndGameView();
+                fileOutputBoundary.prepareEndGameView();
             }
         }
     }
@@ -191,7 +186,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     private void updateGameStateWithNewDisplayAnimals() {
-        gameOutputBoundary.setDisplayAnimalsToGameState(this.getCurrentListAnimalsToDisplay());
+        fileOutputBoundary.setDisplayAnimalsToGameState(this.getCurrentListAnimalsToDisplay());
     }
 
     /**

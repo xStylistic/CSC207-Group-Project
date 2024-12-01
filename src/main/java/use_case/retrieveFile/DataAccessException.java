@@ -1,4 +1,4 @@
-package use_case.game;
+package use_case.retrieveFile;
 
 /**
  * Exception thrown when there is an error with accessing data.

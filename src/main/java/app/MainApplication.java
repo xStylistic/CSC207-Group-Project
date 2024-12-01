@@ -1,7 +1,7 @@
 package app;
 
 import data_access.GameDataAccessObject;
-import use_case.game.GameDataAccessInterface;
+import use_case.retrieveFile.FileDataAccessInterface;
 
 /**
  * An application where we can view and add to a note stored by a user.
@@ -44,7 +44,7 @@ public class MainApplication {
      * @param args commandline arguments are ignored
      */
     public static void main(String[] args) {
-        final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
+        final FileDataAccessInterface gameDataAccess = new GameDataAccessObject();
 
         final GameAppBuilder gameBuilder = new GameAppBuilder();
         gameBuilder.addGameDao(gameDataAccess)

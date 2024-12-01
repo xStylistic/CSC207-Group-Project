@@ -8,9 +8,9 @@ import interface_adapter.game.GameController;
 import interface_adapter.game.GamePresenter;
 import interface_adapter.game.GameViewModel;
 import interface_adapter.view_manager.ViewManager;
-import use_case.game.GameDataAccessInterface;
-import use_case.game.GameInteractor;
-import use_case.game.GameOutputBoundary;
+import use_case.retrieveFile.FileDataAccessInterface;
+import use_case.retrieveFile.FileInteractor;
+import use_case.retrieveFile.FileOutputBoundary;
 import use_case.gameState.GameStateInteractor;
 import view.GameView;
 
@@ -20,10 +20,10 @@ import view.GameView;
 public class GameAppBuilder {
     public static final int HEIGHT = 300;
     public static final int WIDTH = 400;
-    private GameDataAccessInterface fileDao;
+    private FileDataAccessInterface fileDao;
     private GameViewModel gameViewModel;
     private GameView gameView;
-    private GameInteractor gameInteractor;
+    private FileInteractor gameInteractor;
     private GameController gameController;
     private GameStateInteractor gameStateInteractor;
     private File file;
@@ -33,7 +33,7 @@ public class GameAppBuilder {
      * @param fileDataAccess the DAO to use
      * @return this builder
      */
-    public GameAppBuilder addGameDao(GameDataAccessInterface fileDataAccess) {
+    public GameAppBuilder addGameDao(FileDataAccessInterface fileDataAccess) {
         fileDao = fileDataAccess;
         return this;
     }
@@ -46,11 +46,11 @@ public class GameAppBuilder {
      * @throws RuntimeException if this method is called before addGameView
      */
     public GameAppBuilder addGameUseCase() {
-        final GameOutputBoundary gameOutputBoundary = new GamePresenter(gameViewModel);
-        gameInteractor = new GameInteractor(
-                fileDao, gameOutputBoundary);
+        final FileOutputBoundary fileOutputBoundary = new GamePresenter(gameViewModel);
+        gameInteractor = new FileInteractor(
+                fileDao, fileOutputBoundary);
         gameStateInteractor = new GameStateInteractor(
-                gameOutputBoundary
+                fileOutputBoundary
         );
 
         final GameController controller = new GameController(gameInteractor, gameStateInteractor);

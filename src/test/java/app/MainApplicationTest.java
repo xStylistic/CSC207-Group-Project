@@ -2,7 +2,7 @@ package app;
 
 import org.junit.Before;
 import org.junit.Test;
-import use_case.game.GameDataAccessInterface;
+import use_case.retrieveFile.FileDataAccessInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class MainApplicationTest {
     public void setUp() {
 
         // create the data access and inject it into our builder!
-        final GameDataAccessInterface FileDataAccess = new GameDataAccessInterface() {
+        final FileDataAccessInterface FileDataAccess = new FileDataAccessInterface() {
 
 //            private String File = "test";
 

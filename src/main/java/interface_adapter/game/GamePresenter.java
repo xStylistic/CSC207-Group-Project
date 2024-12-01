@@ -5,12 +5,12 @@ import java.util.List;
 
 import entity.Animal;
 import entity.QuestionAnswer;
-import use_case.game.GameOutputBoundary;
+import use_case.retrieveFile.FileOutputBoundary;
 
 /**
  * The presenter for our File viewing and editing program.
  */
-public class GamePresenter implements GameOutputBoundary {
+public class GamePresenter implements FileOutputBoundary {
 
     private final GameViewModel gameViewModel;
 

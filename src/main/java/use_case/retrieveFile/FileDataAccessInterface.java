@@ -1,4 +1,4 @@
-package use_case.game;
+package use_case.retrieveFile;
 
 import java.io.File;
 
@@ -8,7 +8,7 @@ import entity.User;
  * Interface for the GameDAO. It consists of methods for
  * accepting and loading a file.
  */
-public interface GameDataAccessInterface {
+public interface FileDataAccessInterface {
 
     /**
      * Saves a File for a given user. This will replace any existing File.
