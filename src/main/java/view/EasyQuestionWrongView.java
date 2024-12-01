@@ -24,18 +24,6 @@ public class EasyQuestionWrongView extends JPanel {
     public EasyQuestionWrongView() {
         initComponents();
     }
-    private javax.swing.JTextArea answer;
-    private javax.swing.JLabel background;
-    private javax.swing.JTextArea correctAnswer;
-    private javax.swing.JButton nextButton;
-    private javax.swing.JButton noButton;
-    private javax.swing.JLabel questionLabel;
-    private javax.swing.JLabel questionNumberLabel;
-    private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsedLabel;
-    private javax.swing.JLabel funFactLabel;
-    private javax.swing.JLabel wasItCorrectLabel;
-    private javax.swing.JButton yesButton;
 
     private void initComponents() {
         questionPanel = new JPanel();
@@ -144,10 +132,9 @@ public class EasyQuestionWrongView extends JPanel {
 
         add(questionPanel);
 
-        // Center questionPanel horizontally while keeping its y-position
-        int panelWidth = 760; // Width of questionPanel
-        int x = (927 - panelWidth) / 2; // Center x in a 927-width JFrame
-        questionPanel.setBounds(x, 40, 760, 230); // Keep y-position as 40
+        int panelWidth = 760;
+        int x = (927 - panelWidth) / 2;
+        questionPanel.setBounds(x, 40, 760, 230);
 
         funFactLabel.setBounds(80, 280, 760, 30);
         add(funFactLabel);

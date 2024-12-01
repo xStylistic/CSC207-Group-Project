@@ -2,19 +2,10 @@ package view;
 
 import interface_adapter.game.GameController;
 
+import javax.swing.*;
+
 public class EndScreenView extends javax.swing.JPanel {
     private final GameController gameController;
-    private javax.swing.JLabel animalsKilled;
-    private javax.swing.JLabel averageTime;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton reviewAnswers;
-    private javax.swing.JLabel score;
-    private javax.swing.JPanel scoreBoard;
-    private javax.swing.JLabel totalTime;
-    private javax.swing.JPanel endScreenPanel;
-
-    public EndScreenView(GameController gameController) {
-        this.gameController = gameController;
     private javax.swing.JLabel animalsKilled;
     private javax.swing.JLabel averageTime;
     private javax.swing.JLabel background;
@@ -24,7 +15,8 @@ public class EndScreenView extends javax.swing.JPanel {
     private javax.swing.JLabel totalTime;
     private javax.swing.JPanel endScreenPanel;
 
-    public EndScreenView() {
+    public EndScreenView(GameController gameController) {
+        this.gameController = gameController;
         initComponents();
     }
 
