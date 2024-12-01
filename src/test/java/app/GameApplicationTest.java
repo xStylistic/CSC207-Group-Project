@@ -1,7 +1,6 @@
 package app;
 
 import data_access.GameDataAccessObject;
-import entity.User;
 import org.junit.Before;
 import org.junit.Test;
 import use_case.game.GameDataAccessInterface;
@@ -10,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import static java.lang.Thread.sleep;
-import static org.junit.Assert.*;
 
 public class GameApplicationTest {
 

@@ -101,7 +101,7 @@ public class ViewManager {
                             layout.repaint();
                         }
                         else if ("end".equals(viewName)) {
-                            final EndScreenView endScreenView = new EndScreenView();
+                            final EndScreenView endScreenView = new EndScreenView(gameController);
                             endScreenView.setVisible(true);
 
                             layout.remove(currView);

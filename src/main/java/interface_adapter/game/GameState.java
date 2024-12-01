@@ -1,8 +1,10 @@
 package interface_adapter.game;
 
+import entity.AbstractGame;
 import entity.Animal;
 import entity.QuestionAnswer;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class GameState {
     private QuestionAnswer currentQuestionAnswer;
     private String message;
     private int difficulty;
+    private AbstractGame game;
 
     private List<Animal> animalsToDisplay;
 
@@ -77,5 +80,13 @@ public class GameState {
      */
     public List<Animal> getAnimalsToDisplay() {
         return animalsToDisplay;
+    }
+
+    public void setGame(AbstractGame game) {
+        this.game = game;
+    }
+
+    public AbstractGame getGame() {
+        return this.game;
     }
 }

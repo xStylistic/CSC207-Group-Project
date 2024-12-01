@@ -1,10 +1,15 @@
 package view;
 
-/**
- *
- * @author bonnychen
- */
 public class MediumQuestionWrongView extends javax.swing.JFrame {
+
+    private javax.swing.JLabel background;
+    private javax.swing.JTextArea correctAnswer;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JLabel questionLabel;
+    private javax.swing.JLabel questionNumberLabel;
+    private javax.swing.JPanel questionPanel;
+    private javax.swing.JLabel timeElapsedLabel;
+    private javax.swing.JLabel timerLabel;
 
     public MediumQuestionWrongView() {
         initComponents();
@@ -102,13 +107,4 @@ public class MediumQuestionWrongView extends javax.swing.JFrame {
 
         pack();
     }
-
-    private javax.swing.JLabel background;
-    private javax.swing.JTextArea correctAnswer;
-    private javax.swing.JButton nextButton;
-    private javax.swing.JLabel questionLabel;
-    private javax.swing.JLabel questionNumberLabel;
-    private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsedLabel;
-    private javax.swing.JLabel timerLabel;
 }

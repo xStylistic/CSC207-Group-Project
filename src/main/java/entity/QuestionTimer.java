@@ -8,7 +8,7 @@ public class QuestionTimer {
     private final int timeLimit;
     private int remainingTime;
     private final Runnable onTimeUpCallback;
-    private final Runnable onTickCallback;
+    private Runnable onTickCallback;
 
     public QuestionTimer(int timeLimit, Runnable onTimeUpCallback, Runnable onTickCallback) {
         this.timeLimit = timeLimit;
@@ -17,14 +17,16 @@ public class QuestionTimer {
         this.remainingTime = timeLimit;
     }
 
-    public void start() {
+    public void start(Runnable onTickCallback) {
+        this.onTickCallback = onTickCallback;
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (remainingTime > 0) {
                     remainingTime--;
                     onTickCallback.run();
-                } else {
+                }
+                else {
                     onTimeUpCallback.run();
                     stop();
                 }
@@ -38,6 +40,10 @@ public class QuestionTimer {
 
     public int getTimeLimit() {
         return this.timeLimit;
+    }
+
+    public void setRemainingTime(int remainingTime) {
+        this.remainingTime = remainingTime;
     }
 
     public int getRemainingTime() {

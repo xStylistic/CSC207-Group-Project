@@ -14,7 +14,8 @@ public abstract class AbstractGame {
     private final Map<QuestionAnswer, Integer> questionAnswerTimes;
     private int currentQuestionIndex;
     private final AnimalFarm animalFarm;
-    private final String gDifficulty;
+    private GameTimer timer;
+    private final String difficulty;
 
     public AbstractGame(List<QuestionAnswer> questionAnswers, String difficulty) {
         this.questionAnswers = new ArrayList<>(questionAnswers);
@@ -24,7 +25,7 @@ public abstract class AbstractGame {
         final String[] animals = {
             "pig",
             "alpaca",
-//                "horse",
+            "horse",
             "cow",
             "chicken",
             "fox",
@@ -34,7 +35,11 @@ public abstract class AbstractGame {
             "rabbit",
         };
         this.animalFarm = new AnimalFarm(animals);
-        this.gDifficulty = difficulty;
+        this.timer = new GameTimer(
+                () -> { },
+                () -> System.out.println("Elapsed: " + this.timer.getSecondsElapsed() + " seconds.")
+        );
+        this.difficulty = difficulty;
     }
 
     /**
@@ -65,7 +70,7 @@ public abstract class AbstractGame {
      * Gets the number of correctly answered questions.
      * @return the number of correct answers.
      */
-    public int getNumberCorrect() {
+    public int getScore() {
         int correct = 0;
         for (Boolean value : this.questionAnswersCorrect.values()) {
             if (Boolean.TRUE.equals(value)) {
@@ -75,6 +80,18 @@ public abstract class AbstractGame {
         return correct;
     }
 
+    public int getTotalTime() {
+        int totalTime = 0;
+        for (Integer time : this.questionAnswerTimes.values()) {
+            totalTime += time;
+        }
+        return totalTime;
+    }
+
+    public int getAvgTime() {
+        return this.getTotalTime() / this.getQuestionAnswerTimes().size();
+    }
+  
     public int getNumberAnswered() {
         return this.questionAnswersCorrect.size();
     }
@@ -89,7 +106,7 @@ public abstract class AbstractGame {
             this.animalFarm.addAnimal();
         }
         else {
-            switch (gDifficulty) {
+            switch (difficulty) {
                 case "medium":
                     this.animalFarm.removeAnimal(2);
                     break;
@@ -101,6 +118,10 @@ public abstract class AbstractGame {
                     break;
             }
         }
+    }
+
+    public Integer getCurrentQuestionAnswerTime() {
+        return this.questionAnswerTimes.get(questionAnswers.get(currentQuestionIndex));
     }
 
     /**
@@ -122,7 +143,19 @@ public abstract class AbstractGame {
         return animalFarm;
     }
 
-    public QuestionTimer getTimer() {
-        return null;
+    public GameTimer getTimer() {
+        return this.timer;
+    }
+
+    public int getCurrentQuestionIndex() {
+        return this.currentQuestionIndex;
+    }
+
+    public int getTotalNumQuestions() {
+        return this.questionAnswers.size();
+    }
+
+    public void setTimer(GameTimer timer) {
+        this.timer = timer;
     }
 }

@@ -4,14 +4,18 @@ import entity.*;
 import kotlin.jvm.Throws;
 import use_case.game.GameDataAccessInterface;
 import use_case.game.GameOutputBoundary;
+import view.EasyQuestionView;
+import view.MediumQuestionView;
+import view.HardQuestionView;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
 /**
- * Individualized logic for game interactions
+ * Individualized logic for game interactions.
  */
 public class GameStateInteractor implements GameStateInputBoundary {
     private final GameOutputBoundary gameOutputBoundary;
@@ -43,7 +47,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     /**
-     * Prepares for starting the game by getting the difficulty
+     * Prepares for starting the game by getting the difficulty.
      */
     public void gatherDifficultyForGame() {
         gameOutputBoundary.prepareDifficultyView();
@@ -74,8 +78,20 @@ public class GameStateInteractor implements GameStateInputBoundary {
         if (game != null) {
             this.updateGameStateWithNewDisplayAnimals();
 
+            if (game instanceof EasyGame) {
+                this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> EasyQuestionView.handleGameTimer()));
+            }
+            else if (game instanceof MediumGame) {
+                this.game.getTimer().start(
+                        () -> SwingUtilities.invokeLater(() -> MediumQuestionView.handleGameTimer()));
+            }
+            else if (game instanceof HardGame) {
+                this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> HardQuestionView.handleGameTimer()));
+            }
+
+
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
-            gameOutputBoundary.prepareQuestionView(firstQuestion);
+            gameOutputBoundary.prepareQuestionView(firstQuestion, this.game);
         }
         else {
             gameOutputBoundary.prepareFailView("The game is not active");
@@ -97,7 +113,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
         final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
         currentQuestionAnswer.setUserAnswer(userAnswer);
         if (currentQuestionAnswer == null) {
-            gameOutputBoundary.prepareEndGameView();
+            gameOutputBoundary.prepareEndGameView(game);
         }
         else {
             if (currentQuestionAnswer.validateAnswer()) {
@@ -105,16 +121,17 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
                 if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
+                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                            - currentQuestionAnswer.getTimer().getRemainingTime());
                 }
-
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
-                System.out.println("CAlls updateQuestion Fasle");
+                System.out.println("Calls updateQuestion False");
                 game.updateQuestionAnswersCorrect(false);
                 if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(game.getTimer().getTimeLimit() - game.getTimer().getRemainingTime());
+                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                            - currentQuestionAnswer.getTimer().getRemainingTime());
                 }
             }
 
@@ -143,10 +160,11 @@ public class GameStateInteractor implements GameStateInputBoundary {
             game.moveToNextQuestion();
             // check if game ended
             if (game.isGameFinished()) {
-                gameOutputBoundary.prepareEndGameView();
-            } else {
+                gameOutputBoundary.prepareEndGameView(this.game);
+            }
+            else {
                 currentQuestionAnswer = game.getCurrentQuestion();
-                gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+                gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, this.game);
             }
         }
         else if (!currentQuestionAnswer.isCorrect() && justSubmitted) {
@@ -158,17 +176,17 @@ public class GameStateInteractor implements GameStateInputBoundary {
 
                 // Check if game ended
                 if (game.isGameFinished()) {
-                    gameOutputBoundary.prepareEndGameView();
+                    gameOutputBoundary.prepareEndGameView(this.game);
                 }
                 else {
                     // if not, go to the next question
                     currentQuestionAnswer = game.getCurrentQuestion();
-                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer);
+                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, this.game);
                 }
             }
             // Incorrect for hard game ends everything
             else {
-                gameOutputBoundary.prepareEndGameView();
+                gameOutputBoundary.prepareEndGameView(this.game);
             }
         }
     }
@@ -203,5 +221,29 @@ public class GameStateInteractor implements GameStateInputBoundary {
     @Override
     public void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers) {
         this.questionsAnswers = questionsAnswers;
+    }
+
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
+    public int getScore() {
+        return this.game.getScore();
+    }
+
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
+    public int getAvgTime() {
+        return this.game.getAvgTime();
+    }
+
+    /**
+     * Gets the number of correctly answered questions.
+     * @return the number of correct answers.
+     */
+    public int getTotalTime() {
+        return this.game.getTotalTime();
     }
 }

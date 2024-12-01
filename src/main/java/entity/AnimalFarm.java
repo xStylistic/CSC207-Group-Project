@@ -55,6 +55,7 @@ public class AnimalFarm {
     /**
      * Remove specific animals from the farm.
      * @param removeCount the number of animals to remove
+     * @return List of removed animal names for tracking/notification purposes.
      */
     public void removeAnimal(int removeCount) {
         int i = 0;

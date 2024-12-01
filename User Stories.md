@@ -117,14 +117,7 @@ Interactions 2:
 * A countdown timer will be visible on the screen.
 * User enters their answer within the time limit and clicks "Submit".
 * Program provides immediate feedback and resets the timer for the next question.
-### Use Case 3: End-of-Game Feedback
+### Use Case 3: End-of-Game Stats
 Interactions 3:
-* User completes the final question and clicks "Finish".
-* A performance summary that includes the percentage of correct answers and the total time spent per question will be displayed at the end
-  for easy and medium mode.
-* Hard mode will only display total time spent and amount of time taken per question.
-* The program will provide options for the user to repeat the study set or to upload a new one.
-### Use Case 4: End-of-Game Review
-Interactions 4:
-* User can compare their answers and the correct answers.
+* User can see how well they performed at the end.
 
