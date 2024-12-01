@@ -65,10 +65,10 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         answerTextArea.setRows(5);
 
         questionNumberLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
-        questionNumberLabel.setText("Question -/-");
+        questionNumberLabel.setText("Question ");
 
         questionLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
-        questionLabel.setText("Question: " + this.currentQuestion);
+        questionLabel.setText(this.currentQuestion);
 
         final javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
