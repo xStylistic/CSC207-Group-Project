@@ -52,7 +52,7 @@ public class EndScreenView extends javax.swing.JPanel {
 
         totalTime.setFont(boldFont);
         totalTime.setHorizontalAlignment(SwingConstants.CENTER);
-        totalTime.setText("Total Time Spent: " + this.gameController.getTotalTime());
+        totalTime.setText("Total Spent: " + this.gameController.getTotalTime());
 
         averageTime.setFont(boldFont);
         averageTime.setHorizontalAlignment(SwingConstants.CENTER);

@@ -1,0 +1,87 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Interface Toy
+
+Item <|-- Toy
+
+class AbstractGame {
+    -List<QuestionAnswer> questionAnswers;
+    -Map<QuestionAnswer, Boolean> questionAnswersCorrect;
+    -Map<QuestionAnswer, Integer> questionAnswerTimes;
+    -currentQuestionIndex;
+    -AnimalFarm animalFarm;
+    -String gDifficulty;
+}
+
+class EasyGame{}
+class MediumGame{}
+class HardGame{}
+
+AbstractGame <|-- EasyGame
+AbstractGame <|-- MediumGame
+AbstractGame <|-- HardGame
+
+class Animal {
+    - String name;
+    - String typeAnimal;
+    - String family;
+    - List<String> locations;
+    - String fact;
+    - double xCoordinate;
+    - double yCoordinate;
+}
+
+class AnimalFarm {
+    - List<Animal> currentAnimals;
+    - List<Animal> selectedAnimals;
+    - Random rand = new Random();
+    - List<String> availableAnimals;
+}
+
+class QuestionAnswer {
+    - String question;
+    - String correctAnswer;
+    - String userAnswer;
+    - Boolean isCorrect;
+}
+
+class QuestionTimer {
+    - Timer timer = new Timer();
+    - int timeLimit;
+    - int remainingTime;
+    - Runnable onTimeUpCallback;
+    - Runnable onTickCallback;
+}
+
+class User {
+    - String name;
+    - String password;
+}
+
+class GameController {
+    -GameInputBoundary gameInteractor;
+    -GameStateInputBoundary gameStateInteractor
+}
+
+class GamePresenter {
+    -GameViewModel gameViewModel;
+}
+
+GameOutputBoundary <|-- GamePresenter
+
+class GameState {
+    -File file;
+    - String error;
+    - QuestionAnswer currentQuestionAnswer;
+    - String message;
+    - int difficulty;
+}
+
+class GameViewModel {
+    - GameController controller
+}
+
+ViewModel <|-- GameViewModel
+
+@enduml
