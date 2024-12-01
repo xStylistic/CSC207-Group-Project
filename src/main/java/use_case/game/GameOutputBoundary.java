@@ -1,10 +1,10 @@
 package use_case.game;
 
-import entity.Animal;
-import entity.QuestionAnswer;
-
 import java.io.File;
 import java.util.List;
+
+import entity.Animal;
+import entity.QuestionAnswer;
 
 /**
  * The output boundary for the Login Use Case.

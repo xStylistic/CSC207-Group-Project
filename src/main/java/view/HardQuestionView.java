@@ -167,10 +167,8 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
         background.setBounds(0, 0, 927, 591);
 
         for (Animal animal : animalsToDisplay) {
-            final JLabel animalLabel = new JLabel();
-            animalLabel.setIcon(
-                    new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal() + ".png"))
-            );
+            JLabel animalLabel = new JLabel();
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal()  + ".png")));
             animalLabel.setBounds(
                     (int) animal.getxCoordinate(),
                     (int) animal.getyCoordinate(),

@@ -1,12 +1,24 @@
 package interface_adapter.view_manager;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
-import view.*;
+import view.DifficultyView;
+import view.EasyQuestionView;
+import view.EndScreenView;
+import view.GameView;
+import view.HardQuestionView;
+import view.MediumQuestionView;
+import view.UnlockNewAnimalView;
 
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * The Manager of the views.
+ */
 public class ViewManager {
     private final JFrame layout;
     private JPanel currView;
@@ -23,16 +35,15 @@ public class ViewManager {
         gameViewModel.addPropertyChangeListener(
                 evt -> {
                     if (evt.getPropertyName().equals("pageChange")) {
-                        String viewName = gameViewModel.getViewName();
+                        final String viewName = gameViewModel.getViewName();
 
-                        // SETTING CURRENT PAGE TO BE DIFFICULTY
                         if ("difficulty".equals(viewName)) {
                             final DifficultyView difficultyView = new DifficultyView(gameViewModel, gameController);
                             this.currView = difficultyView;
                             difficultyView.setVisible(true);
 
                             // TESTING with logs :)
-                            GameState state = gameViewModel.getState();
+                            final GameState state = gameViewModel.getState();
                             System.out.println(state.getDifficulty());
 
                             layout.remove(gameView);
@@ -40,8 +51,6 @@ public class ViewManager {
                             layout.revalidate();
                             layout.repaint();
                         }
-
-                        // SETTING CURRENT PAGE TO BE QUESTIONS
                         else if ("questions".equals(viewName)) {
                             // Render depending on which type of question it is on
                             // check type of question
@@ -79,8 +88,6 @@ public class ViewManager {
                             layout.revalidate();
                             layout.repaint();
                         }
-
-                        // Going to Reward Page
                         else if ("reward".equals(viewName)) {
                             layout.remove(currView);
 
@@ -93,8 +100,6 @@ public class ViewManager {
                             layout.revalidate();
                             layout.repaint();
                         }
-
-                        // Going to the end screen
                         else if ("end".equals(viewName)) {
                             final EndScreenView endScreenView = new EndScreenView();
                             endScreenView.setVisible(true);
@@ -112,9 +117,7 @@ public class ViewManager {
         );
 
         layout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Set minimum size:
         layout.setMinimumSize(new Dimension(927, 591));
-        // Set preferred size:
         layout.setPreferredSize(new Dimension(927, 591));
     }
 
