@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import use_case.game.GameOutputBoundary;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,9 +52,7 @@ class GameStateInteractorTest {
     @Test
     void testExecuteAnswerSubmitIncorrectAnswer() {
         interactor.startGame(0); // EasyGame
-        AbstractGame game = interactor.getGame();
         QuestionAnswer question = new QuestionAnswer("What is 2+2?", "4");
-
         interactor.executeAnswerSubmit("5");
 
         assertFalse(question.isCorrect());

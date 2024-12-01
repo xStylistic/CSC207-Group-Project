@@ -76,4 +76,10 @@ public class GameInteractor implements GameInputBoundary {
     public ArrayList<QuestionAnswer> getQuestionsAnswers() {
         return questionsAnswers;
     }
+
+    @Override
+    public void setQuestionsAnswers(ArrayList<QuestionAnswer>questionsAnswers) {
+        this.questionsAnswers = questionsAnswers;
+    }
+
 }
