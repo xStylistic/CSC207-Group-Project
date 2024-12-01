@@ -6,7 +6,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import javax.swing.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -77,10 +76,10 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
                 questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                 questionPanelLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(315, 315, 315))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(315, 315, 315))
                         .addGroup(questionPanelLayout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(questionLabel, javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -98,34 +97,34 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         questionPanelLayout.createSequentialGroup()
-                                        .addContainerGap(51, Short.MAX_VALUE)
-                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(52, Short.MAX_VALUE)))
+                                                .addContainerGap(51, Short.MAX_VALUE)
+                                                .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap(52, Short.MAX_VALUE)))
         );
         questionPanelLayout.setVerticalGroup(
                 questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                 questionPanelLayout.createSequentialGroup()
-                                .addContainerGap(18, Short.MAX_VALUE)
-                                .addGroup(questionPanelLayout.createParallelGroup(
-                                        javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(questionNumberLabel)
-                                        .addComponent(timeElapsedLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        13, Short.MAX_VALUE)
-                                .addComponent(questionLabel)
-                                .addGap(109, 109, 109)
-                                .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                                        .addContainerGap(18, Short.MAX_VALUE)
+                                        .addGroup(questionPanelLayout.createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(questionNumberLabel)
+                                                .addComponent(timeElapsedLabel))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                13, Short.MAX_VALUE)
+                                        .addComponent(questionLabel)
+                                        .addGap(109, 109, 109)
+                                        .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         questionPanelLayout.createSequentialGroup()
-                                        .addContainerGap(79, Short.MAX_VALUE)
-                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(63, Short.MAX_VALUE)))
+                                                .addContainerGap(79, Short.MAX_VALUE)
+                                                .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap(63, Short.MAX_VALUE)))
         );
 
         checkButton.addActionListener(
@@ -138,18 +137,14 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
 
         this.setLayout(null);
 
-        /* Set layout for entireQuestionContextPanel */
         entireQuestionContextPanel.setLayout(null);
-        entireQuestionContextPanel.setBounds(0, 0, 927, 591);
+        entireQuestionContextPanel.setBounds(0, 0, 927, 619);
 
-        // Setup background
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
         background.setBounds(0, 0, 927, 591);
 
         for (Animal animal : animalsToDisplay) {
             final JLabel animalLabel = new JLabel();
-            System.out.println(getClass().getResource("/" + animal.getTypeAnimal() + ".png"));
-            System.out.println(getClass());
             animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                     "/" + animal.getTypeAnimal() + ".png")));
             animalLabel.setBounds(
@@ -163,9 +158,10 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         background.revalidate();
         background.repaint();
 
-        // Setup questionPanel bounds - centered and smaller than background
-        // Similar sizing to DifficultyView
-        questionPanel.setBounds(50, 90, 800, 194);
+        // Center questionPanel horizontally while keeping its y-position
+        int panelWidth = 800;
+        int x = (927 - panelWidth) / 2;
+        questionPanel.setBounds(x, 90, 800, 194);
 
         // Add components in correct order (background first, then panel on top)
         entireQuestionContextPanel.add(questionPanel);
@@ -178,7 +174,7 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         this.add(entireQuestionContextPanel);
 
         // Set preferred size for the main panel
-        setPreferredSize(new java.awt.Dimension(927, 591));
+        setPreferredSize(new java.awt.Dimension(927, 619));
     }
 
     @Override

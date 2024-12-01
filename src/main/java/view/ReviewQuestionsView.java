@@ -98,7 +98,7 @@ public class ReviewQuestionsView extends javax.swing.JFrame {
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/farm.png"))); 
         getContentPane().add(background);
-        background.setBounds(6, 6, 927, 591);
+        background.setBounds(6, 6, 927, 619);
 
         pack();
     }

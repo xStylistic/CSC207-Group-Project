@@ -3,14 +3,13 @@ package view;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
-import interface_adapter.view_manager.ViewManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
 
 /**
  * The View for when the user is adding a game into the program
@@ -20,15 +19,30 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
     private final JButton chooseFileButton = new JButton("Choose File");
     private final JButton startGameButton = new JButton("Start Game");
     private GameController gameController;
+    private JLabel background;
 
     public GameView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
         this.gameViewModel.addPropertyChangeListener(this);
 
-        final JPanel mainPanel = new JPanel();
+        initComponents();
+    }
 
-        mainPanel.add(chooseFileButton);
-        mainPanel.add(startGameButton);
+    private void initComponents() {
+        setLayout(null);
+        setPreferredSize(new Dimension(927, 591));
+
+        background = new JLabel(new ImageIcon(getClass().getResource("/farm.png")));
+        background.setBounds(0, 0, 927, 591);
+
+        JPanel mainPanel = new JPanel(null);
+        mainPanel.setOpaque(false);
+
+        chooseFileButton.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
+        chooseFileButton.setBounds(314, 200, 300, 50);
+
+        startGameButton.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
+        startGameButton.setBounds(314, 300, 300, 50);
         startGameButton.setEnabled(false);
 
         chooseFileButton.addActionListener(
@@ -36,8 +50,14 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
                     if (evt.getSource().equals(chooseFileButton)) {
                         gameController.execute();
                         String name = gameController.getFileName();
+
                         JLabel fileLabel = new JLabel(name);
-                        fileLabel.setVisible(true);
+                        fileLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
+
+                        int fileLabelY = chooseFileButton.getY()
+                                + (startGameButton.getY() - chooseFileButton.getY()) / 2 - 15;
+                        fileLabel.setBounds(318, fileLabelY, 300, 50);
+
                         mainPanel.add(fileLabel);
                         startGameButton.setEnabled(true);
 
@@ -50,26 +70,31 @@ public class GameView extends JPanel implements ActionListener, PropertyChangeLi
         startGameButton.addActionListener(
                 evt -> {
                     if (evt.getSource().equals(startGameButton)) {
-                        if (startGameButton.isEnabled())
-                        {
-                            // Go to the Actual Game page
-                            mainPanel.remove(chooseFileButton);
-                            mainPanel.remove(startGameButton);
-                            mainPanel.remove(chooseFileButton);
+                        if (startGameButton.isEnabled()) {
                             gameController.setDifficulty();
                         }
                     }
                 }
         );
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(mainPanel);
+        // Add components to main panel
+        mainPanel.setBounds(0, 0, 927, 619);
+        mainPanel.add(chooseFileButton);
+        mainPanel.add(startGameButton);
+
+        // Add main panel to background
+        add(mainPanel);
+        add(background);
+
+        setComponentZOrder(background, 1);
+        setComponentZOrder(mainPanel, 0);
     }
 
     /**
      * React to a button click that results in evt.
      * @param evt the ActionEvent to react to
      */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }
