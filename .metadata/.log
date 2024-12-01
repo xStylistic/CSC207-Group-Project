@@ -1,0 +1,26 @@
+!SESSION 2024-12-01 14:52:06.393 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=23.0.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_CA
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-12-01 14:52:10.959
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-12-01 14:52:41.309
+!MESSAGE Logback config file: /Users/beam/Documents/UofT/second year/csc207/project/CSC207-Group-Project/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+!SESSION 2024-12-01 14:55:14.320 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=23.0.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_CA
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/beam/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/beam/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-12-01 14:55:17.174
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-12-01 14:55:26.225
+!MESSAGE Logback config file: /Users/beam/Documents/UofT/second year/csc207/project/CSC207-Group-Project/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml

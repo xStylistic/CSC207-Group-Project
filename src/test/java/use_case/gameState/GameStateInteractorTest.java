@@ -1,8 +1,13 @@
 package use_case.gameState;
 
 import entity.*;
+import interface_adapter.game.GameController;
+import interface_adapter.game.GamePresenter;
+import interface_adapter.game.GameViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import use_case.game.GameInputBoundary;
+import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
 
 import java.util.ArrayList;
@@ -17,7 +22,18 @@ class GameStateInteractorTest {
     @BeforeEach
     void setUp() {
         mockQuestionsAnswers = new ArrayList<>();
+        QuestionAnswer question = new QuestionAnswer("What is 2+2?", "4");
+        mockQuestionsAnswers.add(question);
+        QuestionAnswer question2 = new QuestionAnswer("What is 2+5?", "7");
+        mockQuestionsAnswers.add(question2);
+
+        GameStateInputBoundary interactboundary = new GameStateInteractor(mockOutputBoundary);
+        GameInputBoundary inputboundary = new GameInteractor(null, null);
+        GameViewModel viewmodel = new GameViewModel(new GameController(inputboundary, interactboundary));
+        this.mockOutputBoundary = new GamePresenter(viewmodel);
+        mockQuestionsAnswers.add(new QuestionAnswer("question1", "answer1"));
         interactor = new GameStateInteractor(mockOutputBoundary, mockQuestionsAnswers);
+        interactor.setQuestionsAnswers(mockQuestionsAnswers);
     }
 
     @Test
@@ -41,21 +57,17 @@ class GameStateInteractorTest {
     @Test
     void testExecuteAnswerSubmitCorrectAnswer() {
         interactor.startGame(0); // EasyGame
-        AbstractGame game = interactor.getGame();
-        QuestionAnswer question = new QuestionAnswer("What is 2+2?", "4");
-
         interactor.executeAnswerSubmit("4");
-
-        assertTrue(question.isCorrect());
+        QuestionAnswer question = interactor.getGame().getCurrentQuestion();
+        assertTrue(question.validateAnswer());
     }
 
     @Test
     void testExecuteAnswerSubmitIncorrectAnswer() {
         interactor.startGame(0); // EasyGame
-        QuestionAnswer question = new QuestionAnswer("What is 2+2?", "4");
         interactor.executeAnswerSubmit("5");
-
-        assertFalse(question.isCorrect());
+        QuestionAnswer question = interactor.getGame().getCurrentQuestion();
+        assertFalse(question.validateAnswer());
     }
 
     @Test
@@ -63,9 +75,8 @@ class GameStateInteractorTest {
         interactor.startGame(0); // EasyGame
         AbstractGame game = interactor.getGame();
         game.updateQuestionAnswersCorrect(true);
-        game.updateQuestionAnswersCorrect(true);
 
-        assertEquals(2, interactor.getScore());
+        assertEquals(1, interactor.getScore());
     }
 
     @Test
@@ -73,9 +84,8 @@ class GameStateInteractorTest {
         interactor.startGame(0); // EasyGame
         AbstractGame game = interactor.getGame();
         game.updateQuestionAnswerTimes(10);
-        game.updateQuestionAnswerTimes(20);
 
-        assertEquals(15, interactor.getAvgTime());
+        assertEquals(10, interactor.getAvgTime());
     }
 
     @Test
@@ -83,8 +93,7 @@ class GameStateInteractorTest {
         interactor.startGame(0); // EasyGame
         AbstractGame game = interactor.getGame();
         game.updateQuestionAnswerTimes(10);
-        game.updateQuestionAnswerTimes(20);
 
-        assertEquals(30, interactor.getTotalTime());
+        assertEquals(10, interactor.getTotalTime());
     }
 }

@@ -88,8 +88,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
             else if (game instanceof HardGame) {
                 this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> HardQuestionView.handleGameTimer()));
             }
-
-
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
             gameOutputBoundary.prepareQuestionView(firstQuestion, this.game);
         }
@@ -120,19 +118,16 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
-                if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
-                            - currentQuestionAnswer.getTimer().getRemainingTime());
-                }
+                game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                        - currentQuestionAnswer.getTimer().getRemainingTime());
+
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Calls updateQuestion False");
                 game.updateQuestionAnswersCorrect(false);
-                if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
                             - currentQuestionAnswer.getTimer().getRemainingTime());
-                }
             }
 
         }
