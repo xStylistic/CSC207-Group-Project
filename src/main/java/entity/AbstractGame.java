@@ -14,6 +14,7 @@ public abstract class AbstractGame {
     private final Map<QuestionAnswer, Integer> questionAnswerTimes;
     private int currentQuestionIndex;
     private final AnimalFarm animalFarm;
+    private GameTimer timer;
     private final String difficulty;
 
     public AbstractGame(List<QuestionAnswer> questionAnswers, String difficulty) {
@@ -34,7 +35,10 @@ public abstract class AbstractGame {
             "rabbit",
         };
         this.animalFarm = new AnimalFarm(animals);
-        this.difficulty = difficulty;
+        this.timer = new GameTimer(
+                () -> { },
+                () -> System.out.println("Elapsed: " + this.timer.getSecondsElapsed() + " seconds.")
+        );
     }
 
     /**
@@ -86,7 +90,7 @@ public abstract class AbstractGame {
     public int getAvgTime() {
         return this.getTotalTime() / this.getQuestionAnswerTimes().size();
     }
-
+  
     public int getNumberAnswered() {
         return this.questionAnswersCorrect.size();
     }
@@ -136,5 +140,21 @@ public abstract class AbstractGame {
 
     public AnimalFarm getAnimalFarm() {
         return animalFarm;
+    }
+
+    public GameTimer getTimer() {
+        return this.timer;
+    }
+
+    public int getCurrentQuestionIndex() {
+        return this.currentQuestionIndex;
+    }
+
+    public int getTotalNumQuestions() {
+        return this.questionAnswers.size();
+    }
+
+    public void setTimer(GameTimer timer) {
+        this.timer = timer;
     }
 }

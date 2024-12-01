@@ -3,6 +3,7 @@ package interface_adapter.game;
 import java.io.File;
 import java.util.List;
 
+import entity.AbstractGame;
 import entity.Animal;
 import entity.QuestionAnswer;
 import use_case.game.GameOutputBoundary;
@@ -67,11 +68,11 @@ public class GamePresenter implements GameOutputBoundary {
      * Prepares the next question view.
      *
      * @param questionAnswer The next question to display.
-     * @param answerTime The time limit of the next question
+     * @param game The current game
      */
-    public void prepareQuestionView(QuestionAnswer questionAnswer, Integer answerTime) {
+    public void prepareQuestionView(QuestionAnswer questionAnswer, AbstractGame game) {
         gameViewModel.getState().setCurrentQuestionAnswer(questionAnswer);
-        gameViewModel.getState().setCurrentRemainingTime(answerTime);
+        gameViewModel.getState().setGame(game);
         gameViewModel.getState().setMessage("Answer the question below:");
         gameViewModel.setViewName("questions");
         gameViewModel.firePropertyChanged("pageChange");
@@ -94,11 +95,13 @@ public class GamePresenter implements GameOutputBoundary {
 
     /**
      * Prepares the view for the end of the game.
+     * @param game the current game being played
      */
-    public void prepareEndGameView() {
+    public void prepareEndGameView(AbstractGame game) {
         gameViewModel.getState().setMessage("Game over! Thanks for playing.");
         gameViewModel.getState().setCurrentQuestionAnswer(null);
         gameViewModel.firePropertyChanged();
+        game.getTimer().stop();
         // Set the ending screen
         gameViewModel.setViewName("end");
         gameViewModel.firePropertyChanged("pageChange");

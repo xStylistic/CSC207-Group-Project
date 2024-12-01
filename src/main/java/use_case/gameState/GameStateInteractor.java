@@ -4,7 +4,11 @@ import entity.*;
 import kotlin.jvm.Throws;
 import use_case.game.GameDataAccessInterface;
 import use_case.game.GameOutputBoundary;
+import view.EasyQuestionView;
+import view.MediumQuestionView;
+import view.HardQuestionView;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -74,9 +78,20 @@ public class GameStateInteractor implements GameStateInputBoundary {
         if (game != null) {
             this.updateGameStateWithNewDisplayAnimals();
 
+            if (game instanceof EasyGame) {
+                this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> EasyQuestionView.handleGameTimer()));
+            }
+            else if (game instanceof MediumGame) {
+                this.game.getTimer().start(
+                        () -> SwingUtilities.invokeLater(() -> MediumQuestionView.handleGameTimer()));
+            }
+            else if (game instanceof HardGame) {
+                this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> HardQuestionView.handleGameTimer()));
+            }
+
+
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
-            final Integer answerTime = game.getCurrentQuestionAnswerTime();
-            gameOutputBoundary.prepareQuestionView(firstQuestion, answerTime);
+            gameOutputBoundary.prepareQuestionView(firstQuestion, this.game);
         }
         else {
             gameOutputBoundary.prepareFailView("The game is not active");
@@ -98,7 +113,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
         final QuestionAnswer currentQuestionAnswer = game.getCurrentQuestion();
         currentQuestionAnswer.setUserAnswer(userAnswer);
         if (currentQuestionAnswer == null) {
-            gameOutputBoundary.prepareEndGameView();
+            gameOutputBoundary.prepareEndGameView(game);
         }
         else {
             if (currentQuestionAnswer.validateAnswer()) {
@@ -145,11 +160,11 @@ public class GameStateInteractor implements GameStateInputBoundary {
             game.moveToNextQuestion();
             // check if game ended
             if (game.isGameFinished()) {
-                gameOutputBoundary.prepareEndGameView();
+                gameOutputBoundary.prepareEndGameView(this.game);
             }
             else {
                 currentQuestionAnswer = game.getCurrentQuestion();
-                gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, game.getCurrentQuestionAnswerTime());
+                gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, this.game);
             }
         }
         else if (!currentQuestionAnswer.isCorrect() && justSubmitted) {
@@ -161,17 +176,17 @@ public class GameStateInteractor implements GameStateInputBoundary {
 
                 // Check if game ended
                 if (game.isGameFinished()) {
-                    gameOutputBoundary.prepareEndGameView();
+                    gameOutputBoundary.prepareEndGameView(this.game);
                 }
                 else {
                     // if not, go to the next question
                     currentQuestionAnswer = game.getCurrentQuestion();
-                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, game.getCurrentQuestionAnswerTime());
+                    gameOutputBoundary.prepareQuestionView(currentQuestionAnswer, this.game);
                 }
             }
             // Incorrect for hard game ends everything
             else {
-                gameOutputBoundary.prepareEndGameView();
+                gameOutputBoundary.prepareEndGameView(this.game);
             }
         }
     }

@@ -30,20 +30,6 @@ public class HardGame extends AbstractGame {
                     )
             );
         }
-
-        this.timer = new GameTimer(
-                HARD_PER_QUESTION_TIME,
-                () -> {
-                    // What happens when timer is up.
-                    System.out.println("Time is up");
-                    forceMoveOn();
-                },
-                () -> {
-                    // What happens every second
-                    System.out.println("Tick");
-                    // Timer Updates here
-                }
-        );
     }
 
     public void forceMoveOn() {
@@ -72,9 +58,5 @@ public class HardGame extends AbstractGame {
 
     public boolean getShouldMoveOn() {
         return shouldMoveOn;
-    }
-
-    public GameTimer getTimer() {
-        return timer;
     }
 }
