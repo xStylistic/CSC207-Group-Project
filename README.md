@@ -5,13 +5,15 @@
 
 ## 🌟 Highlights
 
-- Sick of using boring old Anki flashcard? Flashcard Farm will solve your problem. 
+- Sick of using boring old Anki flashcards? Flashcard Farm will solve your problem. 
 - Animal themed flashcard game to get you those A's!
 
 ## ℹ️ Overview
 
-A paragraph explaining your work, who you are, and why you made it.
-
+We made this program to help students like us stay motivated to study. Doing so dozens to hundreds of flashcards gets mundane and tiring, so to solve that problem, 
+Flashcard Farm was born. This colourful and vibrant studying tool will keep you captivated. An animal joins your farm with every correct answer and leaves your
+farm with every incorrect answer. This program also has timer features so your speed and knowledge to ensure you truly know it all. Download Flashcard Farm to enhance
+your studying experience :)
 
 ### ✍️ Authors
 
