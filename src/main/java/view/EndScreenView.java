@@ -82,22 +82,17 @@ public class EndScreenView extends javax.swing.JPanel {
         scoreBoard.add(animalsKilled);
         scoreBoard.add(reviewAnswers);
 
-        // Add scoreBoard to endScreenPanel
         endScreenPanel.add(scoreBoard);
 
-        // Add endScreenPanel to main panel
         add(endScreenPanel);
 
-        // Background settings
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
         background.setBounds(0, 0, 927, 591);
         add(background);
 
-        // Ensure background is at the back
         setComponentZOrder(background, 1);
         setComponentZOrder(endScreenPanel, 0);
 
-        // Set preferred size for the panel
         setPreferredSize(new java.awt.Dimension(927, 591));
     }
 }
