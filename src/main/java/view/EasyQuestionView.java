@@ -94,7 +94,7 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
         questionNumberLabel.setText("Question " + currentQuestionIndex + "/" + totalNumQuestions);
 
         questionLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
-        questionLabel.setText("Question: " + this.currentQuestion);
+        questionLabel.setText(this.currentQuestion);
 
         final javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);

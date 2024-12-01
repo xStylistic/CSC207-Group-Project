@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import entity.User;
 import use_case.game.DataAccessException;
 import use_case.game.GameDataAccessInterface;
 
@@ -13,7 +12,7 @@ import use_case.game.GameDataAccessInterface;
  */
 public class GameDataAccessObject implements GameDataAccessInterface {
     @Override
-    public File requestFile(User user) throws DataAccessException {
+    public File requestFile() throws DataAccessException {
         final JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a TXT File");
         final int result = fileChooser.showOpenDialog(null);

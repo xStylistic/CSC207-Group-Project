@@ -3,7 +3,6 @@ package use_case.game_interactor;
 import data_access.GameDataAccessObject;
 import entity.AbstractGame;
 import entity.QuestionAnswer;
-import entity.User;
 import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
 
@@ -15,7 +14,7 @@ public class GameInteractorTest {
 
     GameDataAccessObject gameDAO = new GameDataAccessObject() {
         @Override
-        public File requestFile(User user) {
+        public File requestFile() {
             final JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Choose a TXT File");
             final int result = fileChooser.showOpenDialog(null);
