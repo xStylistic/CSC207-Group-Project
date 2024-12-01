@@ -18,7 +18,7 @@ public class Animal {
         this.locations = locations;
         this.fact = fact;
         this.xCoordinate = 100 + Math.random() * 723;
-        this.yCoordinate = 150 + Math.random() * 30;
+        this.yCoordinate = 440 + Math.random() * 10;
     }
 
     public String getName() {
@@ -26,7 +26,7 @@ public class Animal {
     }
 
     public String getTypeAnimal() {
-        return typeAnimal;
+        return typeAnimal.toLowerCase();
     }
 
     public String getFamily() {

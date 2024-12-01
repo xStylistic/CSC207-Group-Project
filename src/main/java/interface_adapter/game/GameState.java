@@ -18,6 +18,7 @@ public class GameState {
     private File file;
     private String error;
     private QuestionAnswer currentQuestionAnswer;
+    private Integer currentRemainingTime;
     private String message;
     private int difficulty;
 
@@ -53,6 +54,14 @@ public class GameState {
 
     public QuestionAnswer getCurrentQuestionAnswer() {
         return currentQuestionAnswer;
+    }
+
+    public void setCurrentRemainingTime(Integer currentRemainingTime) {
+        this.currentRemainingTime = currentRemainingTime;
+    }
+
+    public Integer getCurrentRemainingTime() {
+        return currentRemainingTime;
     }
 
     public void setMessage(String message) {

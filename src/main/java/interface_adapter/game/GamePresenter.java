@@ -67,11 +67,12 @@ public class GamePresenter implements GameOutputBoundary {
      * Prepares the next question view.
      *
      * @param questionAnswer The next question to display.
+     * @param answerTime The time limit of the next question
      */
-    public void prepareQuestionView(QuestionAnswer questionAnswer) {
+    public void prepareQuestionView(QuestionAnswer questionAnswer, Integer answerTime) {
         gameViewModel.getState().setCurrentQuestionAnswer(questionAnswer);
+        gameViewModel.getState().setCurrentRemainingTime(answerTime);
         gameViewModel.getState().setMessage("Answer the question below:");
-//        gameViewModel.firePropertyChanged();
         gameViewModel.setViewName("questions");
         gameViewModel.firePropertyChanged("pageChange");
     }

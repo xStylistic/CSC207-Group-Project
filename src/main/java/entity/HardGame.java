@@ -6,14 +6,32 @@ import java.util.List;
  * Medium Game implementation.
  */
 public class HardGame extends AbstractGame {
-    private static final int HARD_PER_QUESTION_TIME = 180;
-    private QuestionTimer timer;
+    private static final int HARD_PER_QUESTION_TIME = 30;
+    private GameTimer timer;
     private boolean shouldMoveOn;
 
     public HardGame(List<QuestionAnswer> questionAnswers) {
-        super(questionAnswers, "medium");
+        super(questionAnswers, "hard");
 
-        this.timer = new QuestionTimer(
+        for (QuestionAnswer questionAnswer : questionAnswers) {
+            questionAnswer.setTimer(
+                    new QuestionTimer(
+                            HARD_PER_QUESTION_TIME,
+                            () -> {
+                                // What happens when timer is up.
+                                System.out.println("Time is up");
+                                forceMoveOn();
+                            },
+                            () -> {
+                                // What happens every second
+                                System.out.println("Tick");
+                                // Timer Updates here
+                            }
+                    )
+            );
+        }
+
+        this.timer = new GameTimer(
                 HARD_PER_QUESTION_TIME,
                 () -> {
                     // What happens when timer is up.
@@ -30,14 +48,28 @@ public class HardGame extends AbstractGame {
 
     public void forceMoveOn() {
         // Logic for disabling input on the current page
-        shouldMoveOn = true;
+        getCurrentQuestion().setIsTimeUp();
+    }
+
+    public void moveToNextQuestion() {
+        super.moveToNextQuestion();
+        getCurrentQuestion().setTimer(
+                new QuestionTimer(
+                        HARD_PER_QUESTION_TIME,
+                        () -> {
+                            System.out.println("Time is up");
+                            forceMoveOn();
+                        },
+                        () -> System.out.println("Tick: " + getCurrentQuestion().getTimer().getRemainingTime())
+                )
+        );
     }
 
     public boolean getShouldMoveOn() {
         return shouldMoveOn;
     }
 
-    public QuestionTimer getTimer() {
+    public GameTimer getTimer() {
         return timer;
     }
 }

@@ -48,12 +48,8 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
         newAnimePanel.setBackground(new java.awt.Color(255, 204, 102));
         newAnimalHolderPanel.setBackground(new java.awt.Color(255, 238, 173));
 
-        if (animalsToDisplay.size() >= 1) {
-            animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getName() + ".png")));
-        } else {
-            animal.setIcon(new javax.swing.ImageIcon(getClass()
-                    .getResource("/alpaca.png")));
-        }
+        System.out.println(getClass().getResource("/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getTypeAnimal() + ".png"));
+        animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animalsToDisplay.get(animalsToDisplay.size() - 1).getTypeAnimal() + ".png")));
         animal.repaint();
         animal.revalidate();
 
@@ -172,7 +168,7 @@ public class UnlockNewAnimalView extends javax.swing.JPanel implements ActionLis
 
         for (Animal animal : animalsToDisplay) {
             JLabel animalLabel = new JLabel();
-            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal() + ".png")));
             animalLabel.setBounds(
                     (int) animal.getxCoordinate(),
                     (int) animal.getyCoordinate(),

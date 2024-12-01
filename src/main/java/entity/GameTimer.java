@@ -3,22 +3,21 @@ package entity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class QuestionTimer {
+public class GameTimer {
     private final Timer timer = new Timer();
     private final int timeLimit;
     private int remainingTime;
     private final Runnable onTimeUpCallback;
-    private Runnable onTickCallback;
+    private final Runnable onTickCallback;
 
-    public QuestionTimer(int timeLimit, Runnable onTimeUpCallback, Runnable onTickCallback) {
+    public GameTimer(int timeLimit, Runnable onTimeUpCallback, Runnable onTickCallback) {
         this.timeLimit = timeLimit;
         this.onTimeUpCallback = onTimeUpCallback;
         this.onTickCallback = onTickCallback;
         this.remainingTime = timeLimit;
     }
 
-    public void start(Runnable onTickCallback) {
-        this.onTickCallback = onTickCallback;
+    public void start() {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -40,10 +39,6 @@ public class QuestionTimer {
 
     public int getTimeLimit() {
         return this.timeLimit;
-    }
-
-    public void setRemainingTime(int remainingTime) {
-        this.remainingTime = remainingTime;
     }
 
     public int getRemainingTime() {

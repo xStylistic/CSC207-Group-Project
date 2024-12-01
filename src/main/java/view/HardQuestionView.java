@@ -1,6 +1,7 @@
 package view;
 
 import entity.Animal;
+import entity.QuestionTimer;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
 import interface_adapter.game.GameViewModel;
@@ -22,12 +23,28 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
     private List<Animal> animalsToDisplay;
-    // TODO: CONNECT TIMER LOGIC SASS
+    private final QuestionTimer questionTimer;
 
     public HardQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
         this.gameViewModel.addPropertyChangeListener(this);
         this.currentQuestion = gameViewModel.getState().getCurrentQuestionAnswer().getQuestion();
+
+        this.questionTimer = gameViewModel.getState().getCurrentQuestionAnswer().getTimer();
+        this.questionTimer.start(() -> {
+            SwingUtilities.invokeLater(() -> {
+                if (questionTimer.getRemainingTime() > 0) {
+                    timeRemainingLabel.setText("Time Remaining: " + questionTimer.getRemainingTime());
+                    timeRemainingLabel.repaint();
+                }
+                else {
+                    // Submit an incorrect answer (I put it as blank assuming that the correct answer is never blank)
+                    gameController.submitAnswer("");
+                    gameController.goToNextQuestion(true);
+                }
+            });
+        });
+
         this.entireQuestionContextPanel = new JPanel();
         this.animalsToDisplay = gameViewModel.getState().getAnimalsToDisplay();
 
@@ -40,7 +57,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
         answerTextArea = new javax.swing.JTextArea();
         questionNumberLabel = new javax.swing.JLabel();
         questionLabel = new javax.swing.JLabel();
-        timeElapsedLabel = new javax.swing.JLabel();
+        timeRemainingLabel = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setLayout(null);
@@ -61,8 +78,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
         questionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
         questionLabel.setText("Question: " + this.currentQuestion);
 
-        timeElapsedLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        timeElapsedLabel.setText("Time Elapsed: "); // TODO: SASWATA
+        timeRemainingLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
 
         javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -80,7 +96,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
                                 .addGap(21, 21, 21)
                                 .addComponent(questionNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(timeElapsedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(timeRemainingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21))
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanelLayout.createSequentialGroup()
@@ -94,7 +110,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
                                 .addContainerGap(18, Short.MAX_VALUE)
                                 .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(questionNumberLabel)
-                                        .addComponent(timeElapsedLabel))
+                                        .addComponent(timeRemainingLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                                 .addComponent(questionLabel)
                                 .addGap(109, 109, 109)
@@ -128,7 +144,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
 
         for (Animal animal : animalsToDisplay) {
             JLabel animalLabel = new JLabel();
-            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal()  + ".png")));
             animalLabel.setBounds(
                     (int) animal.getxCoordinate(),
                     (int) animal.getyCoordinate(),
@@ -163,7 +179,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsedLabel;
+    private javax.swing.JLabel timeRemainingLabel;
 
 
     @Override

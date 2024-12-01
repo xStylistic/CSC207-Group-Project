@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     private String currentQuestion;
     private JPanel entireQuestionContextPanel;
     private List<Animal> animalsToDisplay;
-    // TODO: CONNECT TIMER LOGIC SASS
 
     public EasyQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
@@ -36,7 +36,6 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
     }
 
     private void initComponents() {
-
         questionPanel = new JPanel();
         checkButton = new javax.swing.JButton();
         answerTextArea = new javax.swing.JTextArea();
@@ -62,9 +61,6 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
 
         questionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 16));
         questionLabel.setText("Question: " + this.currentQuestion);
-
-        timeElapsedLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14));
-        timeElapsedLabel.setText("Time Elapsed: "); // TODO: SASWATA
 
         javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -130,7 +126,9 @@ public class EasyQuestionView extends JPanel implements ActionListener, Property
 
         for (Animal animal : animalsToDisplay) {
             JLabel animalLabel = new JLabel();
-            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getName() + ".png")));
+            System.out.println(getClass().getResource("/" + animal.getTypeAnimal() + ".png"));
+            System.out.println(getClass());
+            animalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + animal.getTypeAnimal() + ".png")));
             animalLabel.setBounds(
                     (int) animal.getxCoordinate(),
                     (int) animal.getyCoordinate(),

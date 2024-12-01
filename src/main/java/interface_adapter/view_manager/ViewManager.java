@@ -25,8 +25,8 @@ public class ViewManager {
                     if (evt.getPropertyName().equals("pageChange")) {
                         String viewName = gameViewModel.getViewName();
 
-                        if (viewName.equals("difficulty")) // SETTING CURRENT PAGE TO BE DIFFICULTY
-                        {
+                        // SETTING CURRENT PAGE TO BE DIFFICULTY
+                        if ("difficulty".equals(viewName)) {
                             final DifficultyView difficultyView = new DifficultyView(gameViewModel, gameController);
                             this.currView = difficultyView;
                             difficultyView.setVisible(true);
@@ -40,12 +40,12 @@ public class ViewManager {
                             layout.revalidate();
                             layout.repaint();
                         }
-                        else if (viewName.equals("questions")) // SETTING CURRENT PAGE TO BE QUESTIONS
-                        {
 
+                        // SETTING CURRENT PAGE TO BE QUESTIONS
+                        else if ("questions".equals(viewName)) {
                             // Render depending on which type of question it is on
                             // check type of question
-                            int difficulty = gameViewModel.getState().getDifficulty();
+                            final int difficulty = gameViewModel.getState().getDifficulty();
 
                             layout.remove(currView);
                             // EASY = 0
@@ -79,8 +79,9 @@ public class ViewManager {
                             layout.revalidate();
                             layout.repaint();
                         }
-                        else if (viewName.equals("reward")) // Going to Reward Page
-                        {
+
+                        // Going to Reward Page
+                        else if ("reward".equals(viewName)) {
                             layout.remove(currView);
 
                             final UnlockNewAnimalView unlockNewAnimalView = new UnlockNewAnimalView(gameViewModel);
@@ -92,8 +93,9 @@ public class ViewManager {
                             layout.revalidate();
                             layout.repaint();
                         }
-                        else if (viewName.equals("end"))    // Going to the end screen
-                        {
+
+                        // Going to the end screen
+                        else if ("end".equals(viewName)) {
                             final EndScreenView endScreenView = new EndScreenView();
                             endScreenView.setVisible(true);
 
@@ -110,8 +112,10 @@ public class ViewManager {
         );
 
         layout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        layout.setMinimumSize(new Dimension(927, 591));  // Set minimum size
-        layout.setPreferredSize(new Dimension(927, 591));  // Set minimum size
+        // Set minimum size:
+        layout.setMinimumSize(new Dimension(927, 591));
+        // Set preferred size:
+        layout.setPreferredSize(new Dimension(927, 591));
     }
 
     public JFrame getCurrLayout() {

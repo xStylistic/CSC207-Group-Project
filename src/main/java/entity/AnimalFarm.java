@@ -44,7 +44,6 @@ public class AnimalFarm {
         if (!selectedAnimals.isEmpty()) {
             final int index = rand.nextInt(selectedAnimals.size());
             final Animal animalToAdd = selectedAnimals.get(index);
-            // Increase the number of the animal
             currentAnimals.add(animalToAdd);
         }
     }
@@ -52,39 +51,18 @@ public class AnimalFarm {
     /**
      * Remove specific animals from the farm.
      * @param removeCount the number of animals to remove
-     * @return List of removed animal names for tracking/notification purposes
+     * @return List of removed animal names for tracking/notification purposes.
      */
     public void removeAnimal(int removeCount) {
-        if (!currentAnimals.isEmpty()) {
-            for (int i = 0; i < removeCount; i++) {
-                final int randomInt = rand.nextInt(currentAnimals.size());
-                currentAnimals.remove(randomInt);
-            }
-        }
-
-        // Remove animals while we still have animals available and haven't hit our target
-        int animalsRemoved = 0;
-        while (!availableForRemoval.isEmpty() && animalsRemoved < removeCount) {
-            int index = rand.nextInt(availableForRemoval.size());
-            String nameToRemove = availableForRemoval.get(index);
-
-            // Update the currentAnimals map
-            int currentCount = currentAnimals.get(nameToRemove);
-            if (currentCount > 1) {
-                currentAnimals.put(nameToRemove, currentCount - 1);
-            } else {
-                currentAnimals.remove(nameToRemove);
-            }
-
-            // Remove one instance of this animal from available pool
-            availableForRemoval.remove(index);
-
-            animalsRemoved++;
+        int i = 0;
+        while (!currentAnimals.isEmpty() && i < removeCount) {
+            currentAnimals.remove(0);
+            i++;
         }
     }
 
     public List<String> getAvailableAnimals() {
-        return availableAnimals;
+        return this.availableAnimals;
     }
     
     public List<Animal> getSelectedAnimals() {
