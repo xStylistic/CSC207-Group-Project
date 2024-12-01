@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.*;
 
 import entity.Animal;
+import entity.GameTimer;
 import entity.QuestionTimer;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameState;
@@ -28,6 +29,9 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
     private JPanel entireQuestionContextPanel;
     private List<Animal> animalsToDisplay;
     private final QuestionTimer questionTimer;
+    private static GameTimer gameTimer;
+    private int currentQuestionIndex;
+    private int totalNumQuestions;
 
     private javax.swing.JTextArea answerTextArea;
     private javax.swing.JLabel background;
@@ -35,13 +39,15 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeElapsedLabel;
+    private static javax.swing.JLabel timeElapsedLabel;
     private javax.swing.JLabel timerLabel;
 
     public MediumQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
         this.gameViewModel.addPropertyChangeListener(this);
         this.currentQuestion = gameViewModel.getState().getCurrentQuestionAnswer().getQuestion();
+        this.currentQuestionIndex = gameViewModel.getState().getGame().getCurrentQuestionIndex() + 1;
+        this.totalNumQuestions = gameViewModel.getState().getGame().getTotalNumQuestions();
 
         this.entireQuestionContextPanel = new JPanel();
         this.animalsToDisplay = gameViewModel.getState().getAnimalsToDisplay();
@@ -49,10 +55,18 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
         initComponents();
 
         this.questionTimer = gameViewModel.getState().getCurrentQuestionAnswer().getTimer();
-        this.questionTimer.start(() -> SwingUtilities.invokeLater(() -> handleTimer()));
+        this.questionTimer.start(() -> SwingUtilities.invokeLater(() -> handleQuestionTimer()));
+
+        gameTimer = gameViewModel.getState().getGame().getTimer();
+//        this.gameTimer.start(() -> SwingUtilities.invokeLater(() -> handleGameTimer()));
     }
 
-    private void handleTimer() {
+    public static void handleGameTimer() {
+        timeElapsedLabel.setText("Time Elapsed: " + gameTimer.getSecondsElapsed());
+        timeElapsedLabel.repaint();
+    }
+
+    private void handleQuestionTimer() {
         if (questionTimer.getRemainingTime() > 0) {
             timerLabel.setText("" + questionTimer.getRemainingTime());
             timerLabel.repaint();
@@ -87,7 +101,7 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
         answerTextArea.setRows(5);
 
         questionNumberLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
-        questionNumberLabel.setText("Question ");
+        questionNumberLabel.setText("Question " + currentQuestionIndex + "/" + totalNumQuestions);
 
         questionLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
         questionLabel.setText(this.currentQuestion);

@@ -1,5 +1,6 @@
 package interface_adapter.game;
 
+import entity.AbstractGame;
 import entity.Animal;
 import entity.QuestionAnswer;
 
@@ -18,9 +19,9 @@ public class GameState {
     private File file;
     private String error;
     private QuestionAnswer currentQuestionAnswer;
-    private Integer currentRemainingTime;
     private String message;
     private int difficulty;
+    private AbstractGame game;
 
     private List<Animal> animalsToDisplay;
 
@@ -56,14 +57,6 @@ public class GameState {
         return currentQuestionAnswer;
     }
 
-    public void setCurrentRemainingTime(Integer currentRemainingTime) {
-        this.currentRemainingTime = currentRemainingTime;
-    }
-
-    public Integer getCurrentRemainingTime() {
-        return currentRemainingTime;
-    }
-
     public void setMessage(String message) {
         this.message = message;
     }
@@ -86,5 +79,13 @@ public class GameState {
      */
     public List<Animal> getAnimalsToDisplay() {
         return animalsToDisplay;
+    }
+
+    public void setGame(AbstractGame game) {
+        this.game = game;
+    }
+
+    public AbstractGame getGame() {
+        return this.game;
     }
 }

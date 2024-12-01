@@ -3,6 +3,7 @@ package use_case.game;
 import java.io.File;
 import java.util.List;
 
+import entity.AbstractGame;
 import entity.Animal;
 import entity.QuestionAnswer;
 
@@ -22,9 +23,9 @@ public interface GameOutputBoundary {
      */
     void prepareFailView(String errorMessage);
 
-    void prepareQuestionView(QuestionAnswer questionAnswer, Integer answerTime);
+    void prepareQuestionView(QuestionAnswer questionAnswer, AbstractGame game);
 
-    void prepareEndGameView();
+    void prepareEndGameView(AbstractGame game);
 
     void prepareAnswerResultView(QuestionAnswer questionAnswer);
 

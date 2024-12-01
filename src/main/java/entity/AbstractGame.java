@@ -15,6 +15,7 @@ public abstract class AbstractGame {
     private int currentQuestionIndex;
     private final AnimalFarm animalFarm;
     private final String gDifficulty;
+    private GameTimer timer;
 
     public AbstractGame(List<QuestionAnswer> questionAnswers, String difficulty) {
         this.questionAnswers = new ArrayList<>(questionAnswers);
@@ -35,6 +36,10 @@ public abstract class AbstractGame {
         };
         this.animalFarm = new AnimalFarm(animals);
         this.gDifficulty = difficulty;
+        this.timer = new GameTimer(
+                () -> { },
+                () -> System.out.println("Elapsed: " + this.timer.getSecondsElapsed() + " seconds.")
+        );
     }
 
     /**
@@ -61,22 +66,13 @@ public abstract class AbstractGame {
         return this.questionAnswerTimes;
     }
 
-    /**
-     * Gets the number of correctly answered questions.
-     * @return the number of correct answers.
-     */
-    public int getNumberCorrect() {
-        int correct = 0;
-        for (Boolean value : this.questionAnswersCorrect.values()) {
-            if (Boolean.TRUE.equals(value)) {
-                correct++;
-            }
-        }
-        return correct;
-    }
-
     public int getNumberAnswered() {
         return this.questionAnswersCorrect.size();
+    }
+
+    // For you Zeke!!
+    public int getTotalTimeElapsed() {
+        return this.timer.getSecondsElapsed();
     }
 
     /**
@@ -127,6 +123,18 @@ public abstract class AbstractGame {
     }
 
     public GameTimer getTimer() {
-        return null;
+        return this.timer;
+    }
+
+    public int getCurrentQuestionIndex() {
+        return this.currentQuestionIndex;
+    }
+
+    public int getTotalNumQuestions() {
+        return this.questionAnswers.size();
+    }
+
+    public void setTimer(GameTimer timer) {
+        this.timer = timer;
     }
 }
