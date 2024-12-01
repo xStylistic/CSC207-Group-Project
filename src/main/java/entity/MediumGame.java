@@ -52,6 +52,11 @@ public class MediumGame extends AbstractGame {
 
     public void moveToNextQuestion() {
         super.moveToNextQuestion();
+
+        // Check here to prevent moveToNextQuestion from failing at the last step
+        if (this.isGameFinished()) {
+            return;
+        }
         getCurrentQuestion().setTimer(
                 new QuestionTimer(
                         MEDIUM_PER_QUESTION_TIME,
@@ -62,10 +67,6 @@ public class MediumGame extends AbstractGame {
                         () -> System.out.println("Tick" + getCurrentQuestion().getTimer().getRemainingTime())
                 )
         );
-    }
-
-    public boolean getShouldMoveOn() {
-        return shouldMoveOn;
     }
 
     public GameTimer getTimer() {

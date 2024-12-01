@@ -53,6 +53,11 @@ public class HardGame extends AbstractGame {
 
     public void moveToNextQuestion() {
         super.moveToNextQuestion();
+
+        // Check here to prevent moveToNextQuestion from failing at the last step
+        if (this.isGameFinished()) {
+            return;
+        }
         getCurrentQuestion().setTimer(
                 new QuestionTimer(
                         HARD_PER_QUESTION_TIME,
