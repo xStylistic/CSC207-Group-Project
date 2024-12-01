@@ -40,7 +40,9 @@ public class QuestionAnswer {
     public boolean setUserAnswer(String userAnswer) {
         this.userAnswer = userAnswer;
         this.validateAnswer();
-        this.timer.stop();
+        if (this.timer != null) {
+            this.timer.stop();
+        }
         return this.isCorrect;
     }
 
