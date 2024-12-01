@@ -89,7 +89,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> HardQuestionView.handleGameTimer()));
             }
 
-
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
             gameOutputBoundary.prepareQuestionView(firstQuestion, this.game);
         }
@@ -120,26 +119,22 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
-                if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
-                            - currentQuestionAnswer.getTimer().getRemainingTime());
-                }
+                game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                        - currentQuestionAnswer.getTimer().getRemainingTime());
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Calls updateQuestion False");
                 game.updateQuestionAnswersCorrect(false);
-                if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
-                            - currentQuestionAnswer.getTimer().getRemainingTime());
-                }
+                game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                        - currentQuestionAnswer.getTimer().getRemainingTime());
             }
 
         }
     }
 
     /**
-     * either move to the next question from the reward page or go to the reward page
+     * either move to the next question from the reward page or go to the reward page.
      * @param justSubmitted indicates the current page was the submit button, therefore we should test for reward page
      */
     public void moveAnswerToNextQuestion(boolean justSubmitted) {
