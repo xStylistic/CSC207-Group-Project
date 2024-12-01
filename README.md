@@ -11,7 +11,7 @@
 ## ℹ️ Overview
 
 We made this program to help students like us stay motivated to study. Doing so dozens to hundreds of flashcards gets mundane and tiring, so to solve that problem, 
-Flashcard Farm was born. This colourful and vibrant studying tool will keep you captivated. An animal joins your farm with every correct answer and leaves your
+Flashcard Farm was born. This colourful and vibrant studying tool will be sure to keep you captivated. An animal joins your farm with every correct answer and leaves your
 farm with every incorrect answer. This program also has timer features so your speed and knowledge to ensure you truly know it all. Download Flashcard Farm to enhance
 your studying experience :)
 
@@ -34,6 +34,7 @@ Zeke Weng | ZekeWeng
 
 - Download all the files from this repository and launch a Java IDE
 - Minimum JDK Requirements: Java SE 11
+- After downloading all the files, go to: src -> main -> java -> app -> MainApplication and run
 
 ## 💭 Feedback and Contributing
 
