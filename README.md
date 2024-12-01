@@ -36,6 +36,10 @@ Zeke Weng | ZekeWeng
 - Minimum JDK Requirements: Java SE 11
 - After downloading all the files, go to: src -> main -> java -> app -> MainApplication and run
 
+## License
+
+All rights belong to the authors
+
 ## 💭 Feedback and Contributing
 
 Add a link to the Discussions tab in your repo and invite users to open issues for bugs/feature requests.
