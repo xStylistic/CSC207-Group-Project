@@ -3,6 +3,8 @@ package app;
 import data_access.GameDataAccessObject;
 import use_case.game.GameDataAccessInterface;
 
+import javax.swing.*;
+
 /**
  * An application where we can view and add to a note stored by a user.
  * <p>
@@ -47,9 +49,13 @@ public class MainApplication {
         final GameDataAccessInterface gameDataAccess = new GameDataAccessObject();
 
         final GameAppBuilder gameBuilder = new GameAppBuilder();
-        gameBuilder.addGameDao(gameDataAccess)
+        JFrame mainFrame = gameBuilder.addGameDao(gameDataAccess)
                 .addGameView()
                 .addGameUseCase()
-                .build().setVisible(true);
+                .build();
+        mainFrame.setSize(927, 619);
+        mainFrame.setResizable(false);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setVisible(true);
     }
 }
