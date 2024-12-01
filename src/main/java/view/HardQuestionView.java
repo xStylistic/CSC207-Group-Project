@@ -160,7 +160,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
         /* Set layout for entireQuestionContextPanel */
         entireQuestionContextPanel.setLayout(null);
         // Set size to match background
-        entireQuestionContextPanel.setBounds(0, 0, 927, 591);
+        entireQuestionContextPanel.setBounds(0, 0, 927, 619);
 
         /* Setup background */
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
@@ -197,7 +197,7 @@ public class HardQuestionView extends JPanel implements ActionListener, Property
         this.add(entireQuestionContextPanel);
 
         // Set preferred size for the main panel
-        setPreferredSize(new java.awt.Dimension(927, 591));
+        setPreferredSize(new java.awt.Dimension(927, 619));
     }
 
     @Override

@@ -156,12 +156,9 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
 
         this.setLayout(null);
 
-        /* Set layout for entireQuestionContextPanel */
         entireQuestionContextPanel.setLayout(null);
-        // Set size to match background
-        entireQuestionContextPanel.setBounds(0, 0, 927, 591);
+        entireQuestionContextPanel.setBounds(0, 0, 927, 619);
 
-        /* Setup background */
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png")));
         background.setBounds(0, 0, 927, 591);
 
@@ -179,24 +176,17 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
         background.revalidate();
         background.repaint();
 
-        // Setup questionPanel bounds - centered and smaller than background
-        // Similar sizing to DifficultyView
         questionPanel.setBounds(50, 90, 800, 194);
 
-        // Add components in correct order (background first, then panel on top)
-        // Question panel will be on top
         entireQuestionContextPanel.add(questionPanel);
-        // Background will be behind
         entireQuestionContextPanel.add(background);
 
-        // Move background to back
         entireQuestionContextPanel.setComponentZOrder(background, 1);
         entireQuestionContextPanel.setComponentZOrder(questionPanel, 0);
 
         this.add(entireQuestionContextPanel);
 
-        // Set preferred size for the main panel
-        setPreferredSize(new java.awt.Dimension(927, 591));
+        setPreferredSize(new java.awt.Dimension(927, 619));
     }
 
     @Override

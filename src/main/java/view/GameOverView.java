@@ -1,10 +1,15 @@
 package view;
 
 /**
- *
- * @author bonnychen
+ * Gameover screen after all animals have died
  */
 public class GameOverView extends javax.swing.JPanel {
+
+    private javax.swing.JPanel gameOverPanel;
+    private javax.swing.JLabel background;
+    private javax.swing.JButton mainMenuButton;
+    private javax.swing.JButton restartButton;
+    private javax.swing.JLabel titleLabel;
 
     public GameOverView() {
         initComponents();
@@ -75,7 +80,7 @@ public class GameOverView extends javax.swing.JPanel {
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farm.png"))); 
         add(background);
-        background.setBounds(0, 0, 940, 570);
+        background.setBounds(0, 0, 940, 591);
     }
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,11 +90,4 @@ public class GameOverView extends javax.swing.JPanel {
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-
-
-    private javax.swing.JPanel gameOverPanel;
-    private javax.swing.JLabel background;
-    private javax.swing.JButton mainMenuButton;
-    private javax.swing.JButton restartButton;
-    private javax.swing.JLabel titleLabel;
 }
