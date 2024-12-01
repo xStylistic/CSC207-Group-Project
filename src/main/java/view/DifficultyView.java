@@ -3,6 +3,8 @@ package view;
 import interface_adapter.game.GameController;
 import interface_adapter.game.GameViewModel;
 
+import java.awt.*;
+
 /**
  * The Blueprint for the difficulty view.
  */
@@ -35,19 +37,16 @@ public class DifficultyView extends javax.swing.JPanel {
         hard = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
-        // Set layout for the DifficultyView
         setLayout(null);
 
-        // Configure the difficultyPanel
         difficultyPanel.setBackground(new java.awt.Color(255, 183, 132));
         difficultyPanel.setOpaque(true);
 
-        // Configure the title label
         title.setFont(new java.awt.Font("Helvetica Neue", 1, 28));
         title.setText("CHOOSE YOUR DIFFICULTY");
 
-        // Configure the easy button
-        easy.setBackground(new java.awt.Color(165, 235, 165));
+        // Easy Button
+        easy.setBackground(new Color(165, 235, 165));
         easy.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
         easy.setText("EASY");
         easy.setOpaque(true);
@@ -56,8 +55,8 @@ public class DifficultyView extends javax.swing.JPanel {
         easy.setFocusPainted(false);
         easy.addActionListener(evt -> easyActionPerformed(evt));
 
-        // Configure the medium button
-        medium.setBackground(new java.awt.Color(255, 204, 51));
+        // Medium Button
+        medium.setBackground(new Color(255, 204, 51));
         medium.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
         medium.setText("MEDIUM");
         medium.setOpaque(true);
@@ -66,8 +65,8 @@ public class DifficultyView extends javax.swing.JPanel {
         medium.setFocusPainted(false);
         medium.addActionListener(evt -> mediumActionPerformed(evt));
 
-        // Configure the hard button
-        hard.setBackground(new java.awt.Color(255, 102, 102));
+        // Hard Button
+        hard.setBackground(new Color(255, 102, 102));
         hard.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
         hard.setText("HARD");
         hard.setOpaque(true);
@@ -76,7 +75,6 @@ public class DifficultyView extends javax.swing.JPanel {
         hard.setFocusPainted(false);
         hard.addActionListener(evt -> hardActionPerformed(evt));
 
-        // Set layout for the difficultyPanel
         javax.swing.GroupLayout difficultyPanelLayout = new javax.swing.GroupLayout(difficultyPanel);
         difficultyPanel.setLayout(difficultyPanelLayout);
         difficultyPanelLayout.setHorizontalGroup(

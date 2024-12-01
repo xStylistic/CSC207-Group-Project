@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -34,7 +35,8 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionNumberLabel;
     private javax.swing.JPanel questionPanel;
-    private javax.swing.JLabel timeRemainingLabel;
+    private javax.swing.JLabel timeElapsedLabel;
+    private javax.swing.JLabel timerLabel;
 
     public MediumQuestionView(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
@@ -52,8 +54,8 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
 
     private void handleTimer() {
         if (questionTimer.getRemainingTime() > 0) {
-            timeRemainingLabel.setText("Time Remaining: " + questionTimer.getRemainingTime());
-            timeRemainingLabel.repaint();
+            timerLabel.setText("" + questionTimer.getRemainingTime());
+            timerLabel.repaint();
         }
         else {
             // Submit an incorrect answer (I put it as blank assuming that the correct answer is never blank)
@@ -68,8 +70,9 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
         answerTextArea = new javax.swing.JTextArea();
         questionNumberLabel = new javax.swing.JLabel();
         questionLabel = new javax.swing.JLabel();
-        timeRemainingLabel = new javax.swing.JLabel();
+        timeElapsedLabel = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
+        timerLabel = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -84,12 +87,19 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
         answerTextArea.setRows(5);
 
         questionNumberLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
-        questionNumberLabel.setText("Question -/-");
+        questionNumberLabel.setText("Question ");
 
         questionLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 16));
-        questionLabel.setText("Question: " + this.currentQuestion);
+        questionLabel.setText(this.currentQuestion);
 
-        timeRemainingLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
+        timeElapsedLabel.setFont(new java.awt.Font(HELVETICA_NEUE, 0, 14));
+        timeElapsedLabel.setText("Time Elapsed: ");
+
+        // Timer Label
+        timerLabel.setFont(new Font(HELVETICA_NEUE, Font.PLAIN, 16));
+        timerLabel.setForeground(new Color(255, 102, 102));
+        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timerLabel.setText("00");
 
         final javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
         questionPanel.setLayout(questionPanelLayout);
@@ -97,10 +107,10 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
                 questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                 questionPanelLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(315, 315, 315))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(315, 315, 315))
                         .addGroup(questionPanelLayout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(questionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 651,
@@ -112,38 +122,42 @@ public class MediumQuestionView extends JPanel implements ActionListener, Proper
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                                         javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(timeRemainingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135,
+                                .addComponent(timeElapsedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21))
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         questionPanelLayout.createSequentialGroup()
-                                        .addContainerGap(51, Short.MAX_VALUE)
-                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 657,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(52, Short.MAX_VALUE)))
+                                                .addContainerGap(51, Short.MAX_VALUE)
+                                                .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                                        .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 657,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(52, Short.MAX_VALUE)))
         );
         questionPanelLayout.setVerticalGroup(
                 questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                 questionPanelLayout.createSequentialGroup()
-                                .addContainerGap(18, Short.MAX_VALUE)
-                                .addGroup(questionPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(questionNumberLabel).addComponent(timeRemainingLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13,
-                                        Short.MAX_VALUE).addComponent(questionLabel)
-                                .addGap(109, 109, 109)
-                                .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                                        .addContainerGap(18, Short.MAX_VALUE)
+                                        .addGroup(questionPanelLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(questionNumberLabel).addComponent(timeElapsedLabel))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13,
+                                                Short.MAX_VALUE).addComponent(questionLabel)
+                                        .addGap(109, 109, 109)
+                                        .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
                         .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                         questionPanelLayout.createSequentialGroup()
-                                        .addContainerGap(79, Short.MAX_VALUE)
-                                        .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 88,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(63, Short.MAX_VALUE)))
+                                                .addContainerGap(10, Short.MAX_VALUE)
+                                                .addComponent(timerLabel)
+                                                .addGap(40)
+                                                .addComponent(answerTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 88,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap(63, Short.MAX_VALUE)))
         );
 
         checkButton.addActionListener(
