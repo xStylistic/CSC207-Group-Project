@@ -27,7 +27,6 @@ public class GameController {
      * Sets the game difficulty.
      */
     public void setDifficulty() {
-        // change view by calling the interactor .... to eventually change the game curr view.
         gameStateInteractor.gatherDifficultyForGame();
     }
 
@@ -50,7 +49,8 @@ public class GameController {
     }
 
     /**
-     * Function to go to the next question from an answer
+     * Function to go to the next question from an answer.
+     * @param justSubmitted if submitted
      */
     public void goToNextQuestion(boolean justSubmitted) {
         gameStateInteractor.moveAnswerToNextQuestion(justSubmitted);
@@ -59,5 +59,18 @@ public class GameController {
     public String getFileName() {
         return gameInteractor.getFileName();
     }
+
+    public int getScore() {
+        return gameStateInteractor.getScore();
+    }
+
+    public int getAverageTime() {
+        return gameStateInteractor.getAvgTime();
+    }
+
+    public int getTotalTime() {
+        return gameStateInteractor.getTotalTime();
+    }
+
 }
 

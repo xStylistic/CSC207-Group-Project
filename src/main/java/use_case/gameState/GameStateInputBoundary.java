@@ -38,4 +38,10 @@ public interface GameStateInputBoundary {
     void gatherDifficultyForGame();
 
     void moveAnswerToNextQuestion(boolean justSubmitted);
+
+    int getScore();
+
+    int getTotalTime();
+
+    int getAvgTime();
 }

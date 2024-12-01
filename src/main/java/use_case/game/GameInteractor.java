@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import entity.QuestionAnswer;
-import entity.User;
 
 /**
  * The "Use Case Interactor" for our two File-related use cases of refreshing
@@ -18,7 +17,6 @@ import entity.User;
 public class GameInteractor implements GameInputBoundary {
     private final GameDataAccessInterface gameDataAccessInterface;
     private final GameOutputBoundary gameOutputBoundary;
-    private final User user = new User("jonathan_calver2", "abc123");
     private File file;
     private final ArrayList<QuestionAnswer> questionsAnswers;
 
@@ -37,7 +35,7 @@ public class GameInteractor implements GameInputBoundary {
     @Override
     public File executeRetrieval() {
         try {
-            this.file = gameDataAccessInterface.requestFile(user);
+            this.file = gameDataAccessInterface.requestFile();
             gameOutputBoundary.prepareSuccessView(this.file);
 
             try {

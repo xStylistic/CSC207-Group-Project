@@ -2,8 +2,6 @@ package interface_adapter.game;
 
 import interface_adapter.ViewModel;
 
-import java.io.FileNotFoundException;
-
 /**
  * The ViewModel for the FileView.
  */

@@ -3,6 +3,7 @@ package interface_adapter.game;
 import entity.Animal;
 import entity.QuestionAnswer;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ public class GameState {
     private Integer currentRemainingTime;
     private String message;
     private int difficulty;
-
     private List<Animal> animalsToDisplay;
 
     public File getFile() {

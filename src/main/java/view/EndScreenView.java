@@ -1,9 +1,20 @@
 package view;
 
-import javax.swing.*;
+import interface_adapter.game.GameController;
 
 public class EndScreenView extends javax.swing.JPanel {
+    private final GameController gameController;
+    private javax.swing.JLabel animalsKilled;
+    private javax.swing.JLabel averageTime;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton reviewAnswers;
+    private javax.swing.JLabel score;
+    private javax.swing.JPanel scoreBoard;
+    private javax.swing.JLabel totalTime;
+    private javax.swing.JPanel endScreenPanel;
 
+    public EndScreenView(GameController gameController) {
+        this.gameController = gameController;
     private javax.swing.JLabel animalsKilled;
     private javax.swing.JLabel averageTime;
     private javax.swing.JLabel background;
@@ -45,19 +56,15 @@ public class EndScreenView extends javax.swing.JPanel {
 
         score.setFont(boldFont);
         score.setHorizontalAlignment(SwingConstants.CENTER);
-        score.setText("Score: (insert the score)");
+        score.setText("Score: " + this.gameController.getScore());
 
         totalTime.setFont(boldFont);
         totalTime.setHorizontalAlignment(SwingConstants.CENTER);
-        totalTime.setText("Total Time Spent: (time spent)");
+        totalTime.setText("Total Spent: " + this.gameController.getTotalTime());
 
         averageTime.setFont(boldFont);
         averageTime.setHorizontalAlignment(SwingConstants.CENTER);
-        averageTime.setText("Average Time Per Question: (time spent)");
-
-        animalsKilled.setFont(boldFont);
-        animalsKilled.setHorizontalAlignment(SwingConstants.CENTER);
-        animalsKilled.setText("Animals Killed: (number of animals)");
+        averageTime.setText("Average Time Per Question: " + this.gameController.getAverageTime());
 
         reviewAnswers.setBackground(new java.awt.Color(255, 234, 168));
         reviewAnswers.setFont(new java.awt.Font("Helvetica Neue", java.awt.Font.PLAIN, 14));
