@@ -30,11 +30,17 @@ public class EasyGame extends AbstractGame {
         }
     }
 
+    /**
+     * Force moving on to next question when timer is up.
+     */
     public void forceMoveOn() {
         // Logic for disabling input on the current page
         getCurrentQuestion().setIsTimeUp();
     }
 
+    /**
+     * Move to next question after answer submission.
+     */
     public void moveToNextQuestion() {
         super.moveToNextQuestion();
 
