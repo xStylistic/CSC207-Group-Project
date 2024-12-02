@@ -1,0 +1,13 @@
+Test	TEST
+What command is used to stage changes in Git?	git add
+Which of the following is not a plaintext file format: (.docx, .py, .md, .py, .java)?	.docx
+Java is considered what type of programming language: (markup, scripting, interpreted, hybrid)?	hybrid
+What is the root class of the Java inheritance hierarchy?	Object
+Which of the following is a primitive type in Java: (Integer, String, int, Object)?	int
+What is the default value of a reference type variable in Java?	null
+Which keyword is used to check the type of an object before casting?	instanceof
+What is the primary abstraction used in Java Swing? (components, windows, frames, containers, boxes)	components
+
+
+
+

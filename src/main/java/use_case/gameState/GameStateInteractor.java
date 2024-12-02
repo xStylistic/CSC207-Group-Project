@@ -1,23 +1,26 @@
 package use_case.gameState;
 
-import entity.*;
-import kotlin.jvm.Throws;
-import use_case.game.GameDataAccessInterface;
-import use_case.game.GameOutputBoundary;
-import view.EasyQuestionView;
-import view.MediumQuestionView;
-import view.HardQuestionView;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.*;
+
+import entity.AbstractGame;
+import entity.Animal;
+import entity.EasyGame;
+import entity.HardGame;
+import entity.MediumGame;
+import entity.QuestionAnswer;
+import use_case.game.GameOutputBoundary;
+import view.EasyQuestionView;
+import view.HardQuestionView;
+import view.MediumQuestionView;
 
 /**
  * Individualized logic for game interactions.
  */
 public class GameStateInteractor implements GameStateInputBoundary {
+    private static final String INACTIVEGAMEMSG = "The game is not active";
     private final GameOutputBoundary gameOutputBoundary;
     private ArrayList<QuestionAnswer> questionsAnswers;
     private AbstractGame game;
@@ -29,8 +32,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     public GameStateInteractor(GameOutputBoundary gameOutputBoundary,
-                               ArrayList<QuestionAnswer> questionsAnswers
-                               ) {
+                               ArrayList<QuestionAnswer> questionsAnswers) {
         this.gameOutputBoundary = gameOutputBoundary;
         this.game = null;
         this.questionsAnswers = questionsAnswers;
@@ -89,12 +91,11 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 this.game.getTimer().start(() -> SwingUtilities.invokeLater(() -> HardQuestionView.handleGameTimer()));
             }
 
-
             final QuestionAnswer firstQuestion = game.getCurrentQuestion();
             gameOutputBoundary.prepareQuestionView(firstQuestion, this.game);
         }
         else {
-            gameOutputBoundary.prepareFailView("The game is not active");
+            gameOutputBoundary.prepareFailView(INACTIVEGAMEMSG);
         }
     }
 
@@ -106,7 +107,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
     @Override
     public void executeAnswerSubmit(String userAnswer) {
         if (game == null) {
-            gameOutputBoundary.prepareFailView("The game is not active");
+            gameOutputBoundary.prepareFailView(INACTIVEGAMEMSG);
         }
 
         // Execute Answer Submit Logic
@@ -135,12 +136,12 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     /**
-     * either move to the next question from the reward page or go to the reward page
+     * Either move to the next question from the reward page or go to the reward page.
      * @param justSubmitted indicates the current page was the submit button, therefore we should test for reward page
      */
     public void moveAnswerToNextQuestion(boolean justSubmitted) {
         if (game == null) {
-            gameOutputBoundary.prepareFailView("The game is not active");
+            gameOutputBoundary.prepareFailView(INACTIVEGAMEMSG);
         }
 
         // Execute Answer Submit Logic

@@ -37,8 +37,13 @@ public class QuestionAnswer {
         this.question = question;
     }
 
-    public boolean setUserAnswer(String userAnswer) {
-        this.userAnswer = userAnswer;
+    /**
+     * Sets our user answer.
+     * @param newUserAnswer the user answer to set our user answer to
+     * @return if this answer is correct
+     */
+    public boolean setUserAnswer(String newUserAnswer) {
+        this.userAnswer = newUserAnswer;
         this.validateAnswer();
         if (this.timer != null) {
             this.timer.stop();
@@ -46,6 +51,10 @@ public class QuestionAnswer {
         return this.isCorrect;
     }
 
+    /**
+     * Validates whether the user answer is correct or not.
+     * @return whether the user answer is correct.
+     */
     public boolean validateAnswer() {
         this.isCorrect = correctAnswer.equalsIgnoreCase(userAnswer);
         return this.isCorrect;
@@ -59,6 +68,9 @@ public class QuestionAnswer {
         this.timer = timer;
     }
 
+    /**
+     * Sets our isTimeUp to true.
+     */
     public void setIsTimeUp() {
         this.isTimeUp = true;
     }
