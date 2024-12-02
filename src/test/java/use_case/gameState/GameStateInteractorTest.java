@@ -140,4 +140,32 @@ class GameStateInteractorTest {
         actualGame.getCurrentQuestion().setUserAnswer("4");
         interactor.moveAnswerToNextQuestion(true);
     }
+
+    @Test
+    void testSetQuestionAnswers() {
+        interactor.startGame(0);
+        assertEquals(mockQuestionsAnswers, interactor.getQuestionsAnswers());
+
+        ArrayList<QuestionAnswer> newQuestionAnswer = new ArrayList<>();
+        QuestionAnswer questionnew = new QuestionAnswer("What is the value of the " +
+                "gravitational constant?", "9.81");
+        newQuestionAnswer.add(questionnew);
+        interactor.setQuestionsAnswers(newQuestionAnswer);
+        assertEquals(newQuestionAnswer, interactor.getQuestionsAnswers());
+    }
+
+    @Test
+    void testGetQuestionAnswers() {
+        interactor.startGame(0);
+        assertEquals(mockQuestionsAnswers, interactor.getQuestionsAnswers());
+    }
+
+    @Test
+    void testGetGameDifficulty() {
+        interactor.startGame(0);
+        AbstractGame actualGame = interactor.getGame();
+        assertEquals("easy", actualGame.getDifficulty());
+    }
+
+
 }

@@ -226,4 +226,8 @@ public class GameStateInteractor implements GameStateInputBoundary {
     public int getTotalTime() {
         return this.game.getTotalTime();
     }
+
+    public ArrayList<QuestionAnswer> getQuestionsAnswers() {
+        return this.questionsAnswers;
+    }
 }
