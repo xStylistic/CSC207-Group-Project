@@ -1,12 +1,12 @@
 package use_case.gameState;
 
+import java.util.ArrayList;
+
 import entity.AbstractGame;
 import entity.QuestionAnswer;
 
-import java.util.ArrayList;
-
 /**
- * GameState management interface
+ * GameState management interface.
  */
 public interface GameStateInputBoundary {
     /**
@@ -30,18 +30,37 @@ public interface GameStateInputBoundary {
     void executeAnswerSubmit(String userAnswer);
 
     /**
-     * Sets the questions answers for the game to take place
+     * Sets the questions answers for the game to take place.
      * @param questionsAnswers - the array list of question and answer pairs
      */
     void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers);
 
+    /**
+     * Gather the difficulty required for the current game.
+     */
     void gatherDifficultyForGame();
 
+    /**
+     * Moves to next question.
+     * @param justSubmitted indicates whether or not the user just submitted an answer or not
+     */
     void moveAnswerToNextQuestion(boolean justSubmitted);
 
+    /**
+     * Gets the user's score for the current game.
+     * @return the score for the current game
+     */
     int getScore();
 
+    /**
+     * Gets the user's total time for the current game.
+     * @return the total time for the current game
+     */
     int getTotalTime();
 
+    /**
+     * Gets the user's average time for the current game.
+     * @return the average time for the current game
+     */
     int getAvgTime();
 }
