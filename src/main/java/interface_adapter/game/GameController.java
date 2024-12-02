@@ -1,7 +1,6 @@
 package interface_adapter.game;
 
 import use_case.game.GameInputBoundary;
-import use_case.game.GameInteractor;
 import use_case.gameState.GameStateInputBoundary;
 
 /**
@@ -38,7 +37,6 @@ public class GameController {
     public void startGame(int difficulty) {
         gameStateInteractor.startGame(difficulty);
     }
-
 
     /**
      * Submits the user's answer to the current question by delegating to the interactor.

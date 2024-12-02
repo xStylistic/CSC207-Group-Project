@@ -12,17 +12,19 @@ import use_case.game.GameOutputBoundary;
  * The presenter for our File viewing and editing program.
  */
 public class GamePresenter implements GameOutputBoundary {
-
+    private static final String PAGECHANGE = "pageChange";
     private final GameViewModel gameViewModel;
 
     public GamePresenter(GameViewModel gameViewModel) {
         this.gameViewModel = gameViewModel;
     }
 
-    // Function to prepare difficulty view
+    /**
+     * Function to prepare difficulty view.
+     */
     public void prepareDifficultyView() {
         gameViewModel.setViewName("difficulty");
-        gameViewModel.firePropertyChanged("pageChange");
+        gameViewModel.firePropertyChanged(PAGECHANGE);
     }
 
     /**
@@ -55,7 +57,8 @@ public class GamePresenter implements GameOutputBoundary {
     @Override
     public void prepareAnswerResultView(QuestionAnswer questionAnswer) {
         if (Boolean.TRUE.equals(questionAnswer.isCorrect())) {
-            gameViewModel.getState().setMessage("Correct! Well done. The answer is " + questionAnswer.getCorrectAnswer());
+            gameViewModel.getState().setMessage(
+                    "Correct! Well done. The answer is " + questionAnswer.getCorrectAnswer());
         }
         else {
             gameViewModel.getState().setMessage("Incorrect. The correct answer was: "
@@ -75,7 +78,7 @@ public class GamePresenter implements GameOutputBoundary {
         gameViewModel.getState().setGame(game);
         gameViewModel.getState().setMessage("Answer the question below:");
         gameViewModel.setViewName("questions");
-        gameViewModel.firePropertyChanged("pageChange");
+        gameViewModel.firePropertyChanged(PAGECHANGE);
     }
 
     @Override
@@ -86,11 +89,11 @@ public class GamePresenter implements GameOutputBoundary {
     }
 
     /**
-     * Prepare reward view
+     * Prepare reward view.
      */
     public void prepareAnimalRewardView() {
         gameViewModel.setViewName("reward");
-        gameViewModel.firePropertyChanged("pageChange");
+        gameViewModel.firePropertyChanged(PAGECHANGE);
     }
 
     /**
@@ -104,7 +107,7 @@ public class GamePresenter implements GameOutputBoundary {
         game.getTimer().stop();
         // Set the ending screen
         gameViewModel.setViewName("end");
-        gameViewModel.firePropertyChanged("pageChange");
+        gameViewModel.firePropertyChanged(PAGECHANGE);
     }
 
     /**

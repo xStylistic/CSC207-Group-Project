@@ -1,20 +1,18 @@
 package interface_adapter.game;
 
+import java.io.File;
+import java.util.List;
+
 import entity.AbstractGame;
 import entity.Animal;
 import entity.QuestionAnswer;
-
-import javax.swing.*;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The State for a File.
  * <p>For this example, ...</p>
  * difficulty = 0 - EASY
- * difficulty = 0 - MEDIUM
- * difficulty = 0 - HARD
+ * difficulty = 1 - MEDIUM
+ * difficulty = 2 - HARD
  */
 public class GameState {
     private File file;
