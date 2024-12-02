@@ -21,6 +21,7 @@ import org.json.JSONObject;
  * API access file.
  */
 public final class AnimalDataAccessObject {
+    private static final String LOCATIONS = "locations";
 
     private static final String API_KEY = "baw+70SpL57JbD/nNLXgOQ==RTGa7BsSwkAMlsBQ";
     private static final String API_URL = "https://api.api-ninjas.com/v1/animals?name=";
@@ -83,11 +84,10 @@ public final class AnimalDataAccessObject {
                         keyArray[index++] = keys.next();
                     }
                     final String randomKey = keyArray[new Random().nextInt(keyArray.length)];
-
                     final List<String> animalLocations = new ArrayList<String>();
-                    if (jsonObject.getJSONArray("locations") != null) {
-                        for (int j = 0; j < jsonObject.getJSONArray("locations").length(); j++) {
-                            animalLocations.add(jsonObject.getJSONArray("locations").getString(j));
+                    if (jsonObject.getJSONArray(LOCATIONS) != null) {
+                        for (int j = 0; j < jsonObject.getJSONArray(LOCATIONS).length(); j++) {
+                            animalLocations.add(jsonObject.getJSONArray(LOCATIONS).getString(j));
                         }
                     }
 
