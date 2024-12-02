@@ -3,6 +3,11 @@ package entity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import data_access.Constants;
+
+/**
+ * Timer to keep track of the time remaining for the current question.
+ */
 public class QuestionTimer {
     private final Timer timer = new Timer();
     private final int timeLimit;
@@ -17,23 +22,30 @@ public class QuestionTimer {
         this.remainingTime = timeLimit;
     }
 
-    public void start(Runnable onTickCallback) {
-        this.onTickCallback = onTickCallback;
+    /**
+     * Starts our timer to start counting down.
+     * @param newOnTickCallback Runnable to count
+     */
+    public void start(Runnable newOnTickCallback) {
+        this.onTickCallback = newOnTickCallback;
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (remainingTime > 0) {
                     remainingTime--;
-                    onTickCallback.run();
+                    newOnTickCallback.run();
                 }
                 else {
                     onTimeUpCallback.run();
                     stop();
                 }
             }
-        }, 0, 1000);
+        }, 0, Constants.THOUSAND);
     }
 
+    /**
+     * Timer to keep track of the time remaining for the current question.
+     */
     public void stop() {
         timer.cancel();
     }

@@ -23,17 +23,38 @@ public interface GameOutputBoundary {
      */
     void prepareFailView(String errorMessage);
 
+    /**
+     * Prepares the question view for the current game and question.
+     * @param questionAnswer the current question to display in the question view
+     * @param game the current game that is being played
+     */
     void prepareQuestionView(QuestionAnswer questionAnswer, AbstractGame game);
 
+    /**
+     * Prepares the view for the end of the game.
+     * @param game the game that is being ended
+     */
     void prepareEndGameView(AbstractGame game);
 
+    /**
+     * Prepares the answer result view after user submits an answer.
+     * @param questionAnswer the questionAnswer that was just answered
+     */
     void prepareAnswerResultView(QuestionAnswer questionAnswer);
 
-    void prepareAnswerConfirmView(QuestionAnswer currentQuestionAnswer);
-
+    /**
+     * Prepares the view that sets the difficulty view.
+     */
     void prepareDifficultyView();
 
+    /**
+     * Prepares the view for rewarding the user with a new animal.
+     */
     void prepareAnimalRewardView();
 
+    /**
+     * Sets the animals to be displayed onto the current game state.
+     * @param currentListAnimalsToDisplay the list of animals to be displayed
+     */
     void setDisplayAnimalsToGameState(List<Animal> currentListAnimalsToDisplay);
 }

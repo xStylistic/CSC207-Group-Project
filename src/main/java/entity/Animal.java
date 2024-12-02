@@ -2,6 +2,8 @@ package entity;
 
 import java.util.List;
 
+import data_access.Constants;
+
 /**
  * Blueprint for the animal object.
  */
@@ -20,8 +22,8 @@ public class Animal {
         this.family = family;
         this.locations = locations;
         this.fact = fact;
-        this.xCoordinate = 100 + Math.random() * 723;
-        this.yCoordinate = 440 + Math.random() * 10;
+        this.xCoordinate = Constants.HUNDRED + Math.random() * Constants.SEVENHUNDREDTWENTYTHREE;
+        this.yCoordinate = Constants.FOURFORTY + Math.random() * Constants.TEN;
     }
 
     public String getName() {
