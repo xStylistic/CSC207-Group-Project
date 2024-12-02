@@ -60,4 +60,58 @@ public class AbstractGameTest {
         assertEquals(q2, hardGame.getCurrentQuestion());
     }
 
+    @Test
+    public void testIsGameFinished() {
+        QuestionAnswer q1 = new QuestionAnswer("question1", "answer1");
+        List<QuestionAnswer> listOfQuestions = new ArrayList<>();
+        listOfQuestions.add(q1);
+
+        EasyGame easyGame = new EasyGame(listOfQuestions);
+        easyGame.moveToNextQuestion();
+        easyGame.moveToNextQuestion();
+        assertEquals(true, easyGame.isGameFinished());
+    }
+
+    @Test
+    public void testQuestions() {
+        QuestionAnswer q1 = new QuestionAnswer("question1", "answer1");
+        QuestionAnswer q2 = new QuestionAnswer("question2", "answer2");
+        List<QuestionAnswer> listOfQuestions = new ArrayList<>();
+        listOfQuestions.add(q1);
+        listOfQuestions.add(q2);
+        EasyGame easyGame = new EasyGame(listOfQuestions);
+        assertEquals(2, easyGame.getTotalNumQuestions());
+        assertEquals(q1, easyGame.getCurrentQuestion());
+        easyGame.moveToNextQuestion();
+        assertEquals(q2, easyGame.getCurrentQuestion());
+        assertEquals(1, easyGame.getCurrentQuestionIndex());
+        assertEquals("easy", easyGame.getDifficulty());
+    }
+
+    @Test
+    public void testUpdateQuestionCorrect() {
+        QuestionAnswer q1 = new QuestionAnswer("question1", "answer1");
+        QuestionAnswer q2 = new QuestionAnswer("question2", "answer2");
+        List<QuestionAnswer> listOfQuestions = new ArrayList<>();
+        listOfQuestions.add(q1);
+        listOfQuestions.add(q2);
+        EasyGame easyGame = new EasyGame(listOfQuestions);
+        easyGame.updateQuestionAnswersCorrect(true);
+        assertEquals(1, easyGame.getScore());
+    }
+
+    @Test
+    public void testUpdateQuestionWrong() {
+        QuestionAnswer q1 = new QuestionAnswer("question1", "answer1");
+        QuestionAnswer q2 = new QuestionAnswer("question2", "answer2");
+        List<QuestionAnswer> listOfQuestions = new ArrayList<>();
+        listOfQuestions.add(q1);
+        listOfQuestions.add(q2);
+        EasyGame easyGame = new EasyGame(listOfQuestions);
+        easyGame.updateQuestionAnswersCorrect(true);
+        easyGame.moveToNextQuestion();
+        easyGame.updateQuestionAnswersCorrect(false);
+        assertEquals(0, easyGame.getAnimalFarm().getCurrentAnimals().size());
+    }
+
 }

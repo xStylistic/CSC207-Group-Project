@@ -65,14 +65,6 @@ public class AnimalFarm {
         }
     }
 
-    public List<String> getAvailableAnimals() {
-        return this.availableAnimals;
-    }
-    
-    public List<Animal> getSelectedAnimals() {
-        return selectedAnimals;
-    }
-
     public List<Animal> getCurrentAnimals() {
         return currentAnimals;
     }

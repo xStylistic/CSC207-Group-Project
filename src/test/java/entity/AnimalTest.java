@@ -58,4 +58,12 @@ public class AnimalTest {
         double yCoord = dog.getyCoordinate();
         assertTrue(xCoord >= 0 && yCoord >= 0);
     }
+
+    @Test
+    public void testToString() {
+        Animal dog = new Animal("Dog1", "dogType", "dog family",
+                List.of(new String[]{"Home", "School"}), "dogs can count");
+        assertEquals("Animal{name='Dog1', family='dog family', locations=[Home, School], " +
+                "fact='dogs can count'}", dog.toString());
+    }
 }

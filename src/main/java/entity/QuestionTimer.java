@@ -42,10 +42,6 @@ public class QuestionTimer {
         return this.timeLimit;
     }
 
-    public void setRemainingTime(int remainingTime) {
-        this.remainingTime = remainingTime;
-    }
-
     public int getRemainingTime() {
         return this.remainingTime;
     }

@@ -38,4 +38,21 @@ public class QuestionAnswerTest {
         questAns.setUserAnswer("10");
         assertFalse(questAns.validateAnswer());
     }
+
+    @Test
+    public void testTimeUp() {
+        QuestionAnswer questAns = new QuestionAnswer("What is the constant for g", "9.81");
+        questAns.setUserAnswer("10");
+        questAns.setIsTimeUp();
+        assertTrue(questAns.getIsTimeUp());
+    }
+
+    @Test
+    public void testSetQuestion() {
+        QuestionAnswer questAns = new QuestionAnswer("What is the constant for g", "9.81");
+        questAns.setQuestion("What is 5*2");
+        questAns.setUserAnswer("10");
+        assertEquals("What is 5*2", questAns.getQuestion());
+    }
+
 }

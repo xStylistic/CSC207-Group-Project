@@ -22,19 +22,22 @@ public class QuestionTimerTest {
         assertEquals(100, timer.getTimeLimit());
     }
 
-//    @Test
-//    public void testRemainingTime() {
-//        QuestionTimer timer = new QuestionTimer(
-//                10,
-//                () -> {
-//                    System.out.println("Time is up");
-//                },
-//                () -> {
-//                    System.out.println("Tick");
-//                }
-//        );
-//        assertEquals(10, timer.getTimeLimit());
-//        timer.start(() -> SwingUtilities.invokeLater(() -> handleQuestionTimer()));
-//        timer.stop();
-//    }
+    @Test
+    public void testStart() {
+        QuestionTimer timer = new QuestionTimer(
+                10,
+                () -> {
+                    System.out.println("Time is up");
+                },
+                () -> {
+                    System.out.println("Tick");
+                }
+        );
+        assertEquals(10, timer.getTimeLimit());
+        timer.start(() -> SwingUtilities.invokeLater(() -> System.out.println("Time is up")));
+        timer.start(() -> SwingUtilities.invokeLater(() -> System.out.println("Time is up")));
+        timer.start(() -> SwingUtilities.invokeLater(() -> System.out.println("Time is up")));
+        timer.stop();
+        assertEquals(9, timer.getRemainingTime());
+    }
 }

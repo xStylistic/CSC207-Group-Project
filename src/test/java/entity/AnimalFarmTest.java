@@ -46,4 +46,7 @@ public class AnimalFarmTest {
         farm.removeAnimal(1);
         assertEquals(0, farm.getCurrentAnimals().size());
     }
+
+//    @Test
+//    public void testGetAvailableAnimals() {}
 }

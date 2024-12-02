@@ -133,12 +133,35 @@ class GameStateInteractorTest {
     }
 
     @Test
-    void testMoveAnswerToNextQuestion() {
+    void testMoveAnswerToNextQuestionMoveToAward() {
         interactor.startGame(0);
         AbstractGame actualGame = interactor.getGame();
         assertEquals("What is 2+2?", actualGame.getCurrentQuestion().getQuestion());
         actualGame.getCurrentQuestion().setUserAnswer("4");
         interactor.moveAnswerToNextQuestion(true);
+        assertFalse(actualGame.getCurrentQuestion().equals("What is 2+2?"));
+        assertEquals(new ArrayList<>(), interactor.getCurrentListAnimalsToDisplay());
+    }
+
+    @Test
+    void testMoveAnswerToNextQuestionMoveToQuestion() {
+        interactor.startGame(0);
+        AbstractGame actualGame = interactor.getGame();
+        actualGame.getCurrentQuestion().setUserAnswer("4");
+        interactor.moveAnswerToNextQuestion(true);
+        interactor.moveAnswerToNextQuestion(false);
+        assertEquals("What is 2+5?", actualGame.getCurrentQuestion().getQuestion());
+        System.out.println(interactor.getCurrentListAnimalsToDisplay());
+        assertEquals(new ArrayList<>(), interactor.getCurrentListAnimalsToDisplay());
+    }
+
+    @Test
+    void testMoveAnswerToNextQuestionWrongAnswer() {
+        interactor.startGame(0);
+        AbstractGame actualGame = interactor.getGame();
+        actualGame.getCurrentQuestion().setUserAnswer("1");
+        interactor.moveAnswerToNextQuestion(true);
+        assertEquals("What is 2+5?", actualGame.getCurrentQuestion().getQuestion());
     }
 
     @Test
@@ -161,10 +184,24 @@ class GameStateInteractorTest {
     }
 
     @Test
-    void testGetGameDifficulty() {
+    void testGetGameDifficultyEasy() {
         interactor.startGame(0);
         AbstractGame actualGame = interactor.getGame();
         assertEquals("easy", actualGame.getDifficulty());
+    }
+
+    @Test
+    void testGetGameDifficultyMedium() {
+        interactor.startGame(1);
+        AbstractGame actualGame = interactor.getGame();
+        assertEquals("medium", actualGame.getDifficulty());
+    }
+
+    @Test
+    void testGetGameDifficultyHard() {
+        interactor.startGame(2);
+        AbstractGame actualGame = interactor.getGame();
+        assertEquals("hard", actualGame.getDifficulty());
     }
 
 

@@ -58,10 +58,6 @@ public abstract class AbstractGame {
         return currentQuestionIndex >= questionAnswers.size();
     }
 
-    public Map<QuestionAnswer, Boolean> getQuestionAnswersCorrect() {
-        return this.questionAnswersCorrect;
-    }
-
     public Map<QuestionAnswer, Integer> getQuestionAnswerTimes() {
         return this.questionAnswerTimes;
     }
@@ -118,10 +114,6 @@ public abstract class AbstractGame {
                     break;
             }
         }
-    }
-
-    public Integer getCurrentQuestionAnswerTime() {
-        return this.questionAnswerTimes.get(questionAnswers.get(currentQuestionIndex));
     }
 
     /**

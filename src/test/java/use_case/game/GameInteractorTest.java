@@ -2,16 +2,15 @@ package use_case.game;
 
 import data_access.GameDataAccessObject;
 import entity.QuestionAnswer;
-import interface_adapter.game.GameController;
-import interface_adapter.game.GamePresenter;
-import interface_adapter.game.GameViewModel;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-import use_case.gameState.GameStateInputBoundary;
-import use_case.gameState.GameStateInteractor;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,5 +32,47 @@ public class GameInteractorTest {
         interactor = new GameInteractor(gameDataAccessObject, mockOutputBoundary);
         interactor.setQuestionsAnswers(mockQuestionsAnswers);
         assertEquals(mockQuestionsAnswers, interactor.getQuestionsAnswers());
+    }
+
+    @Test
+    public void testExecuteRetrieval() throws DataAccessException, IOException {
+        GameDataAccessInterface mockDataAccess = mock(GameDataAccessInterface.class);
+        GameOutputBoundary outputBound = mock(GameOutputBoundary.class);
+
+        File tempFile = File.createTempFile("testFile", ".txt");
+        tempFile.deleteOnExit();
+        List<String> fileContent = List.of(
+                "Header line",
+                "Question1\tAnswer1",
+                "Question2\tAnswer2"
+        );
+        Files.write(tempFile.toPath(), fileContent);
+
+        interactor = new GameInteractor(mockDataAccess, outputBound);
+        when(mockDataAccess.requestFile()).thenReturn(tempFile);
+        File result = interactor.executeRetrieval();
+
+        assertEquals(tempFile, result);
+    }
+
+    @Test
+    public void testGetFileName() throws DataAccessException, IOException {
+        GameDataAccessInterface mockDataAccess = mock(GameDataAccessInterface.class);
+        GameOutputBoundary outputBound = mock(GameOutputBoundary.class);
+
+        File tempFile = File.createTempFile("testFile", ".txt");
+        tempFile.deleteOnExit();
+        List<String> fileContent = List.of(
+                "Header line",
+                "Question1\tAnswer1",
+                "Question2\tAnswer2"
+        );
+        Files.write(tempFile.toPath(), fileContent);
+
+        interactor = new GameInteractor(mockDataAccess, outputBound);
+        when(mockDataAccess.requestFile()).thenReturn(tempFile);
+        File result = interactor.executeRetrieval();
+
+        assertEquals("testFile", interactor.getFileName().substring(0,8));
     }
 }
