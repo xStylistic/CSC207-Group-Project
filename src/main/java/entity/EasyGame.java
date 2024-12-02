@@ -45,11 +45,9 @@ public class EasyGame extends AbstractGame {
         super.moveToNextQuestion();
 
         // Check here to prevent moveToNextQuestion from failing at the last step
-        if (this.isGameFinished()) {
-            return;
-        }
-        getCurrentQuestion().setTimer(
-                new QuestionTimer(
+        if (!this.isGameFinished()) {
+            getCurrentQuestion().setTimer(
+                    new QuestionTimer(
                         EASY_QUESTION_TIME,
                         () -> {
                             System.out.println("Time is up");
@@ -57,6 +55,7 @@ public class EasyGame extends AbstractGame {
                         },
                         () -> System.out.println("Tick" + getCurrentQuestion().getTimer().getRemainingTime())
                 )
-        );
+            );
+        }
     }
 }
