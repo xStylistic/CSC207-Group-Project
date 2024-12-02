@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import kotlin.OverloadResolutionByLambdaReturnType;
 import use_case.game.DataAccessException;
 import use_case.game.GameDataAccessInterface;
 
@@ -21,6 +22,11 @@ public class GameDataAccessObject implements GameDataAccessInterface {
         if (result == JFileChooser.APPROVE_OPTION) {
             file = fileChooser.getSelectedFile();
         }
+        return file;
+    }
+
+    @OverloadResolutionByLambdaReturnType
+    public File requestFile(File file) throws DataAccessException {
         return file;
     }
 }

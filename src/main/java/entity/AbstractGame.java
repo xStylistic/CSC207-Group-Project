@@ -158,4 +158,8 @@ public abstract class AbstractGame {
     public void setTimer(GameTimer timer) {
         this.timer = timer;
     }
+
+    public String getDifficulty() {
+        return this.difficulty;
+    }
 }

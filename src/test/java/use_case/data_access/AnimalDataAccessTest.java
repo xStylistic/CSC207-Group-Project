@@ -1,4 +1,4 @@
-package use_case.animal;
+package use_case.data_access;
 
 import data_access.AnimalDataAccessObject;
 import org.junit.Test;

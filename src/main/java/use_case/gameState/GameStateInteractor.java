@@ -49,7 +49,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
     /**
      * Prepares for starting the game by getting the difficulty.
      */
-    public void gatherDifficultyForGame() {
+    public void getGameDifficulty() {
         gameOutputBoundary.prepareDifficultyView();
     }
 
@@ -119,22 +119,21 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
                 game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
-                        - currentQuestionAnswer.getTimer().getRemainingTime());
-
+                    - currentQuestionAnswer.getTimer().getRemainingTime());
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Calls updateQuestion False");
                 game.updateQuestionAnswersCorrect(false);
                 game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
-                            - currentQuestionAnswer.getTimer().getRemainingTime());
+                    - currentQuestionAnswer.getTimer().getRemainingTime());
             }
 
         }
     }
 
     /**
-     * either move to the next question from the reward page or go to the reward page
+     * either move to the next question from the reward page or go to the reward page.
      * @param justSubmitted indicates the current page was the submit button, therefore we should test for reward page
      */
     public void moveAnswerToNextQuestion(boolean justSubmitted) {
@@ -186,21 +185,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
         }
     }
 
-    /**
-     * Function to increase animals currently in farm.
-     */
-    private void increaseAnimal() {
-        game.updateQuestionAnswersCorrect(true);
-    }
-
-    /**
-     * Function to decrease animals currently in farm.
-     */
-    private void decreaseAnimal() {
-        game.updateQuestionAnswersCorrect(false);
-    }
-
-    private void updateGameStateWithNewDisplayAnimals() {
+    public void updateGameStateWithNewDisplayAnimals() {
         gameOutputBoundary.setDisplayAnimalsToGameState(this.getCurrentListAnimalsToDisplay());
     }
 
@@ -208,7 +193,7 @@ public class GameStateInteractor implements GameStateInputBoundary {
      * Function to return current list of animals that we should display for each view in the background.
      * @return animalsShouldDisplay - the list of animals we should display on each view in the background.
      */
-    private List<Animal> getCurrentListAnimalsToDisplay() {
+    public List<Animal> getCurrentListAnimalsToDisplay() {
         final List<Animal> currentAnimals = game.getAnimalFarm().getCurrentAnimals();
         return currentAnimals;
     }

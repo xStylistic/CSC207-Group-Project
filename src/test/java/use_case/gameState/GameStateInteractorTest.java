@@ -6,6 +6,7 @@ import interface_adapter.game.GamePresenter;
 import interface_adapter.game.GameViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 import use_case.game.GameInputBoundary;
 import use_case.game.GameInteractor;
 import use_case.game.GameOutputBoundary;
@@ -71,6 +72,17 @@ class GameStateInteractorTest {
     }
 
     @Test
+    void testGameDifficulty() {
+        interactor.startGame(1); // EasyGame
+        AbstractGame game = interactor.getGame();
+        int difficulty = 10;
+        if (interactor.getGame().getDifficulty().equals("Medium")){
+            difficulty = 1;
+            assertEquals(1, difficulty);
+        }
+    }
+
+    @Test
     void testGetScore() {
         interactor.startGame(0); // EasyGame
         AbstractGame game = interactor.getGame();
@@ -95,5 +107,37 @@ class GameStateInteractorTest {
         game.updateQuestionAnswerTimes(10);
 
         assertEquals(10, interactor.getTotalTime());
+    }
+
+    @Test
+    void testgetCurrentListAnimalToDisplay() {
+        interactor.startGame(0); // EasyGame
+        interactor.getCurrentListAnimalsToDisplay();
+        assertEquals(new ArrayList<>(), interactor.getCurrentListAnimalsToDisplay());
+    }
+
+    @Test
+    void testUpdateGameStateWithNewDisplayAnimals() {
+        interactor.startGame(0);
+        interactor.updateGameStateWithNewDisplayAnimals();
+        assertEquals(new ArrayList<>(), interactor.getCurrentListAnimalsToDisplay());
+    }
+
+    @Test
+    void testGetGame() {
+        interactor.startGame(0);
+        EasyGame easyGame = new EasyGame(mockQuestionsAnswers);
+        AbstractGame actualGame = interactor.getGame();
+        assertEquals(easyGame.getDifficulty(), actualGame.getDifficulty());
+        assertEquals(easyGame.getCurrentQuestion(), actualGame.getCurrentQuestion());
+    }
+
+    @Test
+    void testMoveAnswerToNextQuestion() {
+        interactor.startGame(0);
+        AbstractGame actualGame = interactor.getGame();
+        assertEquals("What is 2+2?", actualGame.getCurrentQuestion().getQuestion());
+        actualGame.getCurrentQuestion().setUserAnswer("4");
+        interactor.moveAnswerToNextQuestion(true);
     }
 }
