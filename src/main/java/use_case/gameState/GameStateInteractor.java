@@ -120,19 +120,15 @@ public class GameStateInteractor implements GameStateInputBoundary {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Updates Animal");
                 game.updateQuestionAnswersCorrect(true);
-                if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
                             - currentQuestionAnswer.getTimer().getRemainingTime());
-                }
             }
             else {
                 gameOutputBoundary.prepareAnswerResultView(currentQuestionAnswer);
                 System.out.println("Calls updateQuestion False");
                 game.updateQuestionAnswersCorrect(false);
-                if (!(game instanceof EasyGame)) {
-                    game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
+                game.updateQuestionAnswerTimes(currentQuestionAnswer.getTimer().getTimeLimit()
                             - currentQuestionAnswer.getTimer().getRemainingTime());
-                }
             }
 
         }
