@@ -30,27 +30,32 @@ public class MediumGame extends AbstractGame {
         }
     }
 
+    /**
+     * Force moving on to next question when timer is up.
+     */
     public void forceMoveOn() {
         // Logic for disabling input on the current page
         getCurrentQuestion().setIsTimeUp();
     }
 
+    /**
+     * Move to next question after answer submission.
+     */
     public void moveToNextQuestion() {
         super.moveToNextQuestion();
 
         // Check here to prevent moveToNextQuestion from failing at the last step
-        if (this.isGameFinished()) {
-            return;
+        if (!this.isGameFinished()) {
+            getCurrentQuestion().setTimer(
+                    new QuestionTimer(
+                            MEDIUM_PER_QUESTION_TIME,
+                            () -> {
+                                System.out.println("Time is up");
+                                forceMoveOn();
+                            },
+                            () -> System.out.println("Tick" + getCurrentQuestion().getTimer().getRemainingTime())
+                    )
+            );
         }
-        getCurrentQuestion().setTimer(
-                new QuestionTimer(
-                        MEDIUM_PER_QUESTION_TIME,
-                        () -> {
-                            System.out.println("Time is up");
-                            forceMoveOn();
-                        },
-                        () -> System.out.println("Tick" + getCurrentQuestion().getTimer().getRemainingTime())
-                )
-        );
     }
 }

@@ -1,6 +1,7 @@
 package interface_adapter.game;
 
 import use_case.game.GameInputBoundary;
+import use_case.game.GameInteractor;
 import use_case.gameState.GameStateInputBoundary;
 
 /**

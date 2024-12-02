@@ -80,6 +80,10 @@ public abstract class AbstractGame {
         return correct;
     }
 
+    /**
+     * Gets the total amount of time of a game.
+     * @return the total amount of time
+     */
     public int getTotalTime() {
         int totalTime = 0;
         for (Integer time : this.questionAnswerTimes.values()) {
@@ -90,10 +94,6 @@ public abstract class AbstractGame {
 
     public int getAvgTime() {
         return this.getTotalTime() / this.getQuestionAnswerTimes().size();
-    }
-  
-    public int getNumberAnswered() {
-        return this.questionAnswersCorrect.size();
     }
 
     /**
