@@ -8,4 +8,5 @@ public class Constants {
     public static final int SEVENHUNDREDTWENTYTHREE = 723;
     public static final int FOURFORTY = 440;
     public static final int TEN = 10;
+    public static final int THOUSAND = 1000;
 }
