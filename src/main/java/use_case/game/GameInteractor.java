@@ -18,7 +18,7 @@ public class GameInteractor implements GameInputBoundary {
     private final GameDataAccessInterface gameDataAccessInterface;
     private final GameOutputBoundary gameOutputBoundary;
     private File file;
-    private final ArrayList<QuestionAnswer> questionsAnswers;
+    private ArrayList<QuestionAnswer> questionsAnswers;
 
     public GameInteractor(GameDataAccessInterface gameDataAccessInterface,
                           GameOutputBoundary gameOutputBoundary) {
@@ -75,5 +75,9 @@ public class GameInteractor implements GameInputBoundary {
     @Override
     public ArrayList<QuestionAnswer> getQuestionsAnswers() {
         return questionsAnswers;
+    }
+
+    public void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers) {
+        this.questionsAnswers = questionsAnswers;
     }
 }

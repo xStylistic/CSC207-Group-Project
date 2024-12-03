@@ -2,6 +2,8 @@ package entity;
 
 import org.junit.Test;
 
+import javax.swing.*;
+
 import static org.junit.Assert.assertEquals;
 
 public class QuestionTimerTest {
@@ -21,9 +23,9 @@ public class QuestionTimerTest {
     }
 
     @Test
-    public void testRemainingTime() {
+    public void testStart() {
         QuestionTimer timer = new QuestionTimer(
-                100,
+                10,
                 () -> {
                     System.out.println("Time is up");
                 },
@@ -31,9 +33,11 @@ public class QuestionTimerTest {
                     System.out.println("Tick");
                 }
         );
-        timer.start();
-        assertEquals(100, timer.getTimeLimit());
+        assertEquals(10, timer.getTimeLimit());
+        timer.start(() -> SwingUtilities.invokeLater(() -> System.out.println("Time is up")));
+        timer.start(() -> SwingUtilities.invokeLater(() -> System.out.println("Time is up")));
+        timer.start(() -> SwingUtilities.invokeLater(() -> System.out.println("Time is up")));
         timer.stop();
-
+        assertEquals(9, timer.getRemainingTime());
     }
 }

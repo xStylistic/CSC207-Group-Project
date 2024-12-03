@@ -58,10 +58,6 @@ public abstract class AbstractGame {
         return currentQuestionIndex >= questionAnswers.size();
     }
 
-    public Map<QuestionAnswer, Boolean> getQuestionAnswersCorrect() {
-        return this.questionAnswersCorrect;
-    }
-
     public Map<QuestionAnswer, Integer> getQuestionAnswerTimes() {
         return this.questionAnswerTimes;
     }
@@ -120,10 +116,6 @@ public abstract class AbstractGame {
         }
     }
 
-    public Integer getCurrentQuestionAnswerTime() {
-        return this.questionAnswerTimes.get(questionAnswers.get(currentQuestionIndex));
-    }
-
     /**
      * Add a keymap value for whether the question is correct.
      * @param time the amount of time spent on the question
@@ -157,5 +149,9 @@ public abstract class AbstractGame {
 
     public void setTimer(GameTimer timer) {
         this.timer = timer;
+    }
+
+    public String getDifficulty() {
+        return this.difficulty;
     }
 }

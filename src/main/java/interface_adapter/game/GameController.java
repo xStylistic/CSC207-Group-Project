@@ -27,7 +27,7 @@ public class GameController {
      * Sets the game difficulty.
      */
     public void setDifficulty() {
-        gameStateInteractor.gatherDifficultyForGame();
+        gameStateInteractor.getGameDifficulty();
     }
 
     /**
