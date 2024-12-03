@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import data_access.AnimalDataAccessObject;
+import use_case.animalDatatAccess.AnimalDataAccessInteractor;
 
 /**
  * The Animal Farm in the program.
@@ -24,7 +24,7 @@ public class AnimalFarm {
 
         for (String animalsSpecies : this.availableAnimals) {
             final Map<String, List> listOfAnimalSameSpecies =
-                    AnimalDataAccessObject.getAnimal(animalsSpecies.toLowerCase());
+                    AnimalDataAccessInteractor.getAnimal(animalsSpecies.toLowerCase());
             for (String animalName : listOfAnimalSameSpecies.keySet()) {
                 if (animalName != null) {
                     final Animal tempAnimal = new Animal(animalName, animalsSpecies,

@@ -49,13 +49,6 @@ public class GameStateInteractor implements GameStateInputBoundary {
     }
 
     /**
-     * Prepares for starting the game by getting the difficulty.
-     */
-    public void getGameDifficulty() {
-        gameOutputBoundary.prepareDifficultyView();
-    }
-
-    /**
      * Starts the game by preparing the first question view.
      */
     @Override
@@ -204,6 +197,11 @@ public class GameStateInteractor implements GameStateInputBoundary {
     @Override
     public void setQuestionsAnswers(ArrayList<QuestionAnswer> questionsAnswers) {
         this.questionsAnswers = questionsAnswers;
+    }
+
+    @Override
+    public void getGameDifficulty() {
+        gameOutputBoundary.prepareDifficultyView();
     }
 
     /**

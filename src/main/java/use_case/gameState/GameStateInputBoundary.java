@@ -38,7 +38,7 @@ public interface GameStateInputBoundary {
     /**
      * Gather the difficulty required for the current game.
      */
-    void gatherDifficultyForGame();
+    void getGameDifficulty();
 
     /**
      * Moves to next question.

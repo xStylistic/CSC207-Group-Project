@@ -1,4 +1,4 @@
-package data_access;
+package use_case.animalDatatAccess;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,10 +20,10 @@ import org.json.JSONObject;
 /**
  * API access file.
  */
-public final class AnimalDataAccessObject {
+public final class AnimalDataAccessInteractor {
     private static final String LOCATIONS = "locations";
 
-    private static final String API_KEY = "baw+70SpL57JbD/nNLXgOQ==RTGa7BsSwkAMlsBQ";
+    private static final String API_KEY = "WeKGn0I/sUdOqkqBO4BYQQ==p72PYgQchp0NptTC";
     private static final String API_URL = "https://api.api-ninjas.com/v1/animals?name=";
     private static final Map<String, String> AVAILABLE_ANIMALS = new HashMap<>(
             Map.ofEntries(
@@ -40,7 +40,7 @@ public final class AnimalDataAccessObject {
     );
     private static final Map<String, List> CURRENT_ANIMALS = new HashMap<>();
 
-    private AnimalDataAccessObject() {
+    public AnimalDataAccessInteractor() {
         throw new AssertionError("Instantiating utility class.");
     }
 
