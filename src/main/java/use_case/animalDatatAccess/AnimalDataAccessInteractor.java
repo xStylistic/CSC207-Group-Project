@@ -38,7 +38,6 @@ public final class AnimalDataAccessInteractor {
                     Map.entry("flamingo", "Phoenicopteridae"),
                     Map.entry("rabbit", "Leporidae"))
     );
-    private static final Map<String, List> CURRENT_ANIMALS = new HashMap<>();
 
     public AnimalDataAccessInteractor() {
         throw new AssertionError("Instantiating utility class.");

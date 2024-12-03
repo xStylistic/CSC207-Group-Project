@@ -1,11 +1,8 @@
 package use_case.data_access;
 
-import data_access.GameDataAccessObject;
 import use_case.animalDatatAccess.AnimalDataAccessInteractor;
 import org.junit.Test;
-import use_case.game.DataAccessException;
 
-import java.io.File;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -42,14 +39,9 @@ public class AnimalDataAccessTest {
 
     @Test
     public void instaniateAPI() {
-        try {
-            AnimalDataAccessInteractor dataAccessInteractor = new AnimalDataAccessInteractor();
-            dataAccessInteractor.getClass();
-        } catch (AssertionError assertionErr) {
-            assertThrows(AssertionError.class, () -> {
-                System.out.println("hi");
-            });
-        }
+        assertThrows(AssertionError.class, () -> {
+            new AnimalDataAccessInteractor();
+        });
     }
 
 }
