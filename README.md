@@ -43,9 +43,7 @@ Download Flashcard Farm today to enhance your studying experience :)
 
 ## Usage
 
-*Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
-
-
+https://www.loom.com/share/ff4f02f4e4314e29b8033e481fd0e30c 
 
 
 ## Installation
