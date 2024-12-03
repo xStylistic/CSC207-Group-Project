@@ -187,6 +187,7 @@ class GameStateInteractorTest {
     void testGetGameDifficultyEasy() {
         interactor.startGame(0);
         AbstractGame actualGame = interactor.getGame();
+        interactor.getGameDifficulty();
         assertEquals("easy", actualGame.getDifficulty());
     }
 
@@ -194,6 +195,7 @@ class GameStateInteractorTest {
     void testGetGameDifficultyMedium() {
         interactor.startGame(1);
         AbstractGame actualGame = interactor.getGame();
+        interactor.getGameDifficulty();
         assertEquals("medium", actualGame.getDifficulty());
     }
 
@@ -201,8 +203,7 @@ class GameStateInteractorTest {
     void testGetGameDifficultyHard() {
         interactor.startGame(2);
         AbstractGame actualGame = interactor.getGame();
+        interactor.getGameDifficulty();
         assertEquals("hard", actualGame.getDifficulty());
     }
-
-
 }
