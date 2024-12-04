@@ -48,7 +48,7 @@ public class UnlockNewAnimalView extends JPanel implements ActionListener, Prope
         newAnimalPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 183, 102), 2));
 
         // Centre the panel
-        int panelWidth = 400;
+        int panelWidth = 500;
         int panelHeight = 360;
         int x = (927 - panelWidth) / 2;
         int y = (591 - panelHeight) / 2;
@@ -87,6 +87,7 @@ public class UnlockNewAnimalView extends JPanel implements ActionListener, Prope
         }
         animalLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
         animalLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
         newAnimalPanel.add(animalLabel, gbc);
 
         // Fun fact label
@@ -102,7 +103,9 @@ public class UnlockNewAnimalView extends JPanel implements ActionListener, Prope
                 ? "Fun Fact: " + animalsToDisplay.get(animalsToDisplay.size() - 1).getFact()
                 : "Fun Fact: N/A");
         funFactLabel.setBorder(null);
-
+        funFactLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        funFactLabel.setPreferredSize(new Dimension(225, 60));
+        funFactLabel.setMaximumSize(new Dimension(225, 60));
         newAnimalPanel.add(funFactLabel, gbc);
 
         // Next button
