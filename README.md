@@ -19,6 +19,7 @@ Zeke Weng | ZekeWeng
 3. [Usage / Demo](#usage)
 4. [Installation](#installation)
 5. [Future Work](#future-work)
+6. [Accessibility](#Accessibility-Report)
 
 ## About Our Game
 
