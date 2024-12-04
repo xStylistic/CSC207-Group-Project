@@ -3,7 +3,7 @@ package use_case.gameState;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 import entity.AbstractGame;
 import entity.Animal;
@@ -181,6 +181,9 @@ public class GameStateInteractor implements GameStateInputBoundary {
         }
     }
 
+    /**
+     * Function to update game with animals.
+     */
     public void updateGameStateWithNewDisplayAnimals() {
         gameOutputBoundary.setDisplayAnimalsToGameState(this.getCurrentListAnimalsToDisplay());
     }

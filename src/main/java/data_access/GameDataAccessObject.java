@@ -12,6 +12,11 @@ import use_case.game.GameDataAccessInterface;
  * The DAO for requesting and saving input file.
  */
 public class GameDataAccessObject implements GameDataAccessInterface {
+
+    /**
+     * The method to request file from the user.
+     * @return the file the user inputted.
+     */
     @Override
     public File requestFile() throws DataAccessException {
         final JFileChooser fileChooser = new JFileChooser();
@@ -25,6 +30,12 @@ public class GameDataAccessObject implements GameDataAccessInterface {
         return file;
     }
 
+    /**
+     * The method to request file from the user.
+     * @param file the user inputted.
+     * @return the file the user inputted.
+     * @throws DataAccessException a data access exception.
+     */
     @OverloadResolutionByLambdaReturnType
     public File requestFile(File file) throws DataAccessException {
         return file;

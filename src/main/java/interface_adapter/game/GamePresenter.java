@@ -81,13 +81,6 @@ public class GamePresenter implements GameOutputBoundary {
         gameViewModel.firePropertyChanged(PAGECHANGE);
     }
 
-//    @Override
-//    public void prepareAnswerConfirmView(QuestionAnswer currentQuestionAnswer) {
-//        gameViewModel.getState().setMessage("Is your answer: " + currentQuestionAnswer.getUserAnswer()
-//                + "\n the same as the correct answer: " + currentQuestionAnswer.getCorrectAnswer() + "?");
-//        gameViewModel.firePropertyChanged();
-//    }
-
     /**
      * Prepare reward view.
      */
