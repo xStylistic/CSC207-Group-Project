@@ -19,7 +19,8 @@ Zeke Weng | ZekeWeng
 3. [Usage / Demo](#usage)
 4. [Installation](#installation)
 5. [Future Work](#future-work)
-6. [Accessibility](#Accessibility-Report)
+6. [Accessibility](#accessibility-report)
+7. [Slide Deck](#slide-deck)
 
 ## About Our Game
 
@@ -97,3 +98,6 @@ Our program is ideally marketed towards younger students, particularly those in 
 
 ### Non-target Market
 Our program may be less likely to be used by certain demographics due to its reliance on gamified elements and its focus on animals, which might not resonate equally with all users. For example, older students or adults may perceive the animal-themed incentives as too childish, potentially limiting its appeal to younger audiences. Additionally, users without reliable access to computers or the internet, such as those in underserved communities, may face barriers to using the program. Furthermore, the program’s reliance on English for the study sets could exclude non-English-speaking users, creating a language accessibility gap. To address these potential limitations, future iterations could include customizable themes, offline functionality, and multilingual support to make the program more inclusive and accessible across demographics.
+
+## Slide Deck
+https://utoronto-my.sharepoint.com/:p:/g/personal/bonny_chen_mail_utoronto_ca/EaYDRD_4epNIrqXMptbSw6UB4-Yb8cp5JvLdOESZ575g8g?e=Egjcap
